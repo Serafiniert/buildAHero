@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">BuildAHero</string>
-    <string name="hello_world">Hallo Team, hier spricht Tim! *Muhihi</string>
+    <string name="hello_world">Build a Hero!</string>
     <string name="action_settings">Settings</string>
+    <string name="Button_G0">Los gehts!</string>
+    <string name="action_overview">Übersicht</string>
 </resources>
