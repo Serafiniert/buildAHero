@@ -2,7 +2,6 @@
     <string name="app_name">BuildAHero</string>
     <string name="hello_world">Build a Hero!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_main2">Main2Activity</string>
     <string name="button_finish">Fertig</string>
     <string name="button_cancel">Abbrechen</string>
     <string name="settings_about">About</string>
