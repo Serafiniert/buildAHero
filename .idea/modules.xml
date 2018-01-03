@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Tim\.AndroidStudio3.0\BuildAHero\hero\BuildAHero.iml" filepath="C:\Users\Tim\.AndroidStudio3.0\BuildAHero\hero\BuildAHero.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Tim\.AndroidStudio3.0\BuildAHero\hero\app\app.iml" filepath="C:\Users\Tim\.AndroidStudio3.0\BuildAHero\hero\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hero.iml" filepath="$PROJECT_DIR$/hero.iml" />
+      <module fileurl="file://$PROJECT_DIR$/heroes.iml" filepath="$PROJECT_DIR$/heroes.iml" />
     </modules>
   </component>
 </project>
