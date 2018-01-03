@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:hint="Namen"
+                android:inputType="textPersonName">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/Aussehen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="150dp"
+                android:hint="Aussehen"
+                android:inputType="textPersonName"></EditText>
+
+
+            <EditText
+                android:id="@+id/Alter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:hint="Alter"
+                android:inputType="textPersonName">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/Rasse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:hint="Rasse"
+                android:inputType="textPersonName"></EditText>
+
+            <EditText
+                android:id="@+id/Spielsystem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:hint="Spielsystem"
+                android:inputType="textPersonName">
+
+            </EditText>
+
+            <Button
+                android:id="@+id/addText"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+
+
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="350dp"
+                android:text="Textfeld Hinzufügen" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="415dp">
+
+                <TableRow
+                    android:id="@+id/Handeln"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:padding="3dp"
+                        android:text="HANDELN"></TextView>
+
+                    <TextView
+                        android:paddingLeft="100dp"
+                        android:text="Prozentzahl"
+
+                        ></TextView>
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/Label1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Label 1"
+                        android:inputType="textPersonName">
+
+                    </EditText>
+                    <EditText
+                        android:id="@+id/Percent1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Percent 1"
+                        android:inputType="textPersonName"
+                        android:paddingLeft = "100dp"
+                        >
+
+                    </EditText>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/finishCreation"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="27dp"
+        android:layout_marginStart="37dp"
+        android:text="@string/button_finish" />
+
+    <Button
+        android:id="@+id/cancelCreation"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/finishCreation"
+        android:layout_alignBottom="@+id/finishCreation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="39dp"
+        android:text="@string/button_cancel" />
+</RelativeLayout>
