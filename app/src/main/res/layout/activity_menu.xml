@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@android:color/holo_blue_bright"
+    android:backgroundTint="@android:color/holo_blue_light"
     tools:context=".MenuActivity">
 
     <ImageView
@@ -12,9 +12,9 @@
         android:layout_width="66dp"
         android:layout_height="59dp"
         android:src="@mipmap/heroicon"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -25,9 +25,9 @@
         android:textColor="@android:color/background_dark"
         android:textColorLink="@android:color/background_dark"
         android:textSize="30sp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="26dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="26dp" />
 
     <ListView
         android:layout_width="368dp"
@@ -36,9 +36,12 @@
         android:headerDividersEnabled="false"
         android:scrollbars="vertical"
         android:visibility="visible"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="97dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="97dp">
+
+
+    </ListView>
 
     <Button
         android:id="@+id/settingsButton"

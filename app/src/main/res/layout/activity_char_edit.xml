@@ -23,7 +23,7 @@
                 android:layout_below="@+id/view"
                 android:layout_marginTop="29dp"
                 android:gravity="center_horizontal"
-                android:text="@string/edit_head"
+                android:text="@string/creation_head"
                 android:textSize="30sp" />
 
             <EditText
@@ -599,3 +599,4 @@
         android:layout_marginEnd="39dp"
         android:text="@string/button_cancel" />
 </RelativeLayout>
+
