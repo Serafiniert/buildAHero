@@ -2,6 +2,7 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="false">
@@ -23,7 +24,7 @@
                 android:layout_below="@+id/view"
                 android:layout_marginTop="29dp"
                 android:gravity="center_horizontal"
-                android:text="@string/edit_head"
+                android:text="@string/creation_head"
                 android:textSize="30sp" />
 
             <EditText
@@ -85,12 +86,13 @@
 
             <TextView
 
+                android:id="@+id/availPoints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/addText"
                 android:layout_below="@+id/addText"
-                android:layout_marginStart="69dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="22dp"
                 android:text="@string/points_available"></TextView>
 
 
@@ -143,8 +145,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Percent 1"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="100dp">
+                        android:inputType="text"
+                        android:paddingLeft="100dp"
+                        android:imeOptions="actionDone">
 
                     </EditText>
 
@@ -574,6 +577,17 @@
                 </TableRow>
 
             </TableLayout>
+
+            <TextView
+                android:id="@+id/availPointsNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/availPoints"
+                android:layout_alignBottom="@+id/availPoints"
+                android:layout_alignEnd="@+id/addText"
+                android:layout_marginEnd="89dp"
+                android:text="TextView"
+                tools:text="400" />
 
         </RelativeLayout>
 

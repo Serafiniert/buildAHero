@@ -23,7 +23,7 @@
                 android:layout_below="@+id/view"
                 android:layout_marginTop="29dp"
                 android:gravity="center_horizontal"
-                android:text="@string/creation_head"
+                android:text="@string/edit_head"
                 android:textSize="30sp" />
 
             <EditText

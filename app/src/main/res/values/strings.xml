@@ -9,7 +9,8 @@
     <string name="contact">Bei Fehlern melden Sie sich gern unter s0556736@htw-berlin.de :-)</string>
     <string name="Button_G0">Los gehts!</string>
     <string name="action_overview">Übersicht</string>
-    <string name="points_available">Verfügbare Punkte: 400</string>
+    <string name="points_available">Verfügbare Punkte: </string>
+
     <string name="creation_head">Charaktererstellung</string>
     <string name="edit_head">Charakterbearbeitung</string>
 </resources>
