@@ -1,7 +1,7 @@
 package de.build_a_hero.app
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
 class CharEditActivity : AppCompatActivity() {
 
