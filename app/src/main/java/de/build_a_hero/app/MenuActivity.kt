@@ -1,11 +1,9 @@
 package de.build_a_hero.app
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
-import de.build_a_hero.app.R
 
 class MenuActivity : AppCompatActivity() {
 

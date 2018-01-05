@@ -94,14 +94,13 @@
                 android:text="@string/points_available"></TextView>
 
 
-
             <TableLayout
+                android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="450dp"
                 android:divider="#f00"
-                android:showDividers="middle"
-                android:id="@+id/tableLayout">
+                android:showDividers="middle">
 
                 <TableRow
                     android:id="@+id/Handeln"
@@ -113,7 +112,6 @@
                         android:text="HANDELN"></TextView>
 
 
-
                     <TextView
                         android:paddingLeft="100dp"
                         android:text="Prozentzahl"
@@ -122,7 +120,6 @@
 
 
                 </TableRow>
-
 
 
                 <TableRow
@@ -253,10 +250,10 @@
             </TableLayout>
 
             <View
+                android:id="@+id/view"
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
-                android:background="#f00"
-                android:id="@+id/view"></View>
+                android:background="#f00"></View>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -275,7 +272,6 @@
                         android:text="WISSEN"></TextView>
 
 
-
                     <TextView
                         android:paddingLeft="100dp"
                         android:text="Prozentzahl"
@@ -283,10 +279,7 @@
                         ></TextView>
 
 
-
-
                 </TableRow>
-
 
 
                 <TableRow
@@ -419,8 +412,8 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="980dp"
                 android:layout_marginBottom="100dp"
+                android:layout_marginTop="980dp"
                 android:divider="#f00"
                 android:showDividers="middle">
 
@@ -434,7 +427,6 @@
                         android:text="INTERAGIEREN"></TextView>
 
 
-
                     <TextView
                         android:paddingLeft="100dp"
                         android:text="Prozentzahl"
@@ -442,10 +434,7 @@
                         ></TextView>
 
 
-
-
                 </TableRow>
-
 
 
                 <TableRow
