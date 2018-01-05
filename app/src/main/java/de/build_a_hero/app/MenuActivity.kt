@@ -12,11 +12,19 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         configureSettingsButton()
+        configureAddButton()
     }
 
     private fun configureSettingsButton() {
 
         val settingsButton = findViewById<Button>(R.id.settingsButton)
         settingsButton.setOnClickListener { startActivity(Intent(this@MenuActivity, SettingsActivity::class.java)) }
+    }
+
+
+    private fun configureAddButton() {
+
+        val addButton = findViewById<Button>(R.id.addButton)
+        addButton.setOnClickListener { startActivity(Intent(this@MenuActivity, CharCreationActivity::class.java)) }
     }
 }
