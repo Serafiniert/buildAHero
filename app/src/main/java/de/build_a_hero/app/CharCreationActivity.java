@@ -1,9 +1,11 @@
 package de.build_a_hero.app;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,8 +30,8 @@ public class CharCreationActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 boolean handled = false;
 
-                if(i == EditorInfo.IME_ACTION_DONE){
-                    currentHandeln  = Integer.parseInt(textView.getText().toString());
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    currentHandeln = Integer.parseInt(textView.getText().toString());
                     int pts = Integer.parseInt(availablePoints.getText().toString()) + lastHandeln - currentHandeln;
 
                     availablePoints.setText(Integer.toString(pts));
@@ -40,7 +42,6 @@ public class CharCreationActivity extends AppCompatActivity {
                 return handled;
             }
         });
-
 
 
     }
@@ -133,20 +134,6 @@ public class CharCreationActivity extends AppCompatActivity {
 
     }
 
-    private void configureCancelButton() {
-
-        Button cancelButton = findViewById(R.id.cancelCreation);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-
-                                          @Override
-                                          public void onClick(View view) {
-                                              finish();
-                                          }
-                                      }
-        );
-    }
-
-
     public int[] calcTablePercentage(TableLayout table){
         int sumX = 0;
         int sum = 0;
@@ -168,5 +155,18 @@ public class CharCreationActivity extends AppCompatActivity {
         return sumArr;
     }*/
 
+    private void configureCancelButton() {
+
+        Button cancelButton = findViewById(R.id.cancelCreation);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+
+                                            @Override
+                                            public void onClick(View view) {
+                                                finish();
+                                            }
+                                        }
+        );
     }
+
+}
 

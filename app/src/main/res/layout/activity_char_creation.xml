@@ -116,7 +116,7 @@
 
                     <TextView
                         android:paddingLeft="100dp"
-                        android:text="Prozentzahl"
+                        android:text="0"
 
                         ></TextView>
 
@@ -142,9 +142,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Percent 1"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
-                        android:paddingLeft="100dp"
-                        android:imeOptions="actionDone">
+                        android:paddingLeft="100dp">
 
                     </EditText>
 
@@ -575,7 +575,7 @@
                 android:layout_alignBottom="@+id/availPoints"
                 android:layout_alignEnd="@+id/addText"
                 android:layout_marginEnd="89dp"
-                android:text="TextView"
+                android:text="400"
                 tools:text="400" />
 
         </RelativeLayout>
