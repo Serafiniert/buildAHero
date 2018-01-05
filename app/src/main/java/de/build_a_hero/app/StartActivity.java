@@ -9,12 +9,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_start);
+
+        configureNextButton();
+
+    }
+
+    private void configureNextButton() {
+
+        Button nextButton = findViewById(R.id.startButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+                                          @Override
+                                          public void onClick(View view) {
+                                              startActivity(new Intent(StartActivity.this, MenuActivity.class));
+                                          }
+                                      }
+        );
     }
 
 
@@ -25,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void buttonOnClick(View v){
+    public void buttonOnClick(View v) {
         Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), MenuActivity.class));
     }
