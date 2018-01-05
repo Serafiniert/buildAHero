@@ -19,6 +19,8 @@ public class CharCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_char_creation);
 
+        configureCancelButton();
+
         availablePoints = findViewById(R.id.availPointsNum);
         handeln1 = findViewById(R.id.HandelnPercent1);
         handeln1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -131,6 +133,18 @@ public class CharCreationActivity extends AppCompatActivity {
 
     }
 
+    private void configureCancelButton() {
+
+        Button cancelButton = findViewById(R.id.cancelCreation);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+
+                                          @Override
+                                          public void onClick(View view) {
+                                              finish();
+                                          }
+                                      }
+        );
+    }
 
 
     public int[] calcTablePercentage(TableLayout table){

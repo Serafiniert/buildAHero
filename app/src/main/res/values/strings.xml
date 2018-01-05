@@ -8,9 +8,12 @@
     <string name="settings_about_credits">Build a Hero was created by&#xA;Finn Christians&#xA;Nina Dörnbrak&#xA;Tim Eberhardt&#xA;Tanyel Stoyloff</string>
     <string name="contact">Bei Fehlern melden Sie sich gern unter s0556736@htw-berlin.de :-)</string>
     <string name="Button_G0">Los gehts!</string>
+    <string name="Button_Back">Zurück</string>
     <string name="action_overview">Übersicht</string>
     <string name="points_available">Verfügbare Punkte: </string>
 
     <string name="creation_head">Charaktererstellung</string>
     <string name="edit_head">Charakterbearbeitung</string>
+    <string name="add_button">Hinzufügen</string>
+
 </resources>

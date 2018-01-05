@@ -15,28 +15,42 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_start);
+
+        configureNextButton();
 
     }
 
+    private void configureNextButton() {
+
+        Button nextButton = findViewById(R.id.startButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+                                          @Override
+                                          public void onClick(View view) {
+                                              startActivity(new Intent(StartActivity.this, MenuActivity.class));
+                                          }
+                                      }
+        );
+    }
+
+    public void buttonOnClick(View v) {
+        Button button = (Button) v;
+        startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    public void buttonOnClick(View v){
-        Button button = (Button) v;
-        startActivity(new Intent(getApplicationContext(), MenuActivity.class));
     }
 
     @Override
