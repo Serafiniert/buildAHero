@@ -95,7 +95,7 @@
 
 
             <TableLayout
-                android:id="@+id/tableLayout"
+                android:id="@+id/tableHandeln"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="450dp"
@@ -568,7 +568,7 @@
                 android:id="@+id/cancelCreation"
                 android:layout_width="110dp"
                 android:layout_height="50dp"
-                android:layout_alignBottom="@+id/tableLayout"
+                android:layout_alignBottom="@+id/tableHandeln"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="67dp"
                 android:layout_marginEnd="38dp"
