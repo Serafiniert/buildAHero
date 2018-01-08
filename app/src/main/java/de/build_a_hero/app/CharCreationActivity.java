@@ -15,11 +15,7 @@ import android.widget.TextView;
 public class CharCreationActivity extends AppCompatActivity {
 
     //total points available that you can spend on traits
-<<<<<<< HEAD
-    //TextView availablePoints;
-=======
     private TextView availablePoints;
->>>>>>> e65343c8474e94b6c2f3d0d094753b2d9b165c42
 
     //Layout: whole table
     //Header: most top row
@@ -37,13 +33,6 @@ public class CharCreationActivity extends AppCompatActivity {
     private TableRow interagHeader;
     private TextView interagWert;
 
-<<<<<<< HEAD
-    //
-    //int lastHandeln;
-    //int currentHandeln;
-    private TextView availablePoints;
-=======
->>>>>>> e65343c8474e94b6c2f3d0d094753b2d9b165c42
     private EditText handeln1;
     private int lastHandeln;
     private int currentHandeln;
