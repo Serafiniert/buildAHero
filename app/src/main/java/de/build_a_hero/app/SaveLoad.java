@@ -10,16 +10,16 @@ import java.io.IOException;
 
 public class SaveLoad extends Activity {
 
-    public void save() {
+    public void save(String filename, String text) {
 
-        String FILENAME = "hello_file";
-        String string = "hello world!";
+        //String FILENAME = "hello_file";
+        //String string = "hello world!";
 
         FileOutputStream fos;
 
         try {
-            fos = openFileOutput("test.txt", Context.MODE_PRIVATE);
-            fos.write(string.getBytes());
+            fos = openFileOutput(filename, Context.MODE_PRIVATE);
+            fos.write(text.getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -28,14 +28,14 @@ public class SaveLoad extends Activity {
         }
     }
 
-    public void load() {
+    public void load(String filename) {
 
-        String string = "hello world!";
+        //String string = "hello world!";
 
         FileInputStream fis;
 
         try {
-            fis = openFileInput("test.txt");
+            fis = openFileInput(filename);
             fis.read();
             fis.close();
         } catch (FileNotFoundException e) {

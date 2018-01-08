@@ -20,4 +20,6 @@
     <string name="points_minus">-</string>
 
 
+    <string name="save_button">Speichern</string>
+    <string name="load_button">Laden</string>
 </resources>

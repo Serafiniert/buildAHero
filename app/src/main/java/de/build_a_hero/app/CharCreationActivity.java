@@ -36,6 +36,10 @@ public class CharCreationActivity extends AppCompatActivity {
     EditText handeln1;
     int lastHandeln;
     int currentHandeln;
+    private TextView availablePoints;
+    private EditText handeln1;
+    private int lastHandeln;
+    private int currentHandeln;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +79,6 @@ public class CharCreationActivity extends AppCompatActivity {
                     availablePoints.setText(Integer.toString(pts));
                     lastHandeln = currentHandeln;
                 }
-
-
                 return handled;
             }
         });
