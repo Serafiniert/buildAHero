@@ -16,4 +16,8 @@
     <string name="edit_head">Charakterbearbeitung</string>
     <string name="add_button">Hinzufügen</string>
 
+    <string name="points_plus">+</string>
+    <string name="points_minus">-</string>
+
+
 </resources>
