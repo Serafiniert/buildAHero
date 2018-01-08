@@ -1,8 +1,10 @@
 package de.build_a_hero.app;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -12,34 +14,39 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CharCreationActivity extends AppCompatActivity {
 
     //total points available that you can spend on traits
-    TextView availablePoints;
+    private TextView availablePoints;
 
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
 
-    TableLayout handelnLayout;
-    TableRow handelnHeader;
-    TextView handelnWert;
+    private TableLayout handelnLayout;
+    private TableRow handelnHeader;
+    private TextView handelnWert;
 
-    TableLayout wissenLayout;
-    TableRow wissenHeader;
-    TextView wissenWert;
+    private TableLayout wissenLayout;
+    private TableRow wissenHeader;
+    private TextView wissenWert;
 
-    TableLayout interagLayout;
-    TableRow interagHeader;
-    TextView interagWert;
+    private TableLayout interagLayout;
+    private TableRow interagHeader;
+    private TextView interagWert;
 
-    EditText handeln1;
-    int lastHandeln;
-    int currentHandeln;
-    private TextView availablePoints;
-    private EditText handeln1;
-    private int lastHandeln;
-    private int currentHandeln;
+
+    private static final String tag = "Text";
+
+    private String charDetails = "";
+    private String loadText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,7 @@ public class CharCreationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_char_creation);
 
 
-        configureCancelButton();
+
 
 
         handelnLayout = findViewById(R.id.tableHandeln);
@@ -66,136 +73,15 @@ public class CharCreationActivity extends AppCompatActivity {
 
 
         availablePoints = findViewById(R.id.availPointsNum);
-        handeln1 = findViewById(R.id.HandelnPercent1);
-        handeln1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                boolean handled = false;
 
-                if (i == EditorInfo.IME_ACTION_DONE) {
-                    currentHandeln = Integer.parseInt(textView.getText().toString());
-                    int pts = Integer.parseInt(availablePoints.getText().toString()) + lastHandeln - currentHandeln;
-
-                    availablePoints.setText(Integer.toString(pts));
-                    lastHandeln = currentHandeln;
-                }
-                return handled;
-            }
-        });
-
+        configureCancelButton();
         configureValueButton();
+        configureSaveButton();
+        configureLoadButton();
 
 
     }
 
-    /*TextView availablePoints;
-    TextView handelnPercent;
-
-
-    TableLayout handelnLayout;
-
-    EditText[] handelnArr = new EditText[5];
-    EditText[] wissenArr = new EditText[5];
-    EditText[] interArr = new EditText[5];
-
-    int currHandeln;
-
-
-
-    int[] lastHandelnArr = new int[]{0,0,0,0,0};
-
-    String[] talentIDs = new String[]{"HandelnPercent1","HandelnPercent2","HandelnPercent3","HandelnPercent4","HandelnPercent5",
-                                        "WissenPercent1","WissenPercent2","WissenPercent3","WissenPercent4","WissenPercent5",
-                                        "InteragierenPercent1","InteragierenPercent2","InteragierenPercent3","InteragierenPercent4","InteragierenPercent5",};
-
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        availablePoints = findViewById(R.id.availPointsNum);
-        handelnPercent = findViewById(R.id.handelnPercent);
-
-
-
-        handelnLayout = findViewById(R.id.handelnTable);
-
-        for(int k = 1; k<6;k++){
-
-            TableRow row = (TableRow) handelnLayout.getChildAt(k);
-            handelnArr[k-1] = (EditText) row.getChildAt(1);
-            final EditText handelnPerc1 = handelnArr[k-1];
-            final int lastHandeln = lastHandelnArr[k-1];
-            handelnPerc1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    boolean handled = false;
-
-                    if(i == EditorInfo.IME_ACTION_DONE || i == EditorInfo.IME_ACTION_SEND){
-                        //currHandeln =  Integer.parseInt(textView.getText().toString());
-
-                        //int[] sums = calcTablePercentage(handelnLayout);
-
-                        int sumX = 0;
-                        int sum = 0;
-
-                        for(int u = 1; u<6; u++){
-                            TableRow row = (TableRow) handelnLayout.getChildAt(u);
-                            EditText cell = (EditText) row.getChildAt(1);
-                            int cellValue = Integer.parseInt(cell.getText().toString());
-                            if(cellValue >= 80){
-                                sumX = sumX + cellValue + 100;
-                                sum = sum + cellValue;
-                            } else{
-                                sumX = sumX + cellValue;
-                                sum = sum + cellValue;
-                            }
-
-                        }
-
-                        int pts = Integer.parseInt(availablePoints.getText().toString()) + lastHandeln - currHandeln;
-
-                        handelnPercent.setText(Integer.toString(sumX/10));
-
-                        availablePoints.setText(Integer.toString(sum));
-
-                        /*handelnPercent.setText(Integer.toString(pts/10));
-                        availablePoints.setText(Integer.toString(pts));
-
-                    }
-                    return handled;                }
-            });
-
-            lastHandelnArr[k-1] = currHandeln;
-
-        }
-
-
-    }
-
-    public int[] calcTablePercentage(TableLayout table){
-        int sumX = 0;
-        int sum = 0;
-
-        for(int i = 1; i<6; i++){
-            TableRow row = (TableRow) table.getChildAt(i);
-            EditText cell = (EditText) row.getChildAt(1);
-            int cellValue = Integer.parseInt(cell.getText().toString());
-            if(cellValue >= 80){
-                sumX = sumX + cellValue + 100;
-                sum = sum + cellValue;
-            } else{
-                sumX = sumX + cellValue;
-                sum = sum + cellValue;
-            }
-
-        }
-        int[] sumArr = new int[]{sumX/10, sum};
-        return sumArr;
-    }*/
 
     private void configureCancelButton() {
 
@@ -212,28 +98,6 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureValueButton() {
 
-
-        /*handelnLayout= findViewById(R.id.tableHandeln);
-
-        availablePoints = findViewById(R.id.availPointsNum);
-        handeln1 = findViewById(R.id.HandelnPercent1);
-        handeln1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                boolean handled = false;
-
-                if (i == EditorInfo.IME_ACTION_DONE) {
-                    currentHandeln = Integer.parseInt(textView.getText().toString());
-                    int pts = Integer.parseInt(availablePoints.getText().toString()) + lastHandeln - currentHandeln;
-
-                    availablePoints.setText(Integer.toString(pts));
-                    lastHandeln = currentHandeln;
-                }
-
-
-                return handled;
-            }
-        });*/
 
 
         //final Button addButton = findViewById(R.id.plusButton);
@@ -428,6 +292,107 @@ public class CharCreationActivity extends AppCompatActivity {
 
 
     }
+
+    private void configureSaveButton() {
+
+        Button saveButton = findViewById(R.id.finishCreation);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+
+                                          @Override
+                                          public void onClick(View view) {
+                                              //Log.i(tag, text);
+
+                                              charDetails = "";
+
+
+                                              ArrayList<EditText> myEditTextList = new ArrayList<EditText>();
+
+                                              for( int i = 0; i < handelnLayout.getChildCount(); i++ ) {
+
+                                                  Object child = handelnLayout.getChildAt(i);
+
+                                                  if ( child instanceof EditText){
+
+                                                      myEditTextList.add((EditText) handelnLayout.getChildAt(i));
+                                                      EditText cell = (EditText) ((TableRow) child).getChildAt(0);
+
+                                                      charDetails = charDetails + cell.getText().toString();
+
+
+
+                                                  } else if(child instanceof TableRow){
+
+                                                        EditText cell = (EditText) ((TableRow) child).getChildAt(0);
+
+                                                        charDetails = charDetails + cell.getText().toString();
+
+                                                        cell = (EditText) ((TableRow) child).getChildAt(1);
+
+                                                        charDetails = charDetails + cell.getText().toString();
+                                                  }
+
+                                              }
+
+                                              save("androidsavetexttest.txt", charDetails);
+                                              //Log.i(tag, getFilesDir().toString());
+                                          }
+                                      }
+        );
+    }
+
+    private void configureLoadButton() {
+
+        Button loadButton = findViewById(R.id.loadButton);
+        loadButton.setOnClickListener(new View.OnClickListener() {
+
+                                          @Override
+                                          public void onClick(View view) {
+                                              loadText = load("androidsavetexttest.txt");
+                                              //testLoad.setText(loadText);
+                                          }
+                                      }
+        );
+    }
+
+
+    public void save(String filename, String text) {
+
+        FileOutputStream fos;
+
+        try {
+            fos = openFileOutput(filename, Context.MODE_PRIVATE);
+            fos.write(text.getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String load(String filename) {
+
+        String text = null;
+        FileInputStream fis;
+
+        try {
+            fis = openFileInput(filename);
+            byte[] dataArray = new byte[fis.available()];
+
+            while (fis.read(dataArray) != -1) {
+                text = new String(dataArray);
+            }
+            fis.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return text;
+    }
+
+
 
 }
 
