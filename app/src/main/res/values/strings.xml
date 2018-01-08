@@ -16,6 +16,12 @@
     <string name="edit_head">Charakterbearbeitung</string>
     <string name="add_button">Hinzufügen</string>
 
+    <string name="char_name">Name</string>
+    <string name="char_gender">Geschlecht</string>
+    <string name="char_age">Alter</string>
+    <string name="char_race">Rasse</string>
+    <string name="char_visual">Aussehen</string>
+
     <string name="points_plus">+</string>
     <string name="points_minus">-</string>
 
