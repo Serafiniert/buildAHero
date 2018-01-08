@@ -28,4 +28,5 @@
 
     <string name="save_button">Speichern</string>
     <string name="load_button">Laden</string>
+    <string name="lorem_text">Lorem Ipsum text.</string>
 </resources>

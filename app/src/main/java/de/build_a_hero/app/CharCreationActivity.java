@@ -15,28 +15,35 @@ import android.widget.TextView;
 public class CharCreationActivity extends AppCompatActivity {
 
     //total points available that you can spend on traits
+<<<<<<< HEAD
     //TextView availablePoints;
+=======
+    private TextView availablePoints;
+>>>>>>> e65343c8474e94b6c2f3d0d094753b2d9b165c42
 
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
 
-    TableLayout handelnLayout;
-    TableRow handelnHeader;
-    TextView handelnWert;
+    private TableLayout handelnLayout;
+    private TableRow handelnHeader;
+    private TextView handelnWert;
 
-    TableLayout wissenLayout;
-    TableRow wissenHeader;
-    TextView wissenWert;
+    private TableLayout wissenLayout;
+    private TableRow wissenHeader;
+    private TextView wissenWert;
 
-    TableLayout interagLayout;
-    TableRow interagHeader;
-    TextView interagWert;
+    private TableLayout interagLayout;
+    private TableRow interagHeader;
+    private TextView interagWert;
 
+<<<<<<< HEAD
     //
     //int lastHandeln;
     //int currentHandeln;
     private TextView availablePoints;
+=======
+>>>>>>> e65343c8474e94b6c2f3d0d094753b2d9b165c42
     private EditText handeln1;
     private int lastHandeln;
     private int currentHandeln;
