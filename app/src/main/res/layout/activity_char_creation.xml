@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     android:fillViewport="false">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="100dp"
-                android:hint="Namen"
+                android:hint="@string/char_name"
                 android:inputType="textPersonName">
 
             </Spinner>
@@ -44,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="150dp"
-                android:hint="Aussehen"
+                android:hint="@string/char_gender"
                 android:inputType="textPersonName"></EditText>
 
 
@@ -53,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
-                android:hint="Alter"
+                android:hint="@string/char_age"
                 android:inputType="textPersonName">
 
             </EditText>
@@ -63,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="250dp"
-                android:hint="Rasse"
+                android:hint="@string/char_race"
                 android:inputType="textPersonName"></EditText>
 
             <EditText
@@ -71,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
-                android:hint="Spielsystem"
+                android:hint="@string/char_visual"
                 android:inputType="textPersonName">
 
             </EditText>

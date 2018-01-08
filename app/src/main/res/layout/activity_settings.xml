@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     tools:context="de.build_a_hero.app.SettingsActivity"
     tools:layout_editor_absoluteY="25dp">
 
@@ -15,6 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="42dp"
         android:text="@string/settings_about"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +28,10 @@
         android:layout_marginBottom="146dp"
         android:layout_marginTop="69dp"
         android:text="@string/settings_about_credits"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +53,18 @@
         android:layout_marginBottom="322dp"
         android:layout_marginStart="16dp"
         android:text="@string/contact"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="254dp"
+        android:layout_height="201dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/d20_t_shirt_black_dice" />
 </android.support.constraint.ConstraintLayout>

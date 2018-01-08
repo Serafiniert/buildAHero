@@ -23,17 +23,6 @@
         android:textSize="36sp"
         android:translationY="40dp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@android:color/background_dark"
-        android:foregroundGravity="bottom"
-        android:progressTint="@android:color/background_dark"
-        android:visibility="invisible" />
-
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"

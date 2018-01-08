@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartActivity extends AppCompatActivity {
 
 
@@ -19,6 +23,20 @@ public class StartActivity extends AppCompatActivity {
 
         configureNextButton();
 
+        InputStream inputStream = getResources().openRawResource(R.raw.mitte);
+        CSVFile csv = new CSVFile(inputStream);
+        csv.read();
+
+        List<String> female = csv.getFemale();
+        List<String> male = csv.getMale();
+
+        for(int i = 0; i < female.size(); i++){
+            System.out.println(i + " | " + female.get(i));
+        }
+
+        for(int i = 0; i < male.size(); i++){
+            System.out.println(i + " | " + male.get(i));
+        }
     }
 
     private void configureNextButton() {
