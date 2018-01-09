@@ -19,32 +19,25 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CharCreationActivity extends AppCompatActivity {
 
-    //total points available that you can spend on traits
-    private TextView availablePoints;
+    private static final String tag = "Text";
 
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
-
+    //total points available that you can spend on traits
+    private TextView availablePoints;
     private TableLayout handelnLayout;
     private TableRow handelnHeader;
     private TextView handelnWert;
-
     private TableLayout wissenLayout;
     private TableRow wissenHeader;
     private TextView wissenWert;
-
     private TableLayout interagLayout;
     private TableRow interagHeader;
     private TextView interagWert;
-
-
-    private static final String tag = "Text";
-
     private String charDetails = "";
     private String loadText;
 
@@ -52,9 +45,6 @@ public class CharCreationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_char_creation);
-
-
-
 
 
         handelnLayout = findViewById(R.id.tableHandeln);
@@ -99,7 +89,6 @@ public class CharCreationActivity extends AppCompatActivity {
     private void configureValueButton() {
 
 
-
         //final Button addButton = findViewById(R.id.plusButton);
         for (int i = 1; i < 6; i++) {
             final TableRow handelnRow = (TableRow) handelnLayout.getChildAt(i);
@@ -108,33 +97,33 @@ public class CharCreationActivity extends AppCompatActivity {
 
 
             handelnAddButton.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View view) {
-                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
-                        availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
-
-
-                    } else {
+                                                        if (availPoints == 0) {
+                                                            availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
-                        //TableRow row = (TableRow) addButton.getParent();
-                        EditText cell = (EditText) handelnRow.getChildAt(1);
-                        int currentHandeln = Integer.parseInt(cell.getText().toString());
-                        currentHandeln = currentHandeln + 10;
-                        int klassenWert = Integer.parseInt(handelnWert.getText().toString());
-                        if (currentHandeln == 80) {
-                            klassenWert = klassenWert + 10;
-                        }
-
-                        klassenWert = klassenWert + 1;
+                                                        } else {
 
 
-                        availablePoints.setText(Integer.toString(availPoints - 10));
-                        cell.setText(Integer.toString(currentHandeln));
-                        handelnWert.setText(Integer.toString(klassenWert));
-                    }
+                                                            //TableRow row = (TableRow) addButton.getParent();
+                                                            EditText cell = (EditText) handelnRow.getChildAt(1);
+                                                            int currentHandeln = Integer.parseInt(cell.getText().toString());
+                                                            currentHandeln = currentHandeln + 10;
+                                                            int klassenWert = Integer.parseInt(handelnWert.getText().toString());
+                                                            if (currentHandeln == 80) {
+                                                                klassenWert = klassenWert + 10;
+                                                            }
+
+                                                            klassenWert = klassenWert + 1;
+
+
+                                                            availablePoints.setText(Integer.toString(availPoints - 10));
+                                                            cell.setText(Integer.toString(currentHandeln));
+                                                            handelnWert.setText(Integer.toString(klassenWert));
+                                                        }
 
                                                     }
                                                 }
@@ -177,7 +166,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
+                    if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
@@ -193,7 +182,6 @@ public class CharCreationActivity extends AppCompatActivity {
                         }
 
                         klassenWert = klassenWert + 1;
-
 
 
                         availablePoints.setText(Integer.toString(availPoints - 10));
@@ -240,7 +228,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
+                    if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
@@ -307,11 +295,11 @@ public class CharCreationActivity extends AppCompatActivity {
 
                                               ArrayList<EditText> myEditTextList = new ArrayList<EditText>();
 
-                                              for( int i = 0; i < handelnLayout.getChildCount(); i++ ) {
+                                              for (int i = 0; i < handelnLayout.getChildCount(); i++) {
 
                                                   Object child = handelnLayout.getChildAt(i);
 
-                                                  if ( child instanceof EditText){
+                                                  if (child instanceof EditText) {
 
                                                       myEditTextList.add((EditText) handelnLayout.getChildAt(i));
                                                       EditText cell = (EditText) ((TableRow) child).getChildAt(0);
@@ -319,16 +307,15 @@ public class CharCreationActivity extends AppCompatActivity {
                                                       charDetails = charDetails + cell.getText().toString();
 
 
+                                                  } else if (child instanceof TableRow) {
 
-                                                  } else if(child instanceof TableRow){
+                                                      EditText cell = (EditText) ((TableRow) child).getChildAt(0);
 
-                                                        EditText cell = (EditText) ((TableRow) child).getChildAt(0);
+                                                      charDetails = charDetails + cell.getText().toString();
 
-                                                        charDetails = charDetails + cell.getText().toString();
+                                                      cell = (EditText) ((TableRow) child).getChildAt(1);
 
-                                                        cell = (EditText) ((TableRow) child).getChildAt(1);
-
-                                                        charDetails = charDetails + cell.getText().toString();
+                                                      charDetails = charDetails + cell.getText().toString();
                                                   }
 
                                               }
@@ -391,7 +378,6 @@ public class CharCreationActivity extends AppCompatActivity {
         }
         return text;
     }
-
 
 
 }

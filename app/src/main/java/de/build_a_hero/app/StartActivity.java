@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StartActivity extends AppCompatActivity {
@@ -30,11 +29,11 @@ public class StartActivity extends AppCompatActivity {
         List<String> female = csv.getFemale();
         List<String> male = csv.getMale();
 
-        for(int i = 0; i < female.size(); i++){
+        for (int i = 0; i < female.size(); i++) {
             System.out.println(i + " | " + female.get(i));
         }
 
-        for(int i = 0; i < male.size(); i++){
+        for (int i = 0; i < male.size(); i++) {
             System.out.println(i + " | " + male.get(i));
         }
     }
