@@ -22,8 +22,20 @@
     <string name="char_race">Rasse</string>
     <string name="char_visual">Aussehen</string>
 
+    <string name="handeln">HANDELN</string>
+    <string name="wissen">WISSEN</string>
+    <string name="interagieren">INTERAG</string>
+    <string name="tal_1">Talent 1</string>
+    <string name="tal_2">Talent 2</string>
+    <string name="tal_3">Talent 3</string>
+    <string name="tal_4">Talent 4</string>
+    <string name="tal_5">Talent 5</string>
+
     <string name="points_plus">+</string>
     <string name="points_minus">-</string>
+    <string name="points_num">400</string>
+
+    <string name="gray">#c8e1fa</string>
 
 
     <string name="save_button">Speichern</string>
