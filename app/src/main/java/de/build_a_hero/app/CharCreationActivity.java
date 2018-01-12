@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,6 +44,9 @@ public class CharCreationActivity extends AppCompatActivity {
     private TableRow interagHeader;
     private TextView interagWert;
 
+    private ArrayList<View> formList;
+    private ArrayList<Integer> spinnerPositions;
+
 
     private static final String tag = "Text";
 
@@ -52,9 +57,6 @@ public class CharCreationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_char_creation);
-
-
-
 
 
         handelnLayout = findViewById(R.id.tableHandeln);
@@ -74,10 +76,17 @@ public class CharCreationActivity extends AppCompatActivity {
 
         availablePoints = findViewById(R.id.availPointsNum);
 
+        formList = new ArrayList<>();
+        spinnerPositions = new ArrayList<>();
+
+        // goes back to the charMenu
         configureCancelButton();
+        // configures + and -, so it adds to or substracts 10 of the current Value
         configureValueButton();
+        // configures the button "Fertig" to save the character
         configureSaveButton();
-        configureLoadButton();
+        // configures Load Button, not necessary here
+        //configureLoadButton();
 
 
     }
@@ -293,6 +302,36 @@ public class CharCreationActivity extends AppCompatActivity {
 
     }
 
+    private void configureForms(){
+
+        //formList
+
+        RelativeLayout compLayout = findViewById(R.id.compLayout);
+
+        for (int i = 0; i < compLayout.getChildCount() ; i++) {
+            Log.v(tag, Integer.toString(compLayout.getChildCount()));
+            Object child = compLayout.getChildAt(i);
+
+            if(child instanceof Spinner){
+                Spinner spinner = (Spinner) child;
+                formList.add(spinner);
+
+            } else if(child instanceof EditText){
+                formList.add((EditText) child);
+
+            } else if(child instanceof TableLayout){
+                TableLayout lyo = (TableLayout) child;
+                for (int j = 1; j < lyo.getChildCount(); j++) {
+                    TableRow tr = (TableRow) (lyo.getChildAt(j));
+                    formList.add(tr.getChildAt(0));
+                    formList.add(tr.getChildAt(1));
+                }
+            }
+        }
+
+        return;
+    }
+
     private void configureSaveButton() {
 
         Button saveButton = findViewById(R.id.finishCreation);
@@ -303,38 +342,71 @@ public class CharCreationActivity extends AppCompatActivity {
                                               //Log.i(tag, text);
 
                                               charDetails = "";
+                                              configureForms();
 
 
-                                              ArrayList<EditText> myEditTextList = new ArrayList<EditText>();
+                                              for (int i = 0; i < formList.size() ; i++) {
 
-                                              for( int i = 0; i < handelnLayout.getChildCount(); i++ ) {
+                                                  View input = formList.get(i);
 
-                                                  Object child = handelnLayout.getChildAt(i);
+                                                  if(input instanceof Spinner){
+                                                      Spinner sp = (Spinner) input;
+                                                      if(sp.getSelectedItem() != null){
+                                                      charDetails = charDetails + sp.getSelectedItem().toString() + ";";
+                                                      spinnerPositions.add(sp.getSelectedItemPosition());
+                                                      }else{
+                                                          charDetails = charDetails + "null;";
+                                                      }
 
-                                                  if ( child instanceof EditText){
-
-                                                      myEditTextList.add((EditText) handelnLayout.getChildAt(i));
-                                                      EditText cell = (EditText) ((TableRow) child).getChildAt(0);
-
-                                                      charDetails = charDetails + cell.getText().toString();
-
-
-
-                                                  } else if(child instanceof TableRow){
-
-                                                        EditText cell = (EditText) ((TableRow) child).getChildAt(0);
-
-                                                        charDetails = charDetails + cell.getText().toString();
-
-                                                        cell = (EditText) ((TableRow) child).getChildAt(1);
-
-                                                        charDetails = charDetails + cell.getText().toString();
+                                                  } else if(input instanceof EditText){
+                                                      EditText et = (EditText) input;
+                                                      if(et.getText() == null || et.getText().equals("")){
+                                                          charDetails = charDetails + "null;";
+                                                      } else{
+                                                          charDetails = charDetails + et.getText() + ";";
+                                                      }
                                                   }
 
+
+                                              }
+
+                                              if(charDetails.length() > 0 && charDetails.charAt(charDetails.length()-1) == ';'){
+                                                  charDetails = charDetails.substring(0, charDetails.length()-1);
                                               }
 
                                               save("androidsavetexttest.txt", charDetails);
                                               //Log.i(tag, getFilesDir().toString());
+
+                                              String loadTxt = load("androidsavetexttest.txt");
+
+
+
+                                              String[] inputs = load("androidsavetexttest.txt").split(";");
+                                              int spinnerCount = 0;
+
+
+                                              for (int i = 0; i < formList.size() ; i++) {
+                                                  Log.v(tag, inputs[i]);
+                                                  int tempi = inputs.length;
+                                                  int tempf = formList.size();
+                                                  Log.v(tag, "inputs: " + Integer.toString(tempi));
+                                                  Log.v(tag, "formlist" + Integer.toString(tempf));
+
+                                                  View v = formList.get(i);
+
+                                                  if(v instanceof Spinner){
+                                                      /*if(spinnerPositions.size() == 0){
+                                                      Spinner sp = (Spinner) v;
+                                                      sp.setSelection(spinnerPositions.get(spinnerCount));
+                                                      spinnerCount++;
+                                                      }*/
+                                                  } else if(v instanceof EditText){
+                                                      EditText et = (EditText) v;
+                                                      et.setText(inputs[i] + "yes");
+                                                  }
+                                              }
+                                              //EditText temp = (EditText) formList.get(1);
+                                              //temp.setText(loadTxt);
                                           }
                                       }
         );
@@ -342,12 +414,31 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureLoadButton() {
 
-        Button loadButton = findViewById(R.id.loadButton);
+        Button loadButton = findViewById(R.id.finishCreation);
         loadButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
                                           public void onClick(View view) {
                                               loadText = load("androidsavetexttest.txt");
+
+                                              String[] inputs = loadText.split(";");
+                                              int spinnerCount = 0;
+
+                                              for (int i = 0; i <formList.size() ; i++) {
+                                                  Log.v(tag, inputs[i]);
+
+                                                  View v = formList.get(i);
+
+                                                  if(v instanceof Spinner){
+                                                      Spinner sp = (Spinner) v;
+                                                      sp.setSelection(spinnerPositions.get(spinnerCount));
+                                                      spinnerCount++;
+                                                  } else if(v instanceof EditText){
+                                                      EditText et = (EditText) v;
+                                                      et.setText(inputs[i]);
+                                                  }
+                                              }
+
                                               //testLoad.setText(loadText);
                                           }
                                       }
