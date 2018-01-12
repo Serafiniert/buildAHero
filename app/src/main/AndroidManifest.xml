@@ -22,5 +22,4 @@
         <activity android:name=".CharCreationActivity" />
         <activity android:name=".TestActivity" />
     </application>
-
 </manifest>
