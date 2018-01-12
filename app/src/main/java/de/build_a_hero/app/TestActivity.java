@@ -82,7 +82,7 @@ public class TestActivity extends AppCompatActivity {
         );
     }
 
-
+    @SuppressWarnings("TryWithIdenticalCatches")
     public void save(String filename, String text) {
 
         FileOutputStream fos;
@@ -98,6 +98,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("TryWithIdenticalCatches")
     public String load(String filename) {
 
         String text = null;
