@@ -18,8 +18,12 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".CharEditActivity" />
-        <activity android:name=".CharCreationActivity" />
+        <activity
+            android:name=".CharEditActivity"
+            android:windowSoftInputMode="stateHidden|stateHidden|adjustPan" />
+        <activity
+            android:name=".CharCreationActivity"
+            android:windowSoftInputMode="stateHidden|stateHidden|adjustPan" />
         <activity android:name=".TestActivity" />
     </application>
 </manifest>

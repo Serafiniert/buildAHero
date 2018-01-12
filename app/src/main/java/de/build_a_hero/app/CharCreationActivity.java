@@ -27,7 +27,7 @@ import java.util.List;
 public class CharCreationActivity extends AppCompatActivity {
 
     private static final String tag = "Text";
-
+    ArrayAdapter<String> nameAdapter;
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
@@ -48,19 +48,15 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private String charDetails = "";
     private String loadText;
-
     private Spinner nameSpinner;
     private Spinner genderSpinner;
     private ArrayList<View> formList;
     private ArrayList<Integer> spinnerPositions;
 
     private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
-
     private List<String> male;
     private List<String> female;
     private List<String> allNames;
-
-    ArrayAdapter<String> nameAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
