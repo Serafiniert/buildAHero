@@ -4,12 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,7 +18,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CharCreationActivity extends AppCompatActivity {
 
@@ -40,6 +42,17 @@ public class CharCreationActivity extends AppCompatActivity {
     private TextView interagWert;
     private String charDetails = "";
     private String loadText;
+
+    private Spinner nameSpinner;
+    private Spinner genderSpinner;
+
+    private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
+
+    private List<String> male;
+    private List<String> female;
+    private List<String> allNames;
+
+    ArrayAdapter<String> nameAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +77,54 @@ public class CharCreationActivity extends AppCompatActivity {
 
         availablePoints = findViewById(R.id.availPointsNum);
 
+        nameSpinner = findViewById(R.id.name);
+        genderSpinner = findViewById(R.id.gender);
+
+        allNames = new ArrayList<>();
+
+        InputStream inputStream = getResources().openRawResource(R.raw.mitte);
+        CSVFile csv = new CSVFile(inputStream);
+        csv.read();
+
+        male = csv.getMale();
+        female = csv.getFemale();
+        allNames = csv.getAllNames();
+
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, gender);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(genderAdapter);
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String gender = parent.getItemAtPosition(position).toString();
+
+                if(gender.equals("weiblich")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, female);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }else if(gender.equals("männlich")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, male);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }else if(gender.equals("anders") || gender.equals("unbestimmt")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, allNames);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         configureCancelButton();
         configureValueButton();
-        configureSaveButton();
-        configureLoadButton();
+        //configureSaveButton();
+        //configureLoadButton();
 
 
     }
@@ -283,7 +340,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureSaveButton() {
 
-        Button saveButton = findViewById(R.id.finishCreation);
+        /*Button saveButton = findViewById(R.id.finishCreation);
         saveButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
@@ -324,12 +381,12 @@ public class CharCreationActivity extends AppCompatActivity {
                                               //Log.i(tag, getFilesDir().toString());
                                           }
                                       }
-        );
+        );*/
     }
 
     private void configureLoadButton() {
 
-        Button loadButton = findViewById(R.id.loadButton);
+        /*Button loadButton = findViewById(R.id.loadButton);
         loadButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
@@ -338,7 +395,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                               //testLoad.setText(loadText);
                                           }
                                       }
-        );
+        );*/
     }
 
 
@@ -378,7 +435,6 @@ public class CharCreationActivity extends AppCompatActivity {
         }
         return text;
     }
-
 
 }
 

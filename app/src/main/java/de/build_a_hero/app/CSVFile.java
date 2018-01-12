@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CSVFile {
     private InputStream inputStream;
     private List<String> female;
     private List<String> male;
+    private List<String> allNames;
 
     public CSVFile(InputStream inputStream) {
         this.inputStream = inputStream;
@@ -20,6 +22,7 @@ public class CSVFile {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         female = new ArrayList<>();
         male = new ArrayList<>();
+        allNames = new ArrayList<>();
 
         try {
             String csvLine;
@@ -30,7 +33,14 @@ public class CSVFile {
                 } else if (row[2].equalsIgnoreCase("m")) {
                     male.add(row[0]);
                 }
+
             }
+            allNames.addAll(female);
+            allNames.addAll(male);
+            Collections.sort(allNames);
+            Collections.sort(female);
+            Collections.sort(male);
+
         } catch (IOException ex) {
             throw new RuntimeException("Error in reading CSV file: " + ex);
         } finally {
@@ -57,5 +67,13 @@ public class CSVFile {
 
     public void setMale(List<String> male) {
         this.male = male;
+    }
+
+    public List<String> getAllNames() {
+        return allNames;
+    }
+
+    public void setAllNames(List<String> allNames) {
+        this.allNames = allNames;
     }
 }
