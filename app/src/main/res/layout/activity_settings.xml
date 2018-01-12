@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@string/gray"
+    android:background="#c8e1fa"
     tools:context="de.build_a_hero.app.SettingsActivity"
     tools:layout_editor_absoluteY="25dp">
 
