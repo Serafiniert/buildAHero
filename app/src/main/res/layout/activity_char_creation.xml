@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@string/gray"
     android:fillViewport="false">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -114,7 +114,7 @@
 
                     <TextView
                         android:padding="3dp"
-                        android:text="HANDELN"></TextView>
+                        android:text="@string/handeln"></TextView>
 
 
                     <TextView
@@ -123,7 +123,6 @@
                         android:text="0"
 
                         ></TextView>
-
 
 
                 </TableRow>
@@ -137,7 +136,7 @@
                         android:id="@+id/HandelnLabel1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 1"
+                        android:hint="@string/tal_1"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -175,7 +174,7 @@
                         android:id="@+id/HandelnLabel2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 2"
+                        android:hint="@string/tal_2"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -212,7 +211,7 @@
                         android:id="@+id/HandelnLabel3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 3"
+                        android:hint="@string/tal_3"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -248,7 +247,7 @@
                         android:id="@+id/HandelnLabel4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 4"
+                        android:hint="@string/tal_4"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -284,7 +283,7 @@
                         android:id="@+id/HandelnLabel5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 5"
+                        android:hint="@string/tal_5"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -335,7 +334,7 @@
 
                     <TextView
                         android:padding="3dp"
-                        android:text="WISSEN"></TextView>
+                        android:text="@string/wissen"></TextView>
 
 
                     <TextView
@@ -356,7 +355,7 @@
                         android:id="@+id/WissenLabel1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 1"
+                        android:hint="@string/tal_1"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -392,7 +391,7 @@
                         android:id="@+id/WissenLabel2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 2"
+                        android:hint="@string/tal_2"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -428,7 +427,7 @@
                         android:id="@+id/WissenLabel3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 3"
+                        android:hint="@string/tal_3"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -464,7 +463,7 @@
                         android:id="@+id/WissenLabel4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 4"
+                        android:hint="@string/tal_4"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -500,7 +499,7 @@
                         android:id="@+id/WissenLabel5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 5"
+                        android:hint="@string/tal_5"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -546,7 +545,7 @@
 
                     <TextView
                         android:padding="3dp"
-                        android:text="INTERAG."></TextView>
+                        android:text="@string/interagieren"></TextView>
 
 
                     <TextView
@@ -567,7 +566,7 @@
                         android:id="@+id/InteragierenLabel1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 1"
+                        android:hint="@string/tal_1"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -603,7 +602,7 @@
                         android:id="@+id/InteragierenLabel2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 2"
+                        android:hint="@string/tal_2"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -639,7 +638,7 @@
                         android:id="@+id/InteragierenLabel3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 3"
+                        android:hint="@string/tal_3"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -675,7 +674,7 @@
                         android:id="@+id/InteragierenLabel4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 4"
+                        android:hint="@string/tal_4"
                         android:inputType="textPersonName">
 
                     </EditText>
@@ -711,7 +710,7 @@
                         android:id="@+id/InteragierenLabel5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Label 5"
+                        android:hint="@string/tal_5"
                         android:inputType="textPersonName">
 
                     </EditText>
