@@ -4,10 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -20,38 +19,43 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CharCreationActivity extends AppCompatActivity {
 
-    //total points available that you can spend on traits
-    private TextView availablePoints;
+    private static final String tag = "Text";
 
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
-
+    //total points available that you can spend on traits
+    private TextView availablePoints;
     private TableLayout handelnLayout;
     private TableRow handelnHeader;
     private TextView handelnWert;
-
     private TableLayout wissenLayout;
     private TableRow wissenHeader;
     private TextView wissenWert;
-
     private TableLayout interagLayout;
     private TableRow interagHeader;
     private TextView interagWert;
+    private String charDetails = "";
+    private String loadText;
 
+    private Spinner nameSpinner;
+    private Spinner genderSpinner;
     private ArrayList<View> formList;
     private ArrayList<Integer> spinnerPositions;
 
+    private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
 
-    private static final String tag = "Text";
+    private List<String> male;
+    private List<String> female;
+    private List<String> allNames;
 
-    private String charDetails = "";
-    private String loadText;
+    ArrayAdapter<String> nameAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +80,50 @@ public class CharCreationActivity extends AppCompatActivity {
 
         availablePoints = findViewById(R.id.availPointsNum);
 
-        formList = new ArrayList<>();
-        spinnerPositions = new ArrayList<>();
+        nameSpinner = findViewById(R.id.name);
+        genderSpinner = findViewById(R.id.gender);
 
-        // goes back to the charMenu
+        allNames = new ArrayList<>();
+
+        InputStream inputStream = getResources().openRawResource(R.raw.mitte);
+        CSVFile csv = new CSVFile(inputStream);
+        csv.read();
+
+        male = csv.getMale();
+        female = csv.getFemale();
+        allNames = csv.getAllNames();
+
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, gender);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderSpinner.setAdapter(genderAdapter);
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String gender = parent.getItemAtPosition(position).toString();
+
+                if(gender.equals("weiblich")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, female);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }else if(gender.equals("männlich")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, male);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }else if(gender.equals("anders") || gender.equals("unbestimmt")){
+                    nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, allNames);
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    nameSpinner.setAdapter(nameAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         configureCancelButton();
         // configures + and -, so it adds to or substracts 10 of the current Value
         configureValueButton();
@@ -108,7 +152,6 @@ public class CharCreationActivity extends AppCompatActivity {
     private void configureValueButton() {
 
 
-
         //final Button addButton = findViewById(R.id.plusButton);
         for (int i = 1; i < 6; i++) {
             final TableRow handelnRow = (TableRow) handelnLayout.getChildAt(i);
@@ -117,33 +160,33 @@ public class CharCreationActivity extends AppCompatActivity {
 
 
             handelnAddButton.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View view) {
-                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
-                        availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
-
-
-                    } else {
+                                                        if (availPoints == 0) {
+                                                            availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
-                        //TableRow row = (TableRow) addButton.getParent();
-                        EditText cell = (EditText) handelnRow.getChildAt(1);
-                        int currentHandeln = Integer.parseInt(cell.getText().toString());
-                        currentHandeln = currentHandeln + 10;
-                        int klassenWert = Integer.parseInt(handelnWert.getText().toString());
-                        if (currentHandeln == 80) {
-                            klassenWert = klassenWert + 10;
-                        }
-
-                        klassenWert = klassenWert + 1;
+                                                        } else {
 
 
-                        availablePoints.setText(Integer.toString(availPoints - 10));
-                        cell.setText(Integer.toString(currentHandeln));
-                        handelnWert.setText(Integer.toString(klassenWert));
-                    }
+                                                            //TableRow row = (TableRow) addButton.getParent();
+                                                            EditText cell = (EditText) handelnRow.getChildAt(1);
+                                                            int currentHandeln = Integer.parseInt(cell.getText().toString());
+                                                            currentHandeln = currentHandeln + 10;
+                                                            int klassenWert = Integer.parseInt(handelnWert.getText().toString());
+                                                            if (currentHandeln == 80) {
+                                                                klassenWert = klassenWert + 10;
+                                                            }
+
+                                                            klassenWert = klassenWert + 1;
+
+
+                                                            availablePoints.setText(Integer.toString(availPoints - 10));
+                                                            cell.setText(Integer.toString(currentHandeln));
+                                                            handelnWert.setText(Integer.toString(klassenWert));
+                                                        }
 
                                                     }
                                                 }
@@ -186,7 +229,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
+                    if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
@@ -202,7 +245,6 @@ public class CharCreationActivity extends AppCompatActivity {
                         }
 
                         klassenWert = klassenWert + 1;
-
 
 
                         availablePoints.setText(Integer.toString(availPoints - 10));
@@ -249,7 +291,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int availPoints = Integer.parseInt(availablePoints.getText().toString());
 
-                    if(availPoints == 0){
+                    if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
 
@@ -334,7 +376,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureSaveButton() {
 
-        Button saveButton = findViewById(R.id.finishCreation);
+        /*Button saveButton = findViewById(R.id.finishCreation);
         saveButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
@@ -409,7 +451,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                               //temp.setText(loadTxt);
                                           }
                                       }
-        );
+        );*/
     }
 
     private void configureLoadButton() {
@@ -442,7 +484,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                               //testLoad.setText(loadText);
                                           }
                                       }
-        );
+        );*/
     }
 
 
@@ -482,8 +524,6 @@ public class CharCreationActivity extends AppCompatActivity {
         }
         return text;
     }
-
-
 
 }
 

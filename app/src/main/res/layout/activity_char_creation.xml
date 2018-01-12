@@ -30,10 +30,20 @@
                 android:textSize="30sp" />
 
             <Spinner
-                android:id="@+id/Name"
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/name"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="26dp" />
+
+            <Spinner
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="100dp"
+                android:layout_alignBottom="@+id/age"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="59dp"
                 android:hint="@string/char_name"
                 android:inputType="textPersonName">
 
@@ -41,16 +51,7 @@
 
 
             <EditText
-                android:id="@+id/Aussehen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="150dp"
-                android:hint="@string/char_gender"
-                android:inputType="textPersonName"></EditText>
-
-
-            <EditText
-                android:id="@+id/Alter"
+                android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
@@ -60,7 +61,7 @@
             </EditText>
 
             <EditText
-                android:id="@+id/Rasse"
+                android:id="@+id/race"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="250dp"
@@ -68,7 +69,7 @@
                 android:inputType="textPersonName"></EditText>
 
             <EditText
-                android:id="@+id/Spielsystem"
+                android:id="@+id/appearance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
