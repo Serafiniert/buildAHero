@@ -9,9 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.InputStream;
-import java.util.List;
-
 public class StartActivity extends AppCompatActivity {
 
 
@@ -34,11 +31,6 @@ public class StartActivity extends AppCompatActivity {
                                           }
                                       }
         );
-    }
-
-    public void buttonOnClick(View v) {
-        Button button = (Button) v;
-        startActivity(new Intent(getApplicationContext(), MenuActivity.class));
     }
 
     @Override

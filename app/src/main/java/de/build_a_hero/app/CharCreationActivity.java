@@ -25,7 +25,7 @@ import java.util.List;
 public class CharCreationActivity extends AppCompatActivity {
 
     private static final String tag = "Text";
-
+    ArrayAdapter<String> nameAdapter;
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
@@ -42,17 +42,12 @@ public class CharCreationActivity extends AppCompatActivity {
     private TextView interagWert;
     private String charDetails = "";
     private String loadText;
-
     private Spinner nameSpinner;
     private Spinner genderSpinner;
-
     private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
-
     private List<String> male;
     private List<String> female;
     private List<String> allNames;
-
-    ArrayAdapter<String> nameAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,15 +94,15 @@ public class CharCreationActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String gender = parent.getItemAtPosition(position).toString();
 
-                if(gender.equals("weiblich")){
+                if (gender.equals("weiblich")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, female);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
-                }else if(gender.equals("männlich")){
+                } else if (gender.equals("männlich")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, male);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
-                }else if(gender.equals("anders") || gender.equals("unbestimmt")){
+                } else if (gender.equals("anders") || gender.equals("unbestimmt")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, allNames);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
