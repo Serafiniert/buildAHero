@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,15 +33,19 @@ public class CharCreationActivity extends AppCompatActivity {
     //Wert: total percentage of trait class
     //total points available that you can spend on traits
     private TextView availablePoints;
+
     private TableLayout handelnLayout;
     private TableRow handelnHeader;
     private TextView handelnWert;
+
     private TableLayout wissenLayout;
     private TableRow wissenHeader;
     private TextView wissenWert;
+
     private TableLayout interagLayout;
     private TableRow interagHeader;
     private TextView interagWert;
+
     private String charDetails = "";
     private String loadText;
 
@@ -83,6 +88,9 @@ public class CharCreationActivity extends AppCompatActivity {
         nameSpinner = findViewById(R.id.name);
         genderSpinner = findViewById(R.id.gender);
 
+        formList = new ArrayList<>();
+        spinnerPositions = new ArrayList<>();
+
         allNames = new ArrayList<>();
 
         InputStream inputStream = getResources().openRawResource(R.raw.mitte);
@@ -102,15 +110,15 @@ public class CharCreationActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String gender = parent.getItemAtPosition(position).toString();
 
-                if(gender.equals("weiblich")){
+                if (gender.equals("weiblich")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, female);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
-                }else if(gender.equals("männlich")){
+                } else if (gender.equals("männlich")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, male);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
-                }else if(gender.equals("anders") || gender.equals("unbestimmt")){
+                } else if (gender.equals("anders") || gender.equals("unbestimmt")) {
                     nameAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, allNames);
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     nameSpinner.setAdapter(nameAdapter);
@@ -124,13 +132,13 @@ public class CharCreationActivity extends AppCompatActivity {
         });
 
 
-        configureCancelButton();
+        //configureCancelButton();
         // configures + and -, so it adds to or substracts 10 of the current Value
         configureValueButton();
         // configures the button "Fertig" to save the character
         configureSaveButton();
         // configures Load Button, not necessary here
-        //configureLoadButton();
+        configureLoadButton();
 
 
     }
@@ -344,24 +352,24 @@ public class CharCreationActivity extends AppCompatActivity {
 
     }
 
-    private void configureForms(){
+    private void configureForms() {
 
         //formList
 
         RelativeLayout compLayout = findViewById(R.id.compLayout);
 
-        for (int i = 0; i < compLayout.getChildCount() ; i++) {
+        for (int i = 0; i < compLayout.getChildCount(); i++) {
             Log.v(tag, Integer.toString(compLayout.getChildCount()));
             Object child = compLayout.getChildAt(i);
 
-            if(child instanceof Spinner){
+            if (child instanceof Spinner) {
                 Spinner spinner = (Spinner) child;
                 formList.add(spinner);
 
-            } else if(child instanceof EditText){
+            } else if (child instanceof EditText) {
                 formList.add((EditText) child);
 
-            } else if(child instanceof TableLayout){
+            } else if (child instanceof TableLayout) {
                 TableLayout lyo = (TableLayout) child;
                 for (int j = 1; j < lyo.getChildCount(); j++) {
                     TableRow tr = (TableRow) (lyo.getChildAt(j));
@@ -376,7 +384,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureSaveButton() {
 
-        /*Button saveButton = findViewById(R.id.finishCreation);
+        Button saveButton = findViewById(R.id.finishCreation);
         saveButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
@@ -387,24 +395,24 @@ public class CharCreationActivity extends AppCompatActivity {
                                               configureForms();
 
 
-                                              for (int i = 0; i < formList.size() ; i++) {
+                                              for (int i = 0; i < formList.size(); i++) {
 
                                                   View input = formList.get(i);
 
-                                                  if(input instanceof Spinner){
+                                                  if (input instanceof Spinner) {
                                                       Spinner sp = (Spinner) input;
-                                                      if(sp.getSelectedItem() != null){
-                                                      charDetails = charDetails + sp.getSelectedItem().toString() + ";";
-                                                      spinnerPositions.add(sp.getSelectedItemPosition());
-                                                      }else{
+                                                      if (sp.getSelectedItem() != null) {
+                                                          charDetails = charDetails + sp.getSelectedItem().toString() + ";";
+                                                          spinnerPositions.add(sp.getSelectedItemPosition());
+                                                      } else {
                                                           charDetails = charDetails + "null;";
                                                       }
 
-                                                  } else if(input instanceof EditText){
+                                                  } else if (input instanceof EditText) {
                                                       EditText et = (EditText) input;
-                                                      if(et.getText() == null || et.getText().equals("")){
+                                                      if (et.getText() == null || et.getText().equals("")) {
                                                           charDetails = charDetails + "null;";
-                                                      } else{
+                                                      } else {
                                                           charDetails = charDetails + et.getText() + ";";
                                                       }
                                                   }
@@ -412,79 +420,54 @@ public class CharCreationActivity extends AppCompatActivity {
 
                                               }
 
-                                              if(charDetails.length() > 0 && charDetails.charAt(charDetails.length()-1) == ';'){
-                                                  charDetails = charDetails.substring(0, charDetails.length()-1);
+                                              if (charDetails.length() > 0 && charDetails.charAt(charDetails.length() - 1) == ';') {
+                                                  charDetails = charDetails.substring(0, charDetails.length() - 1);
                                               }
 
                                               save("androidsavetexttest.txt", charDetails);
                                               //Log.i(tag, getFilesDir().toString());
 
-                                              String loadTxt = load("androidsavetexttest.txt");
 
-
-
-                                              String[] inputs = load("androidsavetexttest.txt").split(";");
-                                              int spinnerCount = 0;
-
-
-                                              for (int i = 0; i < formList.size() ; i++) {
-                                                  Log.v(tag, inputs[i]);
-                                                  int tempi = inputs.length;
-                                                  int tempf = formList.size();
-                                                  Log.v(tag, "inputs: " + Integer.toString(tempi));
-                                                  Log.v(tag, "formlist" + Integer.toString(tempf));
-
-                                                  View v = formList.get(i);
-
-                                                  if(v instanceof Spinner){
-                                                      /*if(spinnerPositions.size() == 0){
-                                                      Spinner sp = (Spinner) v;
-                                                      sp.setSelection(spinnerPositions.get(spinnerCount));
-                                                      spinnerCount++;
-                                                      }*/
-                                                  } else if(v instanceof EditText){
-                                                      EditText et = (EditText) v;
-                                                      et.setText(inputs[i] + "yes");
-                                                  }
-                                              }
                                               //EditText temp = (EditText) formList.get(1);
                                               //temp.setText(loadTxt);
                                           }
                                       }
-        );*/
+        );
     }
 
     private void configureLoadButton() {
 
-        Button loadButton = findViewById(R.id.finishCreation);
+        Button loadButton = findViewById(R.id.cancelCreation);
         loadButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
                                           public void onClick(View view) {
-                                              loadText = load("androidsavetexttest.txt");
+                                              String loadTxt = load("androidsavetexttest.txt");
 
-                                              String[] inputs = loadText.split(";");
+
+                                              String[] inputs = load("androidsavetexttest.txt").split(";");
+
                                               int spinnerCount = 0;
 
-                                              for (int i = 0; i <formList.size() ; i++) {
-                                                  Log.v(tag, inputs[i]);
+
+                                              for (int i = 0; i < formList.size(); i++) {
 
                                                   View v = formList.get(i);
 
-                                                  if(v instanceof Spinner){
-                                                      Spinner sp = (Spinner) v;
-                                                      sp.setSelection(spinnerPositions.get(spinnerCount));
-                                                      spinnerCount++;
-                                                  } else if(v instanceof EditText){
+                                                  if (v instanceof Spinner) {
+                                                      if(spinnerPositions.size() != 0){
+                                                          Spinner sp = (Spinner) v;
+                                                          sp.setSelection(spinnerPositions.get(spinnerCount));
+                                                          spinnerCount++;
+                                                      }
+                                                  } else if (v instanceof EditText) {
                                                       EditText et = (EditText) v;
                                                       et.setText(inputs[i]);
                                                   }
                                               }
-
-                                              //testLoad.setText(loadText);
-                                          }
                                       }
-        );*/
+        }
+        );
     }
 
 
@@ -524,6 +507,7 @@ public class CharCreationActivity extends AppCompatActivity {
         }
         return text;
     }
-
 }
+
+
 
