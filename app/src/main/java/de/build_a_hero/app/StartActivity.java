@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class StartActivity extends AppCompatActivity {
 
 
@@ -18,7 +21,6 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_start);
 
         configureNextButton();
-
     }
 
     private void configureNextButton() {

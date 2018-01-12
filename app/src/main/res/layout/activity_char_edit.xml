@@ -38,7 +38,7 @@
             </EditText>
 
             <EditText
-                android:id="@+id/Aussehen"
+                android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="150dp"
