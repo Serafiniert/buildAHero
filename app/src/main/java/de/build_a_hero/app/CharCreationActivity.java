@@ -20,9 +20,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class CharCreationActivity extends AppCompatActivity {
 
@@ -53,7 +53,7 @@ public class CharCreationActivity extends AppCompatActivity {
     private ArrayList<View> formList;
     private ArrayList<Integer> spinnerPositions;
 
-    private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
+    private String[] gender = {"", "weiblich", "männlich", "anderes", "unbestimmt"};
     private List<String> male;
     private List<String> female;
     private List<String> allNames;
@@ -89,13 +89,16 @@ public class CharCreationActivity extends AppCompatActivity {
 
         allNames = new ArrayList<>();
 
-        InputStream inputStream = getResources().openRawResource(R.raw.mitte);
-        CSVFile csv = new CSVFile(inputStream);
-        csv.read();
+        NamesURL namesUrl = new NamesURL();
 
-        male = csv.getMale();
-        female = csv.getFemale();
-        allNames = csv.getAllNames();
+        try {
+            namesUrl.read();
+            male = namesUrl.getMale();
+            female = namesUrl.getFemale();
+            allNames = namesUrl.getAllNames();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -367,13 +370,17 @@ public class CharCreationActivity extends AppCompatActivity {
 
             } else if (child instanceof TableLayout) {
                 TableLayout lyo = (TableLayout) child;
-                for (int j = 1; j < lyo.getChildCount(); j++) {
+                for (int j = 0; j < lyo.getChildCount(); j++) {
                     TableRow tr = (TableRow) (lyo.getChildAt(j));
-                    formList.add(tr.getChildAt(0));
+
+                    if(j!=0){
+                        formList.add(tr.getChildAt(0));
+                    }
                     formList.add(tr.getChildAt(1));
                 }
             }
         }
+        formList.add(findViewById(R.id.availPointsNum));
 
         return;
     }
@@ -411,9 +418,14 @@ public class CharCreationActivity extends AppCompatActivity {
                                                       } else {
                                                           charDetails = charDetails + et.getText() + ";";
                                                       }
+                                                  } else if(input instanceof TextView){
+                                                      TextView tv = (TextView) input;
+                                                      if (tv.getText() == null || tv.getText().equals("")) {
+                                                          charDetails = charDetails + "null;";
+                                                      } else {
+                                                          charDetails = charDetails + tv.getText() + ";";
+                                                      }
                                                   }
-
-
                                               }
 
                                               if (charDetails.length() > 0 && charDetails.charAt(charDetails.length() - 1) == ';') {
@@ -459,7 +471,12 @@ public class CharCreationActivity extends AppCompatActivity {
                                                   } else if (v instanceof EditText) {
                                                       EditText et = (EditText) v;
                                                       et.setText(inputs[i]);
+                                                  } else if (v instanceof TextView){
+                                                      TextView tv = (TextView) v;
+                                                      tv.setText(inputs[i]);
                                                   }
+
+
                                               }
                                       }
         }
