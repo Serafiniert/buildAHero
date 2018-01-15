@@ -25,5 +25,8 @@
             android:name=".CharCreationActivity"
             android:windowSoftInputMode="stateHidden|stateHidden|adjustPan" />
         <activity android:name=".TestActivity" />
+
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
