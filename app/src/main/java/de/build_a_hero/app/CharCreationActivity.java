@@ -21,9 +21,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class CharCreationActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class CharCreationActivity extends AppCompatActivity {
     private ArrayList<View> formList;
     private ArrayList<Integer> spinnerPositions;
 
-    private String[] gender = {"Geschlecht", "weiblich", "männlich", "anderes", "unbestimmt"};
+    private String[] gender = {"", "weiblich", "männlich", "anderes", "unbestimmt"};
     private List<String> male;
     private List<String> female;
     private List<String> allNames;
@@ -92,13 +92,16 @@ public class CharCreationActivity extends AppCompatActivity {
 
         allNames = new ArrayList<>();
 
-        InputStream inputStream = getResources().openRawResource(R.raw.mitte);
-        CSVFile csv = new CSVFile(inputStream);
-        csv.read();
+        NamesURL namesUrl = new NamesURL();
 
-        male = csv.getMale();
-        female = csv.getFemale();
-        allNames = csv.getAllNames();
+        try {
+            namesUrl.read();
+            male = namesUrl.getMale();
+            female = namesUrl.getFemale();
+            allNames = namesUrl.getAllNames();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(CharCreationActivity.this, android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
