@@ -1,112 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c8e1fa"
-    android:fillViewport="false">
+    android:fillViewport="false"
+    tools:layout_editor_absoluteY="25dp">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/compLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/view"
-                android:layout_marginTop="29dp"
                 android:gravity="center_horizontal"
                 android:text="@string/creation_head"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
                 android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/name"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="26dp" />
+                app:layout_constraintBottom_toTopOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.77" />
 
             <Spinner
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignBottom="@+id/age"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="59dp"
-                android:hint="@string/char_name"
-                android:inputType="textPersonName">
-
-            </Spinner>
-
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="@+id/age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.69" />
 
             <EditText
                 android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="160dp"
                 android:hint="@string/char_age"
-                android:inputType="textPersonName">
-
-            </EditText>
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/race"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="224dp"
                 android:hint="@string/char_race"
-                android:inputType="textPersonName"></EditText>
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/appearance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="284dp"
                 android:hint="@string/char_visual"
-                android:inputType="textPersonName">
-
-            </EditText>
-
-            <Button
-                android:id="@+id/addText"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-
-
-                android:layout_marginStart="37dp"
-                android:layout_marginTop="350dp"
-                android:text="Textfeld Hinzufügen" />
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-
                 android:id="@+id/availPoints"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/addText"
-                android:layout_below="@+id/addText"
-                android:layout_marginStart="43dp"
-                android:layout_marginTop="22dp"
-                android:text="@string/points_available"></TextView>
+                android:layout_marginTop="25dp"
+                android:text="@string/points_available"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appearance" />
 
+
+            <TextView
+                android:id="@+id/availPointsNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="59dp"
+                android:text="@string/points_num"
+                app:layout_constraintBaseline_toBaselineOf="@+id/availPoints"
+                app:layout_constraintBottom_toBottomOf="@+id/availPoints"
+                app:layout_constraintEnd_toEndOf="@+id/availPoints" />
 
             <TableLayout
                 android:id="@+id/tableHandeln"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="450dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="400dp"
                 android:divider="#f00"
-                android:showDividers="middle">
+                android:showDividers="middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TableRow
                     android:id="@+id/Handeln"
@@ -114,16 +129,16 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:padding="3dp"
-                        android:text="@string/handeln"></TextView>
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/handeln" />
 
 
                     <TextView
                         android:id="@+id/handelnWert"
-                        android:paddingLeft="100dp"
-                        android:text="0"
-
-                        ></TextView>
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/points_zero" />
 
 
                 </TableRow>
@@ -142,27 +157,27 @@
 
                     </EditText>
 
-                    <EditText
-                        android:id="@+id/HandelnPercent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 1"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
-
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
+
+                    <TextView
+                        android:id="@+id/HandelnPercent1"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center">
+
+                    </TextView>
 
                     <Button
                         android:id="@+id/plusButton"
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -180,26 +195,27 @@
 
                     </EditText>
 
-                    <EditText
-                        android:id="@+id/HandelnPercent2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="0"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
-
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
+
+                    <TextView
+                        android:id="@+id/HandelnPercent2"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center">
+
+                    </TextView>
 
                     <Button
                         android:id="@+id/plusButton1"
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -217,25 +233,26 @@
 
                     </EditText>
 
-                    <EditText
-                        android:id="@+id/HandelnPercent3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="0"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
-
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/HandelnPercent3"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center">
+
+                    </TextView>
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -253,25 +270,26 @@
 
                     </EditText>
 
-                    <EditText
-                        android:id="@+id/HandelnPercent4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 4"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
-
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/HandelnPercent4"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center">
+
+                    </TextView>
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -289,44 +307,41 @@
 
                     </EditText>
 
-                    <EditText
-                        android:id="@+id/HandelnPercent5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 5"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
-
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/HandelnPercent5"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center">
+
+                    </TextView>
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
 
             </TableLayout>
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#f00"></View>
-
             <TableLayout
                 android:id="@+id/tableWissen"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="715dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="290dp"
                 android:divider="#f00"
-                android:showDividers="middle">
+                android:showDividers="middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tableHandeln">
 
                 <TableRow
                     android:id="@+id/Wissen"
@@ -334,15 +349,15 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:padding="3dp"
-                        android:text="@string/wissen"></TextView>
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/wissen" />
 
 
                     <TextView
-                        android:paddingLeft="100dp"
-                        android:text="0"
-
-                        ></TextView>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/points_zero" />
 
 
                 </TableRow>
@@ -357,29 +372,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_1"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/WissenPercent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 1"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/WissenPercent1"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -393,29 +405,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_2"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/WissenPercent2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 1"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/WissenPercent2"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -429,29 +438,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_3"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/WissenPercent3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 3"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/WissenPercent3"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -465,31 +471,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_4"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/WissenPercent4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 4"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
-                    <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/points_plus" />
+                    <TextView
+                        android:id="@+id/WissenPercent4"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
 
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/points_plus" />
                 </TableRow>
 
                 <TableRow
@@ -501,29 +503,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_5"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/WissenPercent5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 5"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/WissenPercent5"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -533,11 +532,12 @@
             <TableLayout
                 android:id="@+id/tableInterag"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="100dp"
-                android:layout_marginTop="980dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="290dp"
                 android:divider="#f00"
-                android:showDividers="middle">
+                android:showDividers="middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tableWissen">
 
                 <TableRow
                     android:id="@+id/Interagieren"
@@ -545,15 +545,15 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:padding="3dp"
-                        android:text="@string/interagieren"></TextView>
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/interagieren" />
 
 
                     <TextView
-                        android:paddingLeft="100dp"
-                        android:text="0"
-
-                        ></TextView>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/points_zero" />
 
 
                 </TableRow>
@@ -568,29 +568,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_1"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/InteragierenPercent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 1"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/InteragierenPercent1"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -604,29 +601,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_2"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/InteragierenPercent2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 1"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName"
+                        tools:ignore="TooManyViews" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/InteragierenPercent2"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -640,29 +635,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_3"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/InteragierenPercent3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 3"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/InteragierenPercent3"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -676,29 +668,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_4"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/InteragierenPercent4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 4"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/InteragierenPercent4"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
@@ -712,67 +701,59 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_5"
-                        android:inputType="textPersonName">
-
-                    </EditText>
-
-                    <EditText
-                        android:id="@+id/InteragierenPercent5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Percent 5"
-                        android:inputType="number"
-                        android:paddingLeft="100dp"
-                        android:text="0">
-
-                    </EditText>
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
+                    <TextView
+                        android:id="@+id/InteragierenPercent5"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:text="@string/points_zero"
+                        android:textAlignment="center" />
+
                     <Button
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
                 </TableRow>
 
             </TableLayout>
 
-            <TextView
-                android:id="@+id/availPointsNum"
+            <Button
+                android:id="@+id/cancelCreation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/availPoints"
-                android:layout_alignBottom="@+id/availPoints"
-                android:layout_alignEnd="@+id/addText"
-                android:layout_marginEnd="89dp"
-                android:text="400"
-                tools:text="400" />
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="70dp"
+                android:text="@string/button_cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/finishCreation" />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/finishCreation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="81dp"
+                android:layout_marginStart="67dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/button_finish"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cancelCreation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableInterag" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/finishCreation"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="27dp"
-        android:layout_marginStart="37dp"
-        android:text="@string/button_finish" />
-
-    <Button
-        android:id="@+id/cancelCreation"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/finishCreation"
-        android:layout_alignBottom="@+id/finishCreation"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="39dp"
-        android:text="@string/button_cancel" />
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

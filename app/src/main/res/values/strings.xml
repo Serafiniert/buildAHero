@@ -7,7 +7,7 @@
     <string name="settings_about">About</string>
     <string name="settings_about_credits">Build a Hero was created by&#xA;Finn Christians&#xA;Nina Dörnbrak&#xA;Tim Eberhardt&#xA;Tanyel Stoyloff</string>
     <string name="contact">Bei Fehlern melden Sie sich gern unter s0556736@htw-berlin.de :-)</string>
-    <string name="Button_G0">Los gehts!</string>
+    <string name="Button_Go">Los gehts!</string>
     <string name="Button_Back">Zurück</string>
     <string name="action_overview">Übersicht</string>
     <string name="points_available">Verfügbare Punkte: </string>
@@ -24,7 +24,7 @@
 
     <string name="handeln">HANDELN</string>
     <string name="wissen">WISSEN</string>
-    <string name="interagieren">INTERAG</string>
+    <string name="interagieren">INTERAGIEREN</string>
     <string name="tal_1">Talent 1</string>
     <string name="tal_2">Talent 2</string>
     <string name="tal_3">Talent 3</string>
@@ -34,9 +34,9 @@
     <string name="points_plus">+</string>
     <string name="points_minus">-</string>
     <string name="points_num">400</string>
+    <string name="points_zero">0</string>
 
     <string name="gray">#c8e1fa</string>
-
 
     <string name="save_button">Speichern</string>
     <string name="load_button">Laden</string>
