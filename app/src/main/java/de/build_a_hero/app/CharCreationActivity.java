@@ -16,6 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -57,6 +58,8 @@ public class CharCreationActivity extends AppCompatActivity {
     private List<String> male;
     private List<String> female;
     private List<String> allNames;
+
+    private String filename = "charDetails2.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,13 +134,13 @@ public class CharCreationActivity extends AppCompatActivity {
         });
 
 
-        //configureCancelButton();
+        configureCancelButton();
         // configures + and -, so it adds to or substracts 10 of the current Value
         configureValueButton();
         // configures the button "Fertig" to save the character
         configureSaveButton();
         // configures Load Button, not necessary here
-        configureLoadButton();
+        //configureLoadButton();
 
 
     }
@@ -394,7 +397,18 @@ public class CharCreationActivity extends AppCompatActivity {
                                           public void onClick(View view) {
                                               //Log.i(tag, text);
 
-                                              charDetails = "";
+                                              File file = new File(filename);
+
+                                              if (file.exists()) {
+
+                                                  charDetails = load(filename);
+
+                                              } else {
+
+                                                  charDetails = "";
+
+                                              }
+
                                               configureForms();
 
 
@@ -432,8 +446,11 @@ public class CharCreationActivity extends AppCompatActivity {
                                                   charDetails = charDetails.substring(0, charDetails.length() - 1);
                                               }
 
-                                              save("androidsavetexttest.txt", charDetails);
-                                              //Log.i(tag, getFilesDir().toString());
+                                              charDetails = charDetails + "ÜÄÖ";
+
+                                              save(filename, charDetails);
+                                              finish();
+                                              Log.i(tag, getFilesDir().getPath().toString());
 
 
                                               //EditText temp = (EditText) formList.get(1);
@@ -450,10 +467,11 @@ public class CharCreationActivity extends AppCompatActivity {
 
                                           @Override
                                           public void onClick(View view) {
-                                              String loadTxt = load("androidsavetexttest.txt");
+                                              String loadTxt = load(filename);
 
 
-                                              String[] inputs = load("androidsavetexttest.txt").split(";");
+
+                                              String[] inputs = load(filename).split(";");
 
                                               int spinnerCount = 0;
 
@@ -489,7 +507,7 @@ public class CharCreationActivity extends AppCompatActivity {
         FileOutputStream fos;
 
         try {
-            fos = openFileOutput(filename, Context.MODE_PRIVATE);
+            fos = openFileOutput(filename, Context.MODE_APPEND);
             fos.write(text.getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
@@ -516,6 +534,8 @@ public class CharCreationActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            Log.v("IOException caught: ", e.getMessage());
+            System.err.println("IOException caught: " + e.getMessage());
             e.printStackTrace();
         }
         return text;
