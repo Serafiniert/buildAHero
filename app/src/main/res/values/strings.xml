@@ -41,5 +41,11 @@
     <string name="save_button">Speichern</string>
     <string name="load_button">Laden</string>
     <string name="lorem_text">Lorem Ipsum text.</string>
-    
+
+    <string name="kontakt">Kontakt</string>
+    <string name="credits">Credits</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
