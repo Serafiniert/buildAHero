@@ -6,6 +6,7 @@ import android.os.Debug
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
@@ -15,6 +16,8 @@ import java.io.FileNotFoundException
 import java.io.IOException
 
 class MenuActivity : AppCompatActivity() {
+
+    val filename = "charDetails2.txt"
 
 
 
@@ -32,6 +35,25 @@ class MenuActivity : AppCompatActivity() {
         val adapter:ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.setAdapter(adapter)
+
+        charList.setOnItemClickListener(object: AdapterView.OnItemClickListener {
+
+            override fun onItemClick(parent:AdapterView<*>, view:View, position: Int, id: Long){
+                val loadedText = load(filename)
+                val allCharDetails = loadedText.split("ÜÄÖ")
+                val singleCharDetails = allCharDetails[position]
+                Log.v("onclick charDetails: ", singleCharDetails)
+
+                val intent = Intent(this@MenuActivity, CharEditActivity::class.java).apply {
+                    putExtra("charDetail", singleCharDetails)
+                }
+
+                startActivity(intent)
+
+            }
+
+
+        })
 
 
         configureSettingsButton()
@@ -56,17 +78,13 @@ class MenuActivity : AppCompatActivity() {
 
     fun getAllChars():ArrayList<String>{
 
-        val loading = CharCreationActivity()
-
         val charNames = ArrayList<String>()
 
-        val file = File("/data/user/0/com.example.ninad.buildahero/files", "charDetails2.txt")
+        val file = File("/data/user/0/com.example.ninad.buildahero/files", filename)
 
         if(file.exists()){
 
-
-
-                val loadedText = load("charDetails2.txt")
+                val loadedText = load(filename)
 
                 val allCharDetails = loadedText.split("ÜÄÖ")
                 var count = 0
@@ -85,7 +103,7 @@ class MenuActivity : AppCompatActivity() {
 
                 }
 
-        }else{
+        } else {
 
             Log.v("FILEEXISTS?", "file doesnt exist")
 
