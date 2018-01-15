@@ -2,7 +2,6 @@ package de.build_a_hero.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
@@ -17,9 +16,6 @@ import java.io.IOException
 class MenuActivity : AppCompatActivity() {
 
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -29,7 +25,7 @@ class MenuActivity : AppCompatActivity() {
         val arrayList = getAllChars()
 
 
-        val adapter:ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.setAdapter(adapter)
 
@@ -39,7 +35,7 @@ class MenuActivity : AppCompatActivity() {
         configureTestButton()
     }
 
-    override fun onStart(){
+    override fun onStart() {
 
         super.onStart()
         val charList = findViewById<View>(R.id.charListView) as ListView
@@ -47,14 +43,14 @@ class MenuActivity : AppCompatActivity() {
         val arrayList = getAllChars()
 
 
-        val adapter:ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.setAdapter(adapter)
 
 
     }
 
-    fun getAllChars():ArrayList<String>{
+    fun getAllChars(): ArrayList<String> {
 
         val loading = CharCreationActivity()
 
@@ -62,30 +58,29 @@ class MenuActivity : AppCompatActivity() {
 
         val file = File("/data/user/0/com.example.ninad.buildahero/files", "charDetails2.txt")
 
-        if(file.exists()){
+        if (file.exists()) {
 
 
+            val loadedText = load("charDetails2.txt")
 
-                val loadedText = load("charDetails2.txt")
+            val allCharDetails = loadedText.split("ÜÄÖ")
+            var count = 0
 
-                val allCharDetails = loadedText.split("ÜÄÖ")
-                var count = 0
+            for (char in allCharDetails) {
+                if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
 
-                for (char in allCharDetails){
-                    if(!char.equals(allCharDetails[allCharDetails.size-1])){
+                    Log.v("allchardetails: ", char)
 
-                        Log.v("allchardetails: ", char)
+                    val singleCharDetails = char.split(";")
+                    Log.v("singlechardetails: ", singleCharDetails[1])
 
-                        val singleCharDetails = char.split(";")
-                        Log.v("singlechardetails: ", singleCharDetails[1])
-
-                        charNames.add(singleCharDetails[1])
-
-                    }
+                    charNames.add(singleCharDetails[1])
 
                 }
 
-        }else{
+            }
+
+        } else {
 
             Log.v("FILEEXISTS?", "file doesnt exist")
 
@@ -113,23 +108,19 @@ class MenuActivity : AppCompatActivity() {
         addButton.setOnClickListener { startActivity(Intent(this@MenuActivity, CharCreationActivity::class.java)) }
     }
 
-    fun load(filename:String):String {
+    fun load(filename: String): String {
         var text = ""
         val fis: FileInputStream
-        try
-        {
+        try {
             fis = openFileInput(filename)
             val dataArray = ByteArray(fis.available())
-            while (fis.read(dataArray) !== -1)
-            {
+            while (fis.read(dataArray) !== -1) {
                 text = String(dataArray)
             }
             fis.close()
-        }
-        catch (e: FileNotFoundException) {
+        } catch (e: FileNotFoundException) {
             e.printStackTrace()
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             //Log.v("IOException caught: ", e.getMessage())
             //System.err.println("IOException caught: " + e.getMessage())
             e.printStackTrace()

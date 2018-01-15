@@ -357,7 +357,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 for (int j = 0; j < lyo.getChildCount(); j++) {
                     TableRow tr = (TableRow) (lyo.getChildAt(j));
 
-                    if(j!=0){
+                    if (j != 0) {
                         formList.add(tr.getChildAt(0));
                     }
                     formList.add(tr.getChildAt(1));
@@ -412,7 +412,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                                       } else {
                                                           charDetails = charDetails + et.getText() + ";";
                                                       }
-                                                  } else if(input instanceof TextView){
+                                                  } else if (input instanceof TextView) {
                                                       TextView tv = (TextView) input;
                                                       if (tv.getText() == null || tv.getText().equals("")) {
                                                           charDetails = charDetails + "null;";
@@ -467,7 +467,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                                   } else if (v instanceof EditText) {
                                                       EditText et = (EditText) v;
                                                       et.setText(inputs[i]);
-                                                  } else if (v instanceof TextView){
+                                                  } else if (v instanceof TextView) {
                                                       TextView tv = (TextView) v;
                                                       tv.setText(inputs[i]);
                                                   }

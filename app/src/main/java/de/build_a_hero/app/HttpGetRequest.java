@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by ninad on 15.01.2018.
@@ -23,7 +19,6 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     public static final int CONNECTION_TIMEOUT = 15000;
 
 
-
     @Override
     protected String doInBackground(String... params) {
         String url = params[0];
@@ -31,8 +26,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
         String inputLine;
 
 
-
-        try{
+        try {
             URL myUrl = new URL(url);
 
             HttpURLConnection connection = (HttpURLConnection) myUrl.openConnection();
@@ -49,7 +43,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
             StringBuilder stringBuilder = new StringBuilder();
 
 
-            while((inputLine = reader.readLine()) != null){
+            while ((inputLine = reader.readLine()) != null) {
                 stringBuilder.append(inputLine + "\n");
             }
 
@@ -58,7 +52,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
             result = stringBuilder.toString();
 
-        }catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             result = null;
         }
@@ -66,7 +60,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result){
+    protected void onPostExecute(String result) {
         super.onPostExecute(result);
     }
 

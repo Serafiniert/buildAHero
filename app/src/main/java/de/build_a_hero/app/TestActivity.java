@@ -82,8 +82,7 @@ public class TestActivity extends AppCompatActivity {
         );
     }
 
-    private void configureMenuItems(){
-
+    private void configureMenuItems() {
 
 
     }
