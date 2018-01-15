@@ -82,6 +82,12 @@ public class TestActivity extends AppCompatActivity {
         );
     }
 
+    private void configureMenuItems(){
+
+
+
+    }
+
     @SuppressWarnings("TryWithIdenticalCatches")
     public void save(String filename, String text) {
 
