@@ -161,13 +161,11 @@ public class CharCreationActivity extends AppCompatActivity {
 
     private void configureValueButton() {
 
-
         //final Button addButton = findViewById(R.id.plusButton);
         for (int i = 1; i < 6; i++) {
             final TableRow handelnRow = (TableRow) handelnLayout.getChildAt(i);
             Button handelnAddButton = (Button) handelnRow.getChildAt(3);
-            Button handelnDecreaseButton = (Button) handelnRow.getChildAt(2);
-
+            Button handelnDecreaseButton = (Button) handelnRow.getChildAt(1);
 
             handelnAddButton.setOnClickListener(new View.OnClickListener() {
                                                     @Override
@@ -177,12 +175,10 @@ public class CharCreationActivity extends AppCompatActivity {
                                                         if (availPoints == 0) {
                                                             availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
-
                                                         } else {
 
-
                                                             //TableRow row = (TableRow) addButton.getParent();
-                                                            EditText cell = (EditText) handelnRow.getChildAt(1);
+                                                            TextView cell = (TextView) handelnRow.getChildAt(2);
                                                             int currentHandeln = Integer.parseInt(cell.getText().toString());
                                                             currentHandeln = currentHandeln + 10;
                                                             int klassenWert = Integer.parseInt(handelnWert.getText().toString());
@@ -192,12 +188,10 @@ public class CharCreationActivity extends AppCompatActivity {
 
                                                             klassenWert = klassenWert + 1;
 
-
                                                             availablePoints.setText(Integer.toString(availPoints - 10));
                                                             cell.setText(Integer.toString(currentHandeln));
                                                             handelnWert.setText(Integer.toString(klassenWert));
                                                         }
-
                                                     }
                                                 }
             );
@@ -208,7 +202,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
                     availablePoints.setTextColor(Color.parseColor("#000000"));
 
-                    EditText cell = (EditText) handelnRow.getChildAt(1);
+                    TextView cell = (TextView) handelnRow.getChildAt(2);
                     int currentHandeln = Integer.parseInt(cell.getText().toString());
                     currentHandeln = currentHandeln - 10;
                     int klassenWert = Integer.parseInt(handelnWert.getText().toString());
@@ -224,15 +218,12 @@ public class CharCreationActivity extends AppCompatActivity {
                     availablePoints.setText(Integer.toString(availPoints + 10));
                     cell.setText(Integer.toString(currentHandeln));
                     handelnWert.setText(Integer.toString(klassenWert));
-
-
                 }
             });
 
             final TableRow wissenRow = (TableRow) wissenLayout.getChildAt(i);
             Button wissenAddButton = (Button) wissenRow.getChildAt(3);
-            Button wissenDecreaseButton = (Button) wissenRow.getChildAt(2);
-
+            Button wissenDecreaseButton = (Button) wissenRow.getChildAt(1);
 
             wissenAddButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -242,11 +233,9 @@ public class CharCreationActivity extends AppCompatActivity {
                     if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
-
                     } else {
 
-
-                        EditText cell = (EditText) wissenRow.getChildAt(1);
+                        TextView cell = (TextView) wissenRow.getChildAt(2);
                         int currentWissen = Integer.parseInt(cell.getText().toString());
                         currentWissen = currentWissen + 10;
                         int klassenWert = Integer.parseInt(wissenWert.getText().toString());
@@ -261,8 +250,6 @@ public class CharCreationActivity extends AppCompatActivity {
                         cell.setText(Integer.toString(currentWissen));
                         wissenWert.setText(Integer.toString(klassenWert));
                     }
-
-
                 }
             });
 
@@ -271,7 +258,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     availablePoints.setTextColor(Color.parseColor("#000000"));
 
-                    EditText cell = (EditText) wissenRow.getChildAt(1);
+                    TextView cell = (TextView) wissenRow.getChildAt(2);
                     int currentWissen = Integer.parseInt(cell.getText().toString());
                     currentWissen = currentWissen - 10;
                     int klassenWert = Integer.parseInt(wissenWert.getText().toString());
@@ -293,8 +280,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
             final TableRow interagRow = (TableRow) interagLayout.getChildAt(i);
             Button interagAddButton = (Button) interagRow.getChildAt(3);
-            Button interagDecreaseButton = (Button) interagRow.getChildAt(2);
-
+            Button interagDecreaseButton = (Button) interagRow.getChildAt(1);
 
             interagAddButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -304,10 +290,9 @@ public class CharCreationActivity extends AppCompatActivity {
                     if (availPoints == 0) {
                         availablePoints.setTextColor(Color.parseColor("#ffcc0000"));
 
-
                     } else {
 
-                        EditText cell = (EditText) interagRow.getChildAt(1);
+                        TextView cell = (TextView) interagRow.getChildAt(2);
                         int currentInterag = Integer.parseInt(cell.getText().toString());
                         currentInterag = currentInterag + 10;
                         int klassenWert = Integer.parseInt(interagWert.getText().toString());
@@ -317,12 +302,10 @@ public class CharCreationActivity extends AppCompatActivity {
 
                         klassenWert = klassenWert + 1;
 
-
                         availablePoints.setText(Integer.toString(availPoints - 10));
                         cell.setText(Integer.toString(currentInterag));
                         interagWert.setText(Integer.toString(klassenWert));
                     }
-
                 }
             });
 
@@ -331,7 +314,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     availablePoints.setTextColor(Color.parseColor("#000000"));
 
-                    EditText cell = (EditText) interagRow.getChildAt(1);
+                    TextView cell = (TextView) interagRow.getChildAt(2);
                     int currentInterag = Integer.parseInt(cell.getText().toString());
                     currentInterag = currentInterag - 10;
                     int klassenWert = Integer.parseInt(interagWert.getText().toString());
@@ -350,8 +333,6 @@ public class CharCreationActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
     private void configureForms() {
@@ -376,7 +357,7 @@ public class CharCreationActivity extends AppCompatActivity {
                 for (int j = 0; j < lyo.getChildCount(); j++) {
                     TableRow tr = (TableRow) (lyo.getChildAt(j));
 
-                    if(j!=0){
+                    if (j != 0) {
                         formList.add(tr.getChildAt(0));
                     }
                     formList.add(tr.getChildAt(1));
@@ -411,7 +392,6 @@ public class CharCreationActivity extends AppCompatActivity {
 
                                               configureForms();
 
-
                                               for (int i = 0; i < formList.size(); i++) {
 
                                                   View input = formList.get(i);
@@ -432,7 +412,7 @@ public class CharCreationActivity extends AppCompatActivity {
                                                       } else {
                                                           charDetails = charDetails + et.getText() + ";";
                                                       }
-                                                  } else if(input instanceof TextView){
+                                                  } else if (input instanceof TextView) {
                                                       TextView tv = (TextView) input;
                                                       if (tv.getText() == null || tv.getText().equals("")) {
                                                           charDetails = charDetails + "null;";
@@ -470,18 +450,16 @@ public class CharCreationActivity extends AppCompatActivity {
                                               String loadTxt = load(filename);
 
 
-
-                                              String[] inputs = load(filename).split(";");
+                                              String[] inputs = load("androidsavetexttest.txt").split(";");
 
                                               int spinnerCount = 0;
-
 
                                               for (int i = 0; i < formList.size(); i++) {
 
                                                   View v = formList.get(i);
 
                                                   if (v instanceof Spinner) {
-                                                      if(spinnerPositions.size() != 0){
+                                                      if (spinnerPositions.size() != 0) {
                                                           Spinner sp = (Spinner) v;
                                                           sp.setSelection(spinnerPositions.get(spinnerCount));
                                                           spinnerCount++;
@@ -489,15 +467,15 @@ public class CharCreationActivity extends AppCompatActivity {
                                                   } else if (v instanceof EditText) {
                                                       EditText et = (EditText) v;
                                                       et.setText(inputs[i]);
-                                                  } else if (v instanceof TextView){
+                                                  } else if (v instanceof TextView) {
                                                       TextView tv = (TextView) v;
                                                       tv.setText(inputs[i]);
                                                   }
 
 
                                               }
+                                          }
                                       }
-        }
         );
     }
 
@@ -541,6 +519,3 @@ public class CharCreationActivity extends AppCompatActivity {
         return text;
     }
 }
-
-
-

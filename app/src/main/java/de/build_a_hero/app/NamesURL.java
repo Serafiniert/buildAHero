@@ -14,15 +14,12 @@ import java.util.concurrent.ExecutionException;
 
 public class NamesURL {
 
+    String myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv";
+    HttpGetRequest getRequest = new HttpGetRequest();
+    String result;
     private List<String> female;
     private List<String> male;
     private List<String> allNames;
-
-    String myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv";
-
-    HttpGetRequest getRequest = new HttpGetRequest();
-
-    String result;
 
     public void read() throws ExecutionException {
         String separator = ";";
@@ -52,7 +49,7 @@ public class NamesURL {
                     male.add(row[0]);
                 }
             }
-            } catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
