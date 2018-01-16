@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException;
 public class CharCreationActivity extends AppCompatActivity {
 
     private static final String tag = "Text";
-    ArrayAdapter<String> nameAdapter;
+    private ArrayAdapter<String> nameAdapter;
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class

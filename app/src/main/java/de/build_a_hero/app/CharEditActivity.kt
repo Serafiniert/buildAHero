@@ -10,10 +10,10 @@ import android.view.View
 import android.widget.*
 import java.io.*
 import java.util.ArrayList
+import java.util.concurrent.ExecutionException
 
 class CharEditActivity : AppCompatActivity() {
     private val tag = "Text"
-    internal var nameAdapter: ArrayAdapter<String>? = null
     //Layout: whole table
     //Header: most top row
     //Wert: total percentage of trait class
@@ -68,10 +68,60 @@ class CharEditActivity : AppCompatActivity() {
 
         availablePoints = findViewById(R.id.availPointsNum)
 
+        genderSpinner = findViewById(R.id.gender)
+        nameSpinner = findViewById(R.id.name)
+
 
 
         getAllForms()
         setCharDetails()
+
+
+        allNames = ArrayList()
+
+        val namesUrl = NamesURL()
+
+
+
+        try {
+            namesUrl.read()
+            male = namesUrl.male
+            female = namesUrl.female
+            allNames = namesUrl.allNames
+        } catch (e: ExecutionException) {
+            e.printStackTrace()
+        }
+
+
+
+        val genderAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, gender)
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        genderSpinner!!.adapter = genderAdapter
+        genderSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val gender = parent.getItemAtPosition(position).toString()
+                var nameAdapter: ArrayAdapter<String>? = null
+                if (gender == "weiblich") {
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, female!!)
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    nameSpinner!!.adapter = nameAdapter
+                } else if (gender == "männlich") {
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, male!!)
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    nameSpinner!!.adapter = nameAdapter
+                } else if (gender == "anders" || gender == "unbestimmt") {
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, allNames!!)
+                    nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    nameSpinner!!.adapter = nameAdapter
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
+
 
 
         configureCancelButton()
