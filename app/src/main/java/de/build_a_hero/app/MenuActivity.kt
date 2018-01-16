@@ -16,7 +16,7 @@ import java.io.IOException
 
 class MenuActivity : AppCompatActivity() {
 
-    val filename = "charDetails2.txt"
+    val filename = "charDetails7.txt"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +40,13 @@ class MenuActivity : AppCompatActivity() {
                 val singleCharDetails = allCharDetails[position]
                 Log.v("onclick charDetails: ", singleCharDetails)
 
-                val intent = Intent(this@MenuActivity, CharEditActivity::class.java).apply {
-                    putExtra("charDetail", singleCharDetails)
-                }
+                val intent = Intent(this@MenuActivity, CharEditActivity::class.java)
+                var extras = Bundle()
+
+                extras.putString("charDetail", singleCharDetails)
+                extras.putString("position", position.toString())
+
+                intent.putExtras(extras)
 
                 startActivity(intent)
 
@@ -82,18 +86,20 @@ class MenuActivity : AppCompatActivity() {
 
                 val loadedText = load(filename)
 
-            val allCharDetails = loadedText.split("ÜÄÖ")
-            var count = 0
+                Log.v("loadedText", loadedText)
 
-            for (char in allCharDetails) {
-                if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
+                val allCharDetails = loadedText.split("ÜÄÖ")
+                Log.v("allCharDetails.toString", allCharDetails.toString())
 
-                    Log.v("allchardetails: ", char)
+                for (char in allCharDetails) {
+                    if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
 
-                    val singleCharDetails = char.split(";")
-                    Log.v("singlechardetails: ", singleCharDetails[1])
+                        Log.v("char: ", char)
 
-                    charNames.add(singleCharDetails[1])
+                        val singleCharDetails = char.split(";")
+                        Log.v("singlechardetails: ", singleCharDetails.toString())
+
+                        charNames.add(singleCharDetails[1])
 
                 }
 

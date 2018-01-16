@@ -3,6 +3,7 @@ package de.build_a_hero.app;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -59,7 +60,7 @@ public class CharCreationActivity extends AppCompatActivity {
     private List<String> female;
     private List<String> allNames;
 
-    private String filename = "charDetails2.txt";
+    private String filename = "charDetails7.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -339,7 +340,7 @@ public class CharCreationActivity extends AppCompatActivity {
 
         //formList
 
-        RelativeLayout compLayout = findViewById(R.id.compLayout);
+        ConstraintLayout compLayout = findViewById(R.id.compLayout);
 
         for (int i = 0; i < compLayout.getChildCount(); i++) {
             Log.v(tag, Integer.toString(compLayout.getChildCount()));
@@ -357,10 +358,13 @@ public class CharCreationActivity extends AppCompatActivity {
                 for (int j = 0; j < lyo.getChildCount(); j++) {
                     TableRow tr = (TableRow) (lyo.getChildAt(j));
 
-                    if (j != 0) {
+                    if (j == 0) {
+                        formList.add(tr.getChildAt(1));
+                    } else {
                         formList.add(tr.getChildAt(0));
+
+                        formList.add(tr.getChildAt(2));
                     }
-                    formList.add(tr.getChildAt(1));
                 }
             }
         }
