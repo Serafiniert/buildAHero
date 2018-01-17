@@ -29,11 +29,7 @@ class CSVFile(private val inputStream: InputStream) {
                 } else if (row[2].equals("m", ignoreCase = true)) {
                     male!!.add(row[0])
                 }
-<<<<<<< HEAD
 
-=======
-                csvLine = reader.readLine()
->>>>>>> 48707d36e5f31eebeede64c5ad4d51025a4c6f7a
             }
             allNames!!.addAll(female!!)
             allNames!!.addAll(male!!)

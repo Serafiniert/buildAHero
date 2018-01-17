@@ -44,7 +44,7 @@ class CharEditActivity : AppCompatActivity() {
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails7.txt"
+    private val filename = "charDetails8.txt"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +68,7 @@ class CharEditActivity : AppCompatActivity() {
 
         availablePoints = findViewById(R.id.availPointsNum)
 
-        genderSpinner = findViewById(R.id.gender)
+        genderSpinner = findViewById(R.id.genderSpinner)
         nameSpinner = findViewById(R.id.nameSpinner)
 
 
