@@ -79,10 +79,6 @@ class CharEditActivity : AppCompatActivity() {
                 male = ArrayList(namesUrl.getMale())
                 female = ArrayList(namesUrl.getFemale())
                 allNames = ArrayList(namesUrl.getAllNames())
-                male[0] = "(Optional) Name wählen"
-                female[0] = "(Optional) Name wählen"
-                allNames[0] = "(Optional) Name wählen"
-
             } else {
                 val inputStream = resources.openRawResource(R.raw.mitte)
                 val csv = CSVFile(inputStream)
@@ -91,10 +87,12 @@ class CharEditActivity : AppCompatActivity() {
                 male = ArrayList(csv.getMale())
                 female = ArrayList(csv.getFemale())
                 allNames = ArrayList(csv.getAllNames())
-                male[0] = "(Optional) Name wählen"
-                female[0] = "(Optional) Name wählen"
-                allNames[0] = "(Optional) Name wählen"
             }
+
+            male[0] = "(Optional) Name wählen"
+            female[0] = "(Optional) Name wählen"
+            allNames[0] = "(Optional) Name wählen"
+
         } catch (e: ExecutionException) {
             e.printStackTrace()
         }
@@ -155,7 +153,7 @@ class CharEditActivity : AppCompatActivity() {
 
     private fun configureSaveButton() {
 
-        val saveButton = findViewById<Button>(R.id.cancelCreation)
+        val saveButton = findViewById<Button>(R.id.finishCreation)
         saveButton.setOnClickListener {
             charDetails = ""
 
