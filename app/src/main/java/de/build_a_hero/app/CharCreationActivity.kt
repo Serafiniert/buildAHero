@@ -43,7 +43,7 @@ class CharCreationActivity : AppCompatActivity() {
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails10.txt"
+    private val filename = "charDetails11.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,10 +115,10 @@ class CharCreationActivity : AppCompatActivity() {
             }
         }
 
-        nameSpinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+        nameSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
-                if(position>0) {
+                if (position > 0) {
                     val name = parent.getItemAtPosition(position).toString()
                     nameField!!.setText(name)
 
@@ -360,26 +360,22 @@ class CharCreationActivity : AppCompatActivity() {
 
             configureForms()
 
-            for (i in formList!!.indices) {
-
-                val input = formList!![i]
-
-                if (input is Spinner) {
-
-                    if (input.selectedItem != null) {
-                        charDetails = charDetails + input.selectedItem.toString() + ";"
-                    } else {
-                        charDetails = charDetails!! + "null;"
-                    }
-
-                        } else if (it is EditText) {
-                            charDetails = if (it.text == null || it.text.equals("")) {
+            formList!!.indices
+                    .asSequence()
+                    .map { formList!![it] }
+                    .forEach {
+                        when (it) {
+                            is Spinner -> charDetails = if (it.selectedItem != null) {
+                                charDetails + it.selectedItem.toString() + ";"
+                            } else {
+                                charDetails!! + "null;"
+                            }
+                            is EditText -> charDetails = if (it.text == null || it.text.equals("")) {
                                 charDetails!! + "null;"
                             } else {
                                 charDetails + it.text + ";"
                             }
-                        } else if (it is TextView) {
-                            charDetails = if (it.text == null || it.text == "") {
+                            is TextView -> charDetails = if (it.text == null || it.text == "") {
                                 charDetails!! + "null;"
                             } else {
                                 charDetails + it.text + ";"
@@ -396,7 +392,7 @@ class CharCreationActivity : AppCompatActivity() {
             save(filename, charDetails)
             finish()
             Log.i(tag, filesDir.path.toString())
-            
+
         }
     }
 

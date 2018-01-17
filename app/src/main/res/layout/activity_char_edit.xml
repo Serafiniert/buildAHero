@@ -739,27 +739,27 @@
             </TableLayout>
 
             <Button
-                android:id="@+id/cancelCreation"
+                android:id="@+id/finishCreation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginEnd="70dp"
-                android:text="@string/button_cancel"
+                android:text="@string/button_finish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/finishCreation" />
+                app:layout_constraintStart_toEndOf="@+id/cancelCreation" />
 
             <Button
-                android:id="@+id/finishCreation"
+                android:id="@+id/cancelCreation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginEnd="81dp"
                 android:layout_marginStart="67dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/button_finish"
+                android:text="@string/button_cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cancelCreation"
+                app:layout_constraintEnd_toStartOf="@+id/finishCreation"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableInterag"
                 app:layout_constraintVertical_bias="0.0" />

@@ -37,14 +37,13 @@ class CharEditActivity : AppCompatActivity() {
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View> = ArrayList()
     private var nameField: EditText? = null
-    private var spinnerPositions: ArrayList<Int> = ArrayList()
 
     private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
     private var male: List<String>? = null
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails10.txt"
+    private val filename = "charDetails11.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,14 +116,13 @@ class CharEditActivity : AppCompatActivity() {
             }
         }
 
-        nameSpinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+        nameSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
-                if(position > 0) {
+                if (position > 0) {
                     val name = parent.getItemAtPosition(position).toString()
                     nameField!!.setText(name)
                 }
-
 
 
             }
@@ -152,7 +150,7 @@ class CharEditActivity : AppCompatActivity() {
 
     private fun configureSaveButton() {
 
-        val saveButton = findViewById<Button>(R.id.finishCreation)
+        val saveButton = findViewById<Button>(R.id.cancelCreation)
         saveButton.setOnClickListener {
             charDetails = ""
 
@@ -166,15 +164,15 @@ class CharEditActivity : AppCompatActivity() {
 
                     val input = formList[i]
 
-                        if (input is Spinner) {
-                            if (input.selectedItem == null) {
-                                charDetails = charDetails + c[i] + ";"
+                    if (input is Spinner) {
+                        charDetails = if (input.selectedItem == null) {
+                            charDetails + c[i] + ";"
 
-                            } else {
-                                //charDetails = charDetails + "null;"
-                                charDetails = charDetails + input.selectedItem.toString() + ";"
+                        } else {
+                            //charDetails = charDetails + "null;"
+                            charDetails + input.selectedItem.toString() + ";"
 
-                            }
+                        }
 
                     } else if (input is EditText) {
                         if (input.text == null) {
@@ -454,7 +452,7 @@ class CharEditActivity : AppCompatActivity() {
 
     }
 
-    fun save(filename: String, text: String) {
+    private fun save(filename: String, text: String) {
 
         val fos: FileOutputStream
 
@@ -470,7 +468,7 @@ class CharEditActivity : AppCompatActivity() {
     }
 
 
-    fun load(filename: String): String {
+    private fun load(filename: String): String {
         var text = ""
         val fis: FileInputStream
         try {

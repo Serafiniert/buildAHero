@@ -16,7 +16,7 @@ import java.io.IOException
 
 class MenuActivity : AppCompatActivity() {
 
-    val filename = "charDetails10.txt"
+    val filename = "charDetails11.txt"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
