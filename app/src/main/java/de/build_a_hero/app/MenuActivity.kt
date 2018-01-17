@@ -54,7 +54,6 @@ class MenuActivity : AppCompatActivity() {
 
         configureSettingsButton()
         configureAddButton()
-        configureTestButton()
     }
 
     override fun onStart() {
@@ -108,12 +107,6 @@ class MenuActivity : AppCompatActivity() {
 
         val settingsButton = findViewById<Button>(R.id.settingsButton)
         settingsButton.setOnClickListener { startActivity(Intent(this@MenuActivity, SettingsActivity::class.java)) }
-    }
-
-    private fun configureTestButton() {
-
-        val testButton = findViewById<Button>(R.id.testButton)
-        testButton.setOnClickListener { startActivity(Intent(this@MenuActivity, TestActivity::class.java)) }
     }
 
     private fun configureAddButton() {

@@ -16,12 +16,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:text="@string/Button_Go" />
+        android:text="@string/button_go" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/titleLogo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/logo"
         android:src="@mipmap/logo" />
 
 </FrameLayout>

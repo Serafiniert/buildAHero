@@ -24,7 +24,6 @@
         <activity
             android:name=".CharCreationActivity"
             android:windowSoftInputMode="stateHidden|stateHidden|adjustPan" />
-        <activity android:name=".TestActivity" />
 
     </application>
 
