@@ -2,6 +2,7 @@ package de.build_a_hero.app
 
 import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
@@ -14,12 +15,13 @@ import java.util.concurrent.ExecutionException
 
 class CharEditActivity : AppCompatActivity() {
     private val tag = "Text"
-    //Layout: whole table
-    //Header: most top row
-    //Wert: total percentage of trait class
+
     //total points available that you can spend on traits
     private lateinit var availablePoints: TextView
 
+    //Layout: whole table
+    //Header: most top row
+    //Wert: total percentage of trait class
     private lateinit var handelnLayout: TableLayout
     private lateinit var handelnHeader: TableRow
     private lateinit var handelnWert: TextView
@@ -33,15 +35,15 @@ class CharEditActivity : AppCompatActivity() {
     private lateinit var interagWert: TextView
 
     private lateinit var charDetails: String
-    private var nameSpinner: Spinner? = null
+    private lateinit var nameSpinner: Spinner
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View> = ArrayList()
     private var nameField: EditText? = null
 
-    private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
-    private var male: List<String>? = null
-    private var female: List<String>? = null
-    private var allNames: List<String>? = null
+    private val gender = arrayOf("Geschlecht wählen", "weiblich", "männlich", "anderes", "unbestimmt")
+    private var male = ArrayList<String>()
+    private var female = ArrayList<String>()
+    private var allNames = ArrayList<String>()
 
     private val filename = "charDetails11.txt"
 
@@ -69,17 +71,33 @@ class CharEditActivity : AppCompatActivity() {
 
         allNames = ArrayList()
 
-        val namesUrl = NamesURL()
-
         try {
-            namesUrl.read()
-            male = namesUrl.getMale()
-            female = namesUrl.getFemale()
-            allNames = namesUrl.getAllNames()
+            if (isNetworkAvailable()) {
+                val namesUrl = NamesURL()
+                namesUrl.read()
+
+                male = ArrayList(namesUrl.getMale())
+                female = ArrayList(namesUrl.getFemale())
+                allNames = ArrayList(namesUrl.getAllNames())
+                male[0] = "(Optional) Name wählen"
+                female[0] = "(Optional) Name wählen"
+                allNames[0] = "(Optional) Name wählen"
+
+            } else {
+                val inputStream = resources.openRawResource(R.raw.mitte)
+                val csv = CSVFile(inputStream)
+
+                csv.read()
+                male = ArrayList(csv.getMale())
+                female = ArrayList(csv.getFemale())
+                allNames = ArrayList(csv.getAllNames())
+                male[0] = "(Optional) Name wählen"
+                female[0] = "(Optional) Name wählen"
+                allNames[0] = "(Optional) Name wählen"
+            }
         } catch (e: ExecutionException) {
             e.printStackTrace()
         }
-
 
         val genderAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, gender)
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -97,7 +115,7 @@ class CharEditActivity : AppCompatActivity() {
                     nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, male!!)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
-                } else if (gender == "anders" || gender == "unbestimmt") {
+                } else if (gender == "anders" || gender == "unbestimmt" || gender == "Geschlecht wählen") {
                     nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, allNames!!)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
@@ -108,7 +126,7 @@ class CharEditActivity : AppCompatActivity() {
             }
         }
 
-        nameSpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        nameSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
                 if (position > 0) {
@@ -458,10 +476,14 @@ class CharEditActivity : AppCompatActivity() {
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         } catch (e: IOException) {
-            //Log.v("IOException caught: ", e.getMessage())
-            //System.err.println("IOException caught: " + e.getMessage())
             e.printStackTrace()
         }
         return text
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }

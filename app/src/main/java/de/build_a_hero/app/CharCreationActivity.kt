@@ -2,6 +2,7 @@ package de.build_a_hero.app
 
 import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
@@ -9,8 +10,8 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import java.io.*
-import java.util.*
 import java.util.concurrent.ExecutionException
+
 
 class CharCreationActivity : AppCompatActivity() {
     private var nameAdapter: ArrayAdapter<String>? = null
@@ -39,10 +40,10 @@ class CharCreationActivity : AppCompatActivity() {
     private var nameField: EditText? = null
     private var formList: ArrayList<View>? = null
 
-    private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
-    private var male: List<String>? = null
-    private var female: List<String>? = null
-    private var allNames: List<String>? = null
+    private val gender = arrayOf("Geschlecht wählen", "weiblich", "männlich", "anderes", "unbestimmt")
+    private var male = ArrayList<String>()
+    private var female = ArrayList<String>()
+    private var allNames = ArrayList<String>()
 
     private val filename = "charDetails11.txt"
 
@@ -72,13 +73,30 @@ class CharCreationActivity : AppCompatActivity() {
 
         allNames = ArrayList()
 
-        val namesUrl = NamesURL()
-
         try {
-            namesUrl.read()
-            male = namesUrl.getMale()
-            female = namesUrl.getFemale()
-            allNames = namesUrl.getAllNames()
+            if (isNetworkAvailable()) {
+                val namesUrl = NamesURL()
+                namesUrl.read()
+
+                male = ArrayList(namesUrl.getMale())
+                female = ArrayList(namesUrl.getFemale())
+                allNames = ArrayList(namesUrl.getAllNames())
+                male[0] = "(Optional) Name wählen"
+                female[0] = "(Optional) Name wählen"
+                allNames[0] = "(Optional) Name wählen"
+
+            } else {
+                val inputStream = resources.openRawResource(R.raw.mitte)
+                val csv = CSVFile(inputStream)
+
+                csv.read()
+                male = ArrayList(csv.getMale())
+                female = ArrayList(csv.getFemale())
+                allNames = ArrayList(csv.getAllNames())
+                male[0] = "(Optional) Name wählen"
+                female[0] = "(Optional) Name wählen"
+                allNames[0] = "(Optional) Name wählen"
+            }
         } catch (e: ExecutionException) {
             e.printStackTrace()
         }
@@ -99,7 +117,7 @@ class CharCreationActivity : AppCompatActivity() {
                     nameAdapter = ArrayAdapter(this@CharCreationActivity, android.R.layout.simple_spinner_item, male!!)
                     nameAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
-                } else if (gender == "anders" || gender == "unbestimmt") {
+                } else if (gender == "anderes" || gender == "unbestimmt" || gender == "Geschlecht wählen") {
                     nameAdapter = ArrayAdapter(this@CharCreationActivity, android.R.layout.simple_spinner_item, allNames!!)
                     nameAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
@@ -421,5 +439,11 @@ class CharCreationActivity : AppCompatActivity() {
     companion object {
 
         private val tag = "Text"
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }

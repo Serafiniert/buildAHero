@@ -19,9 +19,9 @@
     <string name="char_race">Rasse</string>
     <string name="char_visual">Aussehen</string>
 
-    <string name="handeln">HANDELN</string>
-    <string name="wissen">WISSEN</string>
-    <string name="interagieren">INTERAGIEREN</string>
+    <string name="handeln">Handeln Gesamtwert:</string>
+    <string name="wissen">Wissen Gesamtwert:</string>
+    <string name="interagieren">Interagieren Gesamtwert:</string>
     <string name="tal_1">Talent 1</string>
     <string name="tal_2">Talent 2</string>
     <string name="tal_3">Talent 3</string>

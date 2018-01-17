@@ -4,7 +4,6 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.StringReader
 import java.util.*
-import java.util.concurrent.ExecutionException
 
 class NamesURL {
 
@@ -15,7 +14,6 @@ class NamesURL {
     private var male: MutableList<String>? = null
     private var allNames: MutableList<String>? = null
 
-    @Throws(ExecutionException::class)
     fun read() {
         val separator = ";"
         val caseFemale = "w"
@@ -31,12 +29,7 @@ class NamesURL {
         try {
             result = getRequest.execute(myURL).get()
 
-            reader = if (result != null) {
-                StringReader(result!!)
-
-            } else {
-                StringReader("")
-            }
+            reader = StringReader(result!!)
 
             br = BufferedReader(reader)
             var line: String
@@ -68,23 +61,11 @@ class NamesURL {
         return female
     }
 
-    fun setFemale(female: MutableList<String>) {
-        this.female = female
-    }
-
     fun getMale(): List<String>? {
         return male
     }
 
-    fun setMale(male: MutableList<String>) {
-        this.male = male
-    }
-
     fun getAllNames(): List<String>? {
         return allNames
-    }
-
-    fun setAllNames(allNames: MutableList<String>) {
-        this.allNames = allNames
     }
 }

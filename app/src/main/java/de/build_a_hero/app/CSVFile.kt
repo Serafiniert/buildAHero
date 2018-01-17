@@ -20,7 +20,8 @@ class CSVFile(private val inputStream: InputStream) {
         try {
             var csvLine: String
 
-            while (true) {
+            loop@ while (true) {
+
                 csvLine = reader.readLine() ?: break
 
                 val row = csvLine.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -29,7 +30,6 @@ class CSVFile(private val inputStream: InputStream) {
                 } else if (row[2].equals("m", ignoreCase = true)) {
                     male!!.add(row[0])
                 }
-
             }
             allNames!!.addAll(female!!)
             allNames!!.addAll(male!!)
@@ -52,23 +52,11 @@ class CSVFile(private val inputStream: InputStream) {
         return female
     }
 
-    fun setFemale(female: MutableList<String>) {
-        this.female = female
-    }
-
     fun getMale(): List<String>? {
         return male
     }
 
-    fun setMale(male: MutableList<String>) {
-        this.male = male
-    }
-
     fun getAllNames(): List<String>? {
         return allNames
-    }
-
-    fun setAllNames(allNames: MutableList<String>) {
-        this.allNames = allNames
     }
 }
