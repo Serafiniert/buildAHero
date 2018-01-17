@@ -60,19 +60,11 @@
         android:id="@+id/settingsButton"
         android:layout_width="38dp"
         android:layout_height="42dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:background="@mipmap/werkzeug"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/testButton"
-        android:layout_width="38dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="76dp"
-        android:background="@mipmap/werkzeug"
-        app:layout_constraintEnd_toEndOf="@+id/settingsButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -95,7 +87,6 @@
         android:text="Test Area"
         app:layout_constraintBottom_toTopOf="@+id/charListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

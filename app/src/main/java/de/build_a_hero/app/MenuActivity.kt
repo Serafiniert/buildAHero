@@ -28,7 +28,7 @@ class MenuActivity : AppCompatActivity() {
         val arrayList = getAllChars()
 
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.setAdapter(adapter)
 
@@ -58,7 +58,6 @@ class MenuActivity : AppCompatActivity() {
 
         configureSettingsButton()
         configureAddButton()
-        configureTestButton()
     }
 
     override fun onStart() {
@@ -119,12 +118,6 @@ class MenuActivity : AppCompatActivity() {
 
         val settingsButton = findViewById<Button>(R.id.settingsButton)
         settingsButton.setOnClickListener { startActivity(Intent(this@MenuActivity, SettingsActivity::class.java)) }
-    }
-
-    private fun configureTestButton() {
-
-        val testButton = findViewById<Button>(R.id.testButton)
-        testButton.setOnClickListener { startActivity(Intent(this@MenuActivity, TestActivity::class.java)) }
     }
 
     private fun configureAddButton() {
