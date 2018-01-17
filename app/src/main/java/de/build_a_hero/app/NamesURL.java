@@ -37,7 +37,13 @@ public class NamesURL {
 
             result = getRequest.execute(myURL).get();
 
-            reader = new StringReader(result);
+            if(result != null){
+                reader = new StringReader(result);
+
+            } else{
+                reader = new StringReader("");
+            }
+
             br = new BufferedReader(reader);
             String line;
 
