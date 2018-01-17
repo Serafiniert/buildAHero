@@ -37,6 +37,7 @@ class CharEditActivity : AppCompatActivity() {
     private var nameSpinner: Spinner? = null
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View> = ArrayList()
+    private var nameField: EditText? = null
     private var spinnerPositions: ArrayList<Int> = ArrayList()
 
     private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
@@ -44,7 +45,7 @@ class CharEditActivity : AppCompatActivity() {
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails8.txt"
+    private val filename = "charDetails10.txt"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,10 +71,11 @@ class CharEditActivity : AppCompatActivity() {
 
         genderSpinner = findViewById(R.id.genderSpinner)
         nameSpinner = findViewById(R.id.nameSpinner)
+        nameField = findViewById(R.id.name)
 
 
-        getAllForms()
-        setCharDetails()
+
+
 
         allNames = ArrayList()
 
@@ -116,6 +118,29 @@ class CharEditActivity : AppCompatActivity() {
 
             }
         }
+
+        nameSpinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+
+                if(position > 0) {
+                    val name = parent.getItemAtPosition(position).toString()
+                    nameField!!.setText(name)
+                }
+
+
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+
+
+        }
+
+        getAllForms()
+        setCharDetails()
+
         configureCancelButton()
         configureSaveButton()
         configureValueButton()
@@ -145,11 +170,13 @@ class CharEditActivity : AppCompatActivity() {
                         val input = formList[i]
 
                         if (input is Spinner) {
-                            if (input.selectedItem != null) {
-                                charDetails = charDetails + input.selectedItem.toString() + ";"
+                            if (input.selectedItem == null) {
+                                charDetails = charDetails + c[i] + ";"
+
                             } else {
                                 //charDetails = charDetails + "null;"
-                                charDetails = charDetails + c[i] + ";"
+                                charDetails = charDetails + input.selectedItem.toString() + ";"
+
                             }
 
                         } else if (input is EditText) {
@@ -385,15 +412,19 @@ class CharEditActivity : AppCompatActivity() {
             if (v is Spinner) {
                 var count = 0;
                 val sp = v as Spinner
-                Log.v("spinnersize", sp.count.toString())
-                for (j in 0 until sp.count) {
+                    Log.v("spinnersize", sp.count.toString())
+                    for (j in 0 until sp.count) {
 
-                    if (sp.getItemAtPosition(i).toString().equals(character[i])) {
-                        count = j
-                        break
+                        if (sp.getItemAtPosition(j).toString().equals(character[i])) {
+                            count = j
+                            break
+                        }
                     }
-                }
-                sp.setSelection(count)
+                    Log.v("setting Spinner", "count: " + count)
+                    sp.setSelection(count)
+
+
+
             } else if (v is EditText) {
                 val et = v as EditText
                 et.setText(character[i])
@@ -415,7 +446,9 @@ class CharEditActivity : AppCompatActivity() {
             val child = compLayout.getChildAt(i)
             if (child is Spinner) {
                 val spinner = child as Spinner
+
                 formList.add(spinner)
+
             } else if (child is EditText) {
                 formList.add(child as EditText)
             } else if (child is TableLayout) {
