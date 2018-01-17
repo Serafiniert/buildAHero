@@ -8,10 +8,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by ninad on 15.01.2018.
- */
-
 public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
     public static final String REQUEST_METHOD = "GET";
