@@ -4,8 +4,7 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
-import java.util.ArrayList
-import java.util.Collections
+import java.util.*
 
 class CSVFile(private val inputStream: InputStream) {
     private var female: MutableList<String>? = null
@@ -30,7 +29,11 @@ class CSVFile(private val inputStream: InputStream) {
                 } else if (row[2].equals("m", ignoreCase = true)) {
                     male!!.add(row[0])
                 }
+<<<<<<< HEAD
 
+=======
+                csvLine = reader.readLine()
+>>>>>>> 48707d36e5f31eebeede64c5ad4d51025a4c6f7a
             }
             allNames!!.addAll(female!!)
             allNames!!.addAll(male!!)
@@ -46,7 +49,6 @@ class CSVFile(private val inputStream: InputStream) {
             } catch (e: IOException) {
                 throw RuntimeException("Error while closing input stream: " + e)
             }
-
         }
     }
 

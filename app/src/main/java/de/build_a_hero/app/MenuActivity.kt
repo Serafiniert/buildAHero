@@ -32,7 +32,7 @@ class MenuActivity : AppCompatActivity() {
 
         charList.setAdapter(adapter)
 
-        charList.setOnItemClickListener(object : AdapterView.OnItemClickListener {
+        charList.onItemClickListener = object : AdapterView.OnItemClickListener {
 
             override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val loadedText = load(filename)
@@ -41,7 +41,7 @@ class MenuActivity : AppCompatActivity() {
                 Log.v("onclick charDetails: ", singleCharDetails)
 
                 val intent = Intent(this@MenuActivity, CharEditActivity::class.java)
-                var extras = Bundle()
+                val extras = Bundle()
 
                 extras.putString("charDetail", singleCharDetails)
                 extras.putString("position", position.toString())
@@ -49,12 +49,8 @@ class MenuActivity : AppCompatActivity() {
                 intent.putExtras(extras)
 
                 startActivity(intent)
-
             }
-
-
-        })
-
+        }
 
         configureSettingsButton()
         configureAddButton()
@@ -71,12 +67,12 @@ class MenuActivity : AppCompatActivity() {
 
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
-        charList.setAdapter(adapter)
+        charList.adapter = adapter
 
 
     }
 
-    fun getAllChars(): ArrayList<String> {
+    private fun getAllChars(): ArrayList<String> {
 
         val charNames = ArrayList<String>()
 
@@ -100,18 +96,11 @@ class MenuActivity : AppCompatActivity() {
                     Log.v("singlechardetails: ", singleCharDetails.toString())
 
                     charNames.add(singleCharDetails[1])
-
                 }
-
             }
-
         } else {
-
             Log.v("FILEEXISTS?", "file doesnt exist")
-
         }
-
-
         return charNames
     }
 

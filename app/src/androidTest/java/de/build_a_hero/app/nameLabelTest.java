@@ -97,7 +97,7 @@ public class nameLabelTest {
         appCompatCheckedTextView.perform(click());
 
         ViewInteraction appCompatSpinner2 = onView(
-                allOf(withId(R.id.name),
+                allOf(withId(R.id.nameSpinner),
                         childAtPosition(
                                 allOf(withId(R.id.compLayout),
                                         childAtPosition(
@@ -127,7 +127,7 @@ public class nameLabelTest {
         ViewInteraction textView2 = onView(
                 allOf(withId(android.R.id.text1), withText("Aalima"),
                         childAtPosition(
-                                allOf(withId(R.id.name),
+                                allOf(withId(R.id.nameSpinner),
                                         childAtPosition(
                                                 withId(R.id.compLayout),
                                                 3)),

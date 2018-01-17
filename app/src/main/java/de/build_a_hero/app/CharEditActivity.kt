@@ -69,19 +69,15 @@ class CharEditActivity : AppCompatActivity() {
         availablePoints = findViewById(R.id.availPointsNum)
 
         genderSpinner = findViewById(R.id.gender)
-        nameSpinner = findViewById(R.id.name)
-
+        nameSpinner = findViewById(R.id.nameSpinner)
 
 
         getAllForms()
         setCharDetails()
 
-
         allNames = ArrayList()
 
         val namesUrl = NamesURL()
-
-
 
         try {
             namesUrl.read()
@@ -120,9 +116,6 @@ class CharEditActivity : AppCompatActivity() {
 
             }
         }
-
-
-
         configureCancelButton()
         configureSaveButton()
         configureValueButton()
@@ -186,7 +179,7 @@ class CharEditActivity : AppCompatActivity() {
 
                     val loadedText = load(filename)
 
-                    var allCharDetails: ArrayList<String> = ArrayList(loadedText.split("ÜÄÖ"))
+                    val allCharDetails: ArrayList<String> = ArrayList(loadedText.split("ÜÄÖ"))
                     Log.v("allCharDetails", "as ArrayList before changing" + allCharDetails)
                     Log.v("allCharDetails", "as ArrayList.toString() before changing" + allCharDetails.toString())
 
@@ -218,11 +211,9 @@ class CharEditActivity : AppCompatActivity() {
                     Log.v("FILEEXISTS?", "file doesnt exist")
 
                 }
-
             }
         }
         )
-
     }
 
 
@@ -384,7 +375,7 @@ class CharEditActivity : AppCompatActivity() {
 
 
     //sets the saved data upon loading
-    fun setCharDetails() {
+    private fun setCharDetails() {
 
         val s = intent.getStringExtra("charDetail")
         val character = s.split(";")
@@ -417,7 +408,7 @@ class CharEditActivity : AppCompatActivity() {
 
     //saves all Fields with valuable input for us (name, age, gender, traits with their respective
     //skillpoints etc.)
-    fun getAllForms() {
+    private fun getAllForms() {
         val compLayout = findViewById<ConstraintLayout>(R.id.compLayout)
         for (i in 0 until compLayout.getChildCount()) {
             Log.v(tag, Integer.toString(compLayout.getChildCount()))
@@ -457,7 +448,6 @@ class CharEditActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
     }
 
 
@@ -480,7 +470,4 @@ class CharEditActivity : AppCompatActivity() {
         }
         return text
     }
-
-
 }
-
