@@ -3,8 +3,7 @@ package de.build_a_hero.app
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.StringReader
-import java.util.ArrayList
-import java.util.Collections
+import java.util.*
 import java.util.concurrent.ExecutionException
 
 /**

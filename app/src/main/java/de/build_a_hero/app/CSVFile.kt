@@ -21,7 +21,7 @@ class CSVFile(private val inputStream: InputStream) {
             var csvLine: String
 
             while (true) {
-                csvLine = reader.readLine()?: break
+                csvLine = reader.readLine() ?: break
 
                 val row = csvLine.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (row[2].equals("w", ignoreCase = true)) {
