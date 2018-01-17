@@ -29,21 +29,6 @@ public class StartActivityTest {
     @Rule
     public ActivityTestRule<StartActivity> mActivityTestRule = new ActivityTestRule<>(StartActivity.class);
 
-    @Test
-    public void startActivityTest() {
-        ViewInteraction button = onView(
-                allOf(withId(R.id.startButton),
-                        childAtPosition(
-                                allOf(withId(R.id.button),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
-
-    }
-
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
@@ -61,5 +46,20 @@ public class StartActivityTest {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
+    }
+
+    @Test
+    public void startActivityTest() {
+        ViewInteraction button = onView(
+                allOf(withId(R.id.startButton),
+                        childAtPosition(
+                                allOf(withId(R.id.button),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        button.check(matches(isDisplayed()));
+
     }
 }

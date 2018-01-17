@@ -32,9 +32,9 @@ class MenuActivity : AppCompatActivity() {
 
         charList.setAdapter(adapter)
 
-        charList.setOnItemClickListener(object: AdapterView.OnItemClickListener {
+        charList.setOnItemClickListener(object : AdapterView.OnItemClickListener {
 
-            override fun onItemClick(parent:AdapterView<*>, view:View, position: Int, id: Long){
+            override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val loadedText = load(filename)
                 val allCharDetails = loadedText.split("ÜÄÖ")
                 val singleCharDetails = allCharDetails[position]
@@ -84,22 +84,22 @@ class MenuActivity : AppCompatActivity() {
 
         if (file.exists()) {
 
-                val loadedText = load(filename)
+            val loadedText = load(filename)
 
-                Log.v("loadedText", loadedText)
+            Log.v("loadedText", loadedText)
 
-                val allCharDetails = loadedText.split("ÜÄÖ")
-                Log.v("allCharDetails.toString", allCharDetails.toString())
+            val allCharDetails = loadedText.split("ÜÄÖ")
+            Log.v("allCharDetails.toString", allCharDetails.toString())
 
-                for (char in allCharDetails) {
-                    if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
+            for (char in allCharDetails) {
+                if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
 
-                        Log.v("char: ", char)
+                    Log.v("char: ", char)
 
-                        val singleCharDetails = char.split(";")
-                        Log.v("singlechardetails: ", singleCharDetails.toString())
+                    val singleCharDetails = char.split(";")
+                    Log.v("singlechardetails: ", singleCharDetails.toString())
 
-                        charNames.add(singleCharDetails[1])
+                    charNames.add(singleCharDetails[1])
 
                 }
 

@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import java.io.*
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.ExecutionException
 
 class CharEditActivity : AppCompatActivity() {
@@ -93,7 +93,6 @@ class CharEditActivity : AppCompatActivity() {
         }
 
 
-
         val genderAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, gender)
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner!!.adapter = genderAdapter
@@ -135,11 +134,11 @@ class CharEditActivity : AppCompatActivity() {
         cancelButton.setOnClickListener { finish() }
     }
 
-    private fun configureSaveButton(){
+    private fun configureSaveButton() {
 
         val saveButton = findViewById<Button>(R.id.finishCreation)
-        saveButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(view:View) {
+        saveButton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
                 charDetails = ""
 
                 val file = File("/data/user/0/com.example.ninad.buildahero/files", filename)
@@ -171,7 +170,7 @@ class CharEditActivity : AppCompatActivity() {
                                 charDetails = charDetails + "null;"
                             } else {
                                 charDetails = charDetails + input.text + ";"
-                             }
+                            }
                         }
                     }
 
@@ -180,9 +179,9 @@ class CharEditActivity : AppCompatActivity() {
                     }
 
 
-                 //charDetails = charDetails + "ÜÄÖ"
+                    //charDetails = charDetails + "ÜÄÖ"
 
-                 //CHARDETAILS NOW NEW INPUT
+                    //CHARDETAILS NOW NEW INPUT
 
 
                     val loadedText = load(filename)
@@ -201,24 +200,24 @@ class CharEditActivity : AppCompatActivity() {
 
                     var allCharacterString = ""
 
-                    for(i in 0 until allCharDetails.size-1){
+                    for (i in 0 until allCharDetails.size - 1) {
 
-                        allCharDetails.set(i, allCharDetails[i] + "ÜÄÖ" )
+                        allCharDetails.set(i, allCharDetails[i] + "ÜÄÖ")
                         allCharacterString = allCharacterString + allCharDetails[i]
                     }
 
 
-                     allCharDetails.toString()
+                    allCharDetails.toString()
                     Log.v("allCharacterString", "endresult: " + allCharacterString)
 
                     save(filename, allCharacterString)
                     finish()
 
-        } else {
+                } else {
 
-            Log.v("FILEEXISTS?", "file doesnt exist")
+                    Log.v("FILEEXISTS?", "file doesnt exist")
 
-        }
+                }
 
             }
         }
@@ -384,37 +383,30 @@ class CharEditActivity : AppCompatActivity() {
     }
 
 
-
     //sets the saved data upon loading
-    fun setCharDetails(){
+    fun setCharDetails() {
 
         val s = intent.getStringExtra("charDetail")
         val character = s.split(";")
 
-        for (i in 0 until formList.size)
-        {
+        for (i in 0 until formList.size) {
             val v = formList.get(i)
-            if (v is Spinner)
-            {
+            if (v is Spinner) {
                 var count = 0;
                 val sp = v as Spinner
                 Log.v("spinnersize", sp.count.toString())
-                for(j in 0 until sp.count){
+                for (j in 0 until sp.count) {
 
-                    if(sp.getItemAtPosition(i).toString().equals(character[i])){
+                    if (sp.getItemAtPosition(i).toString().equals(character[i])) {
                         count = j
                         break
                     }
                 }
                 sp.setSelection(count)
-            }
-            else if (v is EditText)
-            {
+            } else if (v is EditText) {
                 val et = v as EditText
                 et.setText(character[i])
-            }
-            else if (v is TextView)
-            {
+            } else if (v is TextView) {
                 val tv = v as TextView
                 tv.setText(character[i])
             }
@@ -425,33 +417,23 @@ class CharEditActivity : AppCompatActivity() {
 
     //saves all Fields with valuable input for us (name, age, gender, traits with their respective
     //skillpoints etc.)
-    fun getAllForms(){
+    fun getAllForms() {
         val compLayout = findViewById<ConstraintLayout>(R.id.compLayout)
-        for (i in 0 until compLayout.getChildCount())
-        {
+        for (i in 0 until compLayout.getChildCount()) {
             Log.v(tag, Integer.toString(compLayout.getChildCount()))
             val child = compLayout.getChildAt(i)
-            if (child is Spinner)
-            {
+            if (child is Spinner) {
                 val spinner = child as Spinner
                 formList.add(spinner)
-            }
-            else if (child is EditText)
-            {
+            } else if (child is EditText) {
                 formList.add(child as EditText)
-            }
-            else if (child is TableLayout)
-            {
+            } else if (child is TableLayout) {
                 val lyo = child as TableLayout
-                for (j in 0 until lyo.getChildCount())
-                {
+                for (j in 0 until lyo.getChildCount()) {
                     val tr = (lyo.getChildAt(j)) as TableRow
-                    if (j == 0)
-                    {
+                    if (j == 0) {
                         formList.add(tr.getChildAt(1))
-                    }
-                    else
-                    {
+                    } else {
                         formList.add(tr.getChildAt(0))
                         formList.add(tr.getChildAt(2))
                     }
@@ -498,8 +480,6 @@ class CharEditActivity : AppCompatActivity() {
         }
         return text
     }
-
-
 
 
 }
