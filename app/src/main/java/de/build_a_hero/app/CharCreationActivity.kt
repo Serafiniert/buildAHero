@@ -14,6 +14,8 @@ import java.util.concurrent.ExecutionException
 
 
 class CharCreationActivity : AppCompatActivity() {
+    private val nameOptional = "(Optional) Name wählen"
+
     private var nameAdapter: ArrayAdapter<String>? = null
 
     //total points available that you can spend on traits
@@ -91,9 +93,9 @@ class CharCreationActivity : AppCompatActivity() {
                 allNames = ArrayList(csv.getAllNames())
             }
 
-            male[0] = "(Optional) Name wählen"
-            female[0] = "(Optional) Name wählen"
-            allNames[0] = "(Optional) Name wählen"
+            male[0] = nameOptional
+            female[0] = nameOptional
+            allNames[0] = nameOptional
 
         } catch (e: ExecutionException) {
             e.printStackTrace()

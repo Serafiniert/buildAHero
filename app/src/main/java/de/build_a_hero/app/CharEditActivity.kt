@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutionException
 
 class CharEditActivity : AppCompatActivity() {
     private val tag = "Text"
+    private val nameOptional = "(Optional) Name wählen"
 
     //total points available that you can spend on traits
     private lateinit var availablePoints: TextView
@@ -89,9 +90,9 @@ class CharEditActivity : AppCompatActivity() {
                 allNames = ArrayList(csv.getAllNames())
             }
 
-            male[0] = "(Optional) Name wählen"
-            female[0] = "(Optional) Name wählen"
-            allNames[0] = "(Optional) Name wählen"
+            male[0] = nameOptional
+            female[0] = nameOptional
+            allNames[0] = nameOptional
 
         } catch (e: ExecutionException) {
             e.printStackTrace()
