@@ -53,26 +53,19 @@ class CharEditActivity : AppCompatActivity() {
         handelnHeader = handelnLayout.getChildAt(0) as TableRow
         handelnWert = handelnHeader.getChildAt(1) as TextView
 
-
         wissenLayout = findViewById(R.id.tableWissen)
         wissenHeader = wissenLayout.getChildAt(0) as TableRow
         wissenWert = wissenHeader.getChildAt(1) as TextView
 
-
         interagLayout = findViewById(R.id.tableInterag)
         interagHeader = interagLayout.getChildAt(0) as TableRow
         interagWert = interagHeader.getChildAt(1) as TextView
-
 
         availablePoints = findViewById(R.id.availPointsNum)
 
         genderSpinner = findViewById(R.id.genderSpinner)
         nameSpinner = findViewById(R.id.nameSpinner)
         nameField = findViewById(R.id.name)
-
-
-
-
 
         allNames = ArrayList()
 
@@ -112,7 +105,6 @@ class CharEditActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-
             }
         }
 
@@ -123,15 +115,10 @@ class CharEditActivity : AppCompatActivity() {
                     val name = parent.getItemAtPosition(position).toString()
                     nameField!!.setText(name)
                 }
-
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-
             }
-
-
         }
 
         getAllForms()
@@ -171,9 +158,7 @@ class CharEditActivity : AppCompatActivity() {
                         } else {
                             //charDetails = charDetails + "null;"
                             charDetails + input.selectedItem.toString() + ";"
-
                         }
-
                     } else if (input is EditText) {
                         if (input.text == null) {
                             charDetails += "null;"
@@ -193,11 +178,9 @@ class CharEditActivity : AppCompatActivity() {
                     charDetails = charDetails.substring(0, charDetails.length - 1)
                 }
 
-
                 //charDetails = charDetails + "ÜÄÖ"
 
                 //CHARDETAILS NOW NEW INPUT
-
 
                 val loadedText = load(filename)
 
@@ -221,7 +204,6 @@ class CharEditActivity : AppCompatActivity() {
                     allCharacterString += allCharDetails[i]
                 }
 
-
                 allCharDetails.toString()
                 Log.v("allCharacterString", "endresult: " + allCharacterString)
 
@@ -229,9 +211,7 @@ class CharEditActivity : AppCompatActivity() {
                 finish()
 
             } else {
-
                 Log.v("FILEEXISTS?", "file doesnt exist")
-
             }
         }
     }
@@ -312,7 +292,6 @@ class CharEditActivity : AppCompatActivity() {
                     }
 
                     klassenWert += 1
-
 
                     availablePoints.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentWissen)
@@ -419,8 +398,6 @@ class CharEditActivity : AppCompatActivity() {
                 v.text = character[i]
             }
         }
-
-
     }
 
     //saves all Fields with valuable input for us (name, age, gender, traits with their respective
@@ -449,8 +426,8 @@ class CharEditActivity : AppCompatActivity() {
             }
         }
         formList.add(findViewById(R.id.availPointsNum))
-
     }
+
 
     private fun save(filename: String, text: String) {
 

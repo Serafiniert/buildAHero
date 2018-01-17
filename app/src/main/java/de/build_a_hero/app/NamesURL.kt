@@ -29,7 +29,6 @@ class NamesURL {
         val br: BufferedReader
 
         try {
-
             result = getRequest.execute(myURL).get()
 
             reader = if (result != null) {
@@ -43,7 +42,6 @@ class NamesURL {
             var line: String
 
             while (true) {
-
                 line = br.readLine() ?: break
 
                 val row = line.split(separator.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()

@@ -14,12 +14,13 @@ import java.util.concurrent.ExecutionException
 
 class CharCreationActivity : AppCompatActivity() {
     private var nameAdapter: ArrayAdapter<String>? = null
-    //Layout: whole table
-    //Header: most top row
-    //Wert: total percentage of trait class
+
     //total points available that you can spend on traits
     private var availablePoints: TextView? = null
 
+    //Layout: whole table
+    //Header: most top row
+    //Wert: total percentage of trait class
     private var handelnLayout: TableLayout? = null
     private var handelnHeader: TableRow? = null
     private var handelnWert: TextView? = null
@@ -49,28 +50,23 @@ class CharCreationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_char_creation)
 
-
         handelnLayout = findViewById(R.id.tableHandeln)
         handelnHeader = handelnLayout!!.getChildAt(0) as TableRow
         handelnWert = handelnHeader!!.getChildAt(1) as TextView
-
 
         wissenLayout = findViewById(R.id.tableWissen)
         wissenHeader = wissenLayout!!.getChildAt(0) as TableRow
         wissenWert = wissenHeader!!.getChildAt(1) as TextView
 
-
         interagLayout = findViewById(R.id.tableInterag)
         interagHeader = interagLayout!!.getChildAt(0) as TableRow
         interagWert = interagHeader!!.getChildAt(1) as TextView
-
 
         availablePoints = findViewById(R.id.availPointsNum)
 
         nameSpinner = findViewById(R.id.nameSpinner)
         genderSpinner = findViewById(R.id.genderSpinner)
         nameField = findViewById(R.id.name)
-
 
         formList = ArrayList()
 
@@ -111,7 +107,6 @@ class CharCreationActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-
             }
         }
 
@@ -121,29 +116,19 @@ class CharCreationActivity : AppCompatActivity() {
                 if (position > 0) {
                     val name = parent.getItemAtPosition(position).toString()
                     nameField!!.setText(name)
-
                 }
-
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-
             }
-
-
         }
-
-
         configureCancelButton()
         // configures + and -, so it adds to or substracts 10 of the current Value
         configureValueButton()
         // configures the button "Fertig" to save the character
         configureSaveButton()
         // configures Load Button, not necessary here
-        //configureLoadButton();
-
-
+        // configureLoadButton();
     }
 
 
@@ -353,9 +338,7 @@ class CharCreationActivity : AppCompatActivity() {
                 load(filename)
 
             } else {
-
                 ""
-
             }
 
             configureForms()
@@ -392,7 +375,6 @@ class CharCreationActivity : AppCompatActivity() {
             save(filename, charDetails)
             finish()
             Log.i(tag, filesDir.path.toString())
-
         }
     }
 

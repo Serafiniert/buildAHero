@@ -10,10 +10,9 @@ import android.widget.Button
 
 class StartActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_start)
+        setContentView(R.layout.activity_start)
 
         configureNextButton()
     }

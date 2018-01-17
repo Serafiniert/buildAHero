@@ -1,15 +1,12 @@
 <resources>
     <string name="app_name">BuildAHero</string>
-    <string name="hello_world">Build a Hero!</string>
     <string name="action_settings">Settings</string>
     <string name="button_finish">Fertig</string>
     <string name="button_cancel">Abbrechen</string>
-    <string name="settings_about">About</string>
     <string name="settings_about_credits">Build a Hero was created by&#xD;Finn Christians, &#xD;Nina Dörnbrak, &#xD;Tim Eberhardt, &#xD;Tanyel Stoyloff</string>
     <string name="contact">Bei Fehlern melden Sie sich gern unter s0556736@htw-berlin.de :-)</string>
     <string name="button_go">Los gehts!</string>
-    <string name="button_back">Zurück</string>
-    <string name="action_overview">Übersicht</string>
+    <string name="action_overview">Menü</string>
     <string name="points_available">Verfügbare Punkte: </string>
 
     <string name="creation_head">Charaktererstellung</string>
@@ -36,17 +33,9 @@
     <string name="points_num">400</string>
     <string name="points_zero">0</string>
 
-    <string name="logo">logo</string>
-    <string name="gray">#c8e1fa</string>
-
-    <string name="save_button">Speichern</string>
-    <string name="load_button">Laden</string>
-    <string name="lorem_text">Lorem Ipsum text.</string>
+    <string name="logo">Logo</string>
 
     <string name="kontakt">Kontakt</string>
     <string name="credits">Credits</string>
-    <string name="dice">dice</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dice">Würfel</string>
 </resources>

@@ -48,7 +48,6 @@ class CSVFile(private val inputStream: InputStream) {
         }
     }
 
-
     fun getFemale(): List<String>? {
         return female
     }

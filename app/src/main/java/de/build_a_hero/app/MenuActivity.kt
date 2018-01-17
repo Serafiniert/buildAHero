@@ -16,8 +16,7 @@ import java.io.IOException
 
 class MenuActivity : AppCompatActivity() {
 
-    val filename = "charDetails11.txt"
-
+    private val filename = "charDetails11.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,6 @@ class MenuActivity : AppCompatActivity() {
         val charList = findViewById<View>(R.id.charListView) as ListView
 
         val arrayList = getAllChars()
-
 
         val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
@@ -48,7 +46,6 @@ class MenuActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
-
         configureSettingsButton()
         configureAddButton()
     }
@@ -60,12 +57,9 @@ class MenuActivity : AppCompatActivity() {
 
         val arrayList = getAllChars()
 
-
         val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.adapter = adapter
-
-
     }
 
     private fun getAllChars(): ArrayList<String> {
@@ -112,7 +106,7 @@ class MenuActivity : AppCompatActivity() {
         addButton.setOnClickListener { startActivity(Intent(this@MenuActivity, CharCreationActivity::class.java)) }
     }
 
-    fun load(filename: String): String {
+    private fun load(filename: String): String {
         var text = ""
         val fis: FileInputStream
         try {
@@ -125,8 +119,6 @@ class MenuActivity : AppCompatActivity() {
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         } catch (e: IOException) {
-            //Log.v("IOException caught: ", e.getMessage())
-            //System.err.println("IOException caught: " + e.getMessage())
             e.printStackTrace()
         }
         return text

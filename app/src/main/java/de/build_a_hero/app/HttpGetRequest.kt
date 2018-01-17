@@ -10,12 +10,10 @@ import java.net.URL
 
 class HttpGetRequest : AsyncTask<String, Void, String>() {
 
-
     override fun doInBackground(vararg params: String): String? {
         val url = params[0]
         var result: String?
         var inputLine: String
-
 
         try {
             val myUrl = URL(url)
@@ -33,12 +31,10 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
             val reader = BufferedReader(streamReader)
             val stringBuilder = StringBuilder()
 
-
             while (true) {
                 inputLine = reader.readLine() ?: break
 
                 stringBuilder.append(inputLine + "\n")
-
             }
 
             reader.close()
@@ -50,7 +46,6 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
             e.printStackTrace()
             result = null
         }
-
         return result
     }
 
@@ -60,6 +55,4 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
         val READ_TIMEOUT = 15000
         val CONNECTION_TIMEOUT = 15000
     }
-
 }
-
