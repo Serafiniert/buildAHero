@@ -35,15 +35,15 @@ class CharCreationActivity : AppCompatActivity() {
     private var charDetails: String? = ""
     private var nameSpinner: Spinner? = null
     private var genderSpinner: Spinner? = null
+    private var nameField: EditText? = null
     private var formList: ArrayList<View>? = null
-    private var spinnerPositions: ArrayList<Int>? = null
 
     private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
     private var male: List<String>? = null
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails8.txt"
+    private val filename = "charDetails10.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +69,10 @@ class CharCreationActivity : AppCompatActivity() {
 
         nameSpinner = findViewById(R.id.nameSpinner)
         genderSpinner = findViewById(R.id.genderSpinner)
+        nameField = findViewById(R.id.name)
+
 
         formList = ArrayList()
-        spinnerPositions = ArrayList()
 
         allNames = ArrayList()
 
@@ -112,6 +113,25 @@ class CharCreationActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {
 
             }
+        }
+
+        nameSpinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+
+                if(position>0) {
+                    val name = parent.getItemAtPosition(position).toString()
+                    nameField!!.setText(name)
+
+                }
+
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+
+
         }
 
 
@@ -340,17 +360,17 @@ class CharCreationActivity : AppCompatActivity() {
 
             configureForms()
 
-            formList!!.indices
-                    .asSequence()
-                    .map { formList!![it] }
-                    .forEach {
-                        if (it is Spinner) {
-                            if (it.selectedItem != null) {
-                                charDetails = charDetails + it.selectedItem.toString() + ";"
-                                spinnerPositions!!.add(it.selectedItemPosition)
-                            } else {
-                                charDetails = charDetails!! + "null;"
-                            }
+            for (i in formList!!.indices) {
+
+                val input = formList!![i]
+
+                if (input is Spinner) {
+
+                    if (input.selectedItem != null) {
+                        charDetails = charDetails + input.selectedItem.toString() + ";"
+                    } else {
+                        charDetails = charDetails!! + "null;"
+                    }
 
                         } else if (it is EditText) {
                             charDetails = if (it.text == null || it.text.equals("")) {
@@ -376,12 +396,10 @@ class CharCreationActivity : AppCompatActivity() {
             save(filename, charDetails)
             finish()
             Log.i(tag, filesDir.path.toString())
-
-
-            //EditText temp = (EditText) formList.get(1);
-            //temp.setText(loadTxt);
+            
         }
     }
+
 
     private fun save(filename: String, text: String?) {
 

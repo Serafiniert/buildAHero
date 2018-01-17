@@ -36,13 +36,15 @@ class CharEditActivity : AppCompatActivity() {
     private var nameSpinner: Spinner? = null
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View> = ArrayList()
+    private var nameField: EditText? = null
+    private var spinnerPositions: ArrayList<Int> = ArrayList()
 
     private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
     private var male: List<String>? = null
     private var female: List<String>? = null
     private var allNames: List<String>? = null
 
-    private val filename = "charDetails8.txt"
+    private val filename = "charDetails10.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,10 +69,11 @@ class CharEditActivity : AppCompatActivity() {
 
         genderSpinner = findViewById(R.id.genderSpinner)
         nameSpinner = findViewById(R.id.nameSpinner)
+        nameField = findViewById(R.id.name)
 
 
-        getAllForms()
-        setCharDetails()
+
+
 
         allNames = ArrayList()
 
@@ -113,6 +116,29 @@ class CharEditActivity : AppCompatActivity() {
 
             }
         }
+
+        nameSpinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+
+                if(position > 0) {
+                    val name = parent.getItemAtPosition(position).toString()
+                    nameField!!.setText(name)
+                }
+
+
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+
+
+        }
+
+        getAllForms()
+        setCharDetails()
+
         configureCancelButton()
         configureSaveButton()
         configureValueButton()
@@ -140,13 +166,15 @@ class CharEditActivity : AppCompatActivity() {
 
                     val input = formList[i]
 
-                    if (input is Spinner) {
-                        charDetails = if (input.selectedItem != null) {
-                            charDetails + input.selectedItem.toString() + ";"
-                        } else {
-                            //charDetails = charDetails + "null;"
-                            charDetails + c[i] + ";"
-                        }
+                        if (input is Spinner) {
+                            if (input.selectedItem == null) {
+                                charDetails = charDetails + c[i] + ";"
+
+                            } else {
+                                //charDetails = charDetails + "null;"
+                                charDetails = charDetails + input.selectedItem.toString() + ";"
+
+                            }
 
                     } else if (input is EditText) {
                         if (input.text == null) {
