@@ -8,15 +8,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by ninad on 15.01.2018.
- */
-
 public class NamesURL {
 
-    String myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv";
-    HttpGetRequest getRequest = new HttpGetRequest();
-    String result;
+    private String myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv";
+    private HttpGetRequest getRequest = new HttpGetRequest();
+    private String result;
     private List<String> female;
     private List<String> male;
     private List<String> allNames;
@@ -37,10 +33,10 @@ public class NamesURL {
 
             result = getRequest.execute(myURL).get();
 
-            if(result != null){
+            if (result != null) {
                 reader = new StringReader(result);
 
-            } else{
+            } else {
                 reader = new StringReader("");
             }
 
@@ -55,9 +51,7 @@ public class NamesURL {
                     male.add(row[0]);
                 }
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
 

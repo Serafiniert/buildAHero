@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/charCreationTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -40,18 +40,28 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/gender"
+                android:id="@+id/genderSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/name"
+                android:layout_height="21dp"
+                app:layout_constraintBottom_toTopOf="@+id/nameSpinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.77" />
+                app:layout_constraintVertical_bias="0.616" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="112dp"
+                android:hint="@string/char_name"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/name"
+                android:id="@+id/nameSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -60,13 +70,13 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.69" />
+                app:layout_constraintVertical_bias="0.755" />
 
             <EditText
                 android:id="@+id/age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="204dp"
                 android:hint="@string/char_age"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +86,7 @@
                 android:id="@+id/race"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="224dp"
+                android:layout_marginTop="248dp"
                 android:hint="@string/char_race"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +96,7 @@
                 android:id="@+id/appearance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="284dp"
+                android:layout_marginTop="292dp"
                 android:hint="@string/char_visual"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,9 +106,10 @@
                 android:id="@+id/availPoints"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/points_available"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appearance" />
 
@@ -107,7 +118,7 @@
                 android:id="@+id/availPointsNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="59dp"
+                android:layout_marginEnd="64dp"
                 android:text="@string/points_num"
                 app:layout_constraintBaseline_toBaselineOf="@+id/availPoints"
                 app:layout_constraintBottom_toBottomOf="@+id/availPoints"
@@ -117,7 +128,7 @@
                 android:id="@+id/tableHandeln"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="400dp"
+                android:layout_marginTop="408dp"
                 android:divider="#f00"
                 android:showDividers="middle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +140,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="match_parent"
                         android:text="@string/handeln" />
 
@@ -158,7 +169,7 @@
                     </EditText>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -176,7 +187,7 @@
 
                     <Button
                         android:id="@+id/plusButton"
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -196,7 +207,7 @@
                     </EditText>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -214,7 +225,7 @@
 
                     <Button
                         android:id="@+id/plusButton1"
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -234,7 +245,7 @@
                     </EditText>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -251,7 +262,7 @@
                     </TextView>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -271,7 +282,7 @@
                     </EditText>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -288,7 +299,7 @@
                     </TextView>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -308,7 +319,7 @@
                     </EditText>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -325,7 +336,7 @@
                     </TextView>
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -337,7 +348,7 @@
                 android:id="@+id/tableWissen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="276dp"
                 android:divider="#f00"
                 android:showDividers="middle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -349,7 +360,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="match_parent"
                         android:text="@string/wissen" />
 
@@ -375,7 +386,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -390,7 +401,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -408,7 +419,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -423,7 +434,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -441,7 +452,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -456,7 +467,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -474,7 +485,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -489,7 +500,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
                 </TableRow>
@@ -506,7 +517,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -521,7 +532,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -533,7 +544,7 @@
                 android:id="@+id/tableInterag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="304dp"
                 android:divider="#f00"
                 android:showDividers="middle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -545,7 +556,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="170dp"
+                        android:layout_width="160dp"
                         android:layout_height="match_parent"
                         android:text="@string/interagieren" />
 
@@ -571,7 +582,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -586,7 +597,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -594,18 +605,18 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    tools:ignore="TooManyViews">
 
                     <EditText
                         android:id="@+id/InteragierenLabel2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/tal_2"
-                        android:inputType="textPersonName"
-                        tools:ignore="TooManyViews" />
+                        android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -620,7 +631,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -638,7 +649,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -653,7 +664,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -671,7 +682,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -686,7 +697,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -704,7 +715,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_minus" />
 
@@ -719,7 +730,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:text="@string/points_plus" />
 
@@ -731,7 +742,7 @@
                 android:id="@+id/cancelCreation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="70dp"
                 android:text="@string/button_cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -750,7 +761,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cancelCreation"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableInterag" />
+                app:layout_constraintTop_toBottomOf="@+id/tableInterag"
+                app:layout_constraintVertical_bias="0.0" />
 
         </android.support.constraint.ConstraintLayout>
 

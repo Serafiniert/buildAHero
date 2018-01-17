@@ -7,21 +7,9 @@ import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
-
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.ArrayList
+import android.widget.*
+import java.io.*
+import java.util.*
 import java.util.concurrent.ExecutionException
 
 class CharCreationActivity : AppCompatActivity() {
@@ -80,7 +68,7 @@ class CharCreationActivity : AppCompatActivity() {
 
         availablePoints = findViewById(R.id.availPointsNum)
 
-        nameSpinner = findViewById(R.id.name)
+        nameSpinner = findViewById(R.id.nameSpinner)
         genderSpinner = findViewById(R.id.gender)
 
         formList = ArrayList()
@@ -165,10 +153,10 @@ class CharCreationActivity : AppCompatActivity() {
                     //TableRow row = (TableRow) addButton.getParent();
                     val cell = handelnRow.getChildAt(2) as TextView
                     var currentHandeln = Integer.parseInt(cell.text.toString())
-                    currentHandeln = currentHandeln + 10
+                    currentHandeln += 10
                     var klassenWert = Integer.parseInt(handelnWert!!.text.toString())
                     if (currentHandeln == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
                     klassenWert = klassenWert + 1
@@ -184,14 +172,14 @@ class CharCreationActivity : AppCompatActivity() {
 
                 val cell = handelnRow.getChildAt(2) as TextView
                 var currentHandeln = Integer.parseInt(cell.text.toString())
-                currentHandeln = currentHandeln - 10
+                currentHandeln -= 10
                 var klassenWert = Integer.parseInt(handelnWert!!.text.toString())
 
                 if (currentHandeln == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
                 val availPoints = Integer.parseInt(availablePoints!!.text.toString())
 
@@ -432,7 +420,7 @@ class CharCreationActivity : AppCompatActivity() {
     }
 
 
-    fun save(filename: String, text: String?) {
+    private fun save(filename: String, text: String?) {
 
         val fos: FileOutputStream
 
@@ -445,10 +433,9 @@ class CharCreationActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
     }
 
-    fun load(filename: String): String? {
+    private fun load(filename: String): String? {
 
         var text: String? = null
         val fis: FileInputStream
@@ -469,7 +456,6 @@ class CharCreationActivity : AppCompatActivity() {
             System.err.println("IOException caught: " + e.message)
             e.printStackTrace()
         }
-
         return text
     }
 
