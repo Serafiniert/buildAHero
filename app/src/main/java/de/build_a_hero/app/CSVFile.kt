@@ -20,17 +20,16 @@ class CSVFile(private val inputStream: InputStream) {
 
         try {
             var csvLine: String
-            csvLine = reader.readLine()
 
-            while (/*(csvLine = reader.readLine())*/ csvLine != null) {
+            while (true) {
+                csvLine = reader.readLine()?: break
+
                 val row = csvLine.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 if (row[2].equals("w", ignoreCase = true)) {
                     female!!.add(row[0])
                 } else if (row[2].equals("m", ignoreCase = true)) {
                     male!!.add(row[0])
                 }
-                csvLine = reader.readLine()
-
 
             }
             allNames!!.addAll(female!!)

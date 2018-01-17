@@ -92,9 +92,9 @@ class CharCreationActivity : AppCompatActivity() {
 
         try {
             namesUrl.read()
-            male = namesUrl.male
-            female = namesUrl.female
-            allNames = namesUrl.allNames
+            male = namesUrl.getMale()
+            female = namesUrl.getFemale()
+            allNames = namesUrl.getAllNames()
         } catch (e: ExecutionException) {
             e.printStackTrace()
         }
