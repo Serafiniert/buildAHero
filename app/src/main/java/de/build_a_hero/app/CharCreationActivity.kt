@@ -33,7 +33,6 @@ class CharCreationActivity : AppCompatActivity() {
     private var interagWert: TextView? = null
 
     private var charDetails: String? = ""
-    private val loadText: String? = null
     private var nameSpinner: Spinner? = null
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View>? = null
@@ -159,7 +158,7 @@ class CharCreationActivity : AppCompatActivity() {
                         klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
                     availablePoints!!.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentHandeln)
@@ -202,13 +201,13 @@ class CharCreationActivity : AppCompatActivity() {
 
                     val cell = wissenRow.getChildAt(2) as TextView
                     var currentWissen = Integer.parseInt(cell.text.toString())
-                    currentWissen = currentWissen + 10
+                    currentWissen += 10
                     var klassenWert = Integer.parseInt(wissenWert!!.text.toString())
                     if (currentWissen == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
 
                     availablePoints!!.text = Integer.toString(availPoints - 10)
@@ -222,14 +221,14 @@ class CharCreationActivity : AppCompatActivity() {
 
                 val cell = wissenRow.getChildAt(2) as TextView
                 var currentWissen = Integer.parseInt(cell.text.toString())
-                currentWissen = currentWissen - 10
+                currentWissen -= 10
                 var klassenWert = Integer.parseInt(wissenWert!!.text.toString())
 
                 if (currentWissen == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
                 val availPoints = Integer.parseInt(availablePoints!!.text.toString())
 
@@ -253,13 +252,13 @@ class CharCreationActivity : AppCompatActivity() {
 
                     val cell = interagRow.getChildAt(2) as TextView
                     var currentInterag = Integer.parseInt(cell.text.toString())
-                    currentInterag = currentInterag + 10
+                    currentInterag += 10
                     var klassenWert = Integer.parseInt(interagWert!!.text.toString())
                     if (currentInterag == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
                     availablePoints!!.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentInterag)
@@ -272,14 +271,14 @@ class CharCreationActivity : AppCompatActivity() {
 
                 val cell = interagRow.getChildAt(2) as TextView
                 var currentInterag = Integer.parseInt(cell.text.toString())
-                currentInterag = currentInterag - 10
+                currentInterag -= 10
                 var klassenWert = Integer.parseInt(interagWert!!.text.toString())
 
                 if (currentInterag == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
                 val availPoints = Integer.parseInt(availablePoints!!.text.toString())
 
@@ -300,14 +299,10 @@ class CharCreationActivity : AppCompatActivity() {
             Log.v(tag, Integer.toString(compLayout.childCount))
             val child = compLayout.getChildAt(i)
 
-            if (child is Spinner) {
-                formList!!.add(child)
-
-            } else if (child is EditText) {
-                formList!!.add(child)
-
-            } else if (child is TableLayout) {
-                for (j in 0 until child.childCount) {
+            when (child) {
+                is Spinner -> formList!!.add(child)
+                is EditText -> formList!!.add(child)
+                is TableLayout -> for (j in 0 until child.childCount) {
                     val tr = child.getChildAt(j) as TableRow
 
                     if (j == 0) {
@@ -333,46 +328,46 @@ class CharCreationActivity : AppCompatActivity() {
 
             val file = File(filename)
 
-            if (file.exists()) {
+            charDetails = if (file.exists()) {
 
-                charDetails = load(filename)
+                load(filename)
 
             } else {
 
-                charDetails = ""
+                ""
 
             }
 
             configureForms()
 
-            for (i in formList!!.indices) {
+            formList!!.indices
+                    .asSequence()
+                    .map { formList!![it] }
+                    .forEach {
+                        if (it is Spinner) {
+                            if (it.selectedItem != null) {
+                                charDetails = charDetails + it.selectedItem.toString() + ";"
+                                spinnerPositions!!.add(it.selectedItemPosition)
+                            } else {
+                                charDetails = charDetails!! + "null;"
+                            }
 
-                val input = formList!![i]
-
-                if (input is Spinner) {
-                    if (input.selectedItem != null) {
-                        charDetails = charDetails + input.selectedItem.toString() + ";"
-                        spinnerPositions!!.add(input.selectedItemPosition)
-                    } else {
-                        charDetails = charDetails!! + "null;"
+                        } else if (it is EditText) {
+                            charDetails = if (it.text == null || it.text.equals("")) {
+                                charDetails!! + "null;"
+                            } else {
+                                charDetails + it.text + ";"
+                            }
+                        } else if (it is TextView) {
+                            charDetails = if (it.text == null || it.text == "") {
+                                charDetails!! + "null;"
+                            } else {
+                                charDetails + it.text + ";"
+                            }
+                        }
                     }
 
-                } else if (input is EditText) {
-                    if (input.text == null || input.text.equals("")) {
-                        charDetails = charDetails!! + "null;"
-                    } else {
-                        charDetails = charDetails + input.text + ";"
-                    }
-                } else if (input is TextView) {
-                    if (input.text == null || input.text == "") {
-                        charDetails = charDetails!! + "null;"
-                    } else {
-                        charDetails = charDetails + input.text + ";"
-                    }
-                }
-            }
-
-            if (charDetails!!.length > 0 && charDetails!![charDetails!!.length - 1] == ';') {
+            if (charDetails!!.isNotEmpty() && charDetails!![charDetails!!.length - 1] == ';') {
                 charDetails = charDetails!!.substring(0, charDetails!!.length - 1)
             }
 
@@ -387,38 +382,6 @@ class CharCreationActivity : AppCompatActivity() {
             //temp.setText(loadTxt);
         }
     }
-
-    private fun configureLoadButton() {
-
-        val loadButton = findViewById<Button>(R.id.cancelCreation)
-        loadButton.setOnClickListener {
-            val loadTxt = load(filename)
-
-
-            val inputs = load("androidsavetexttest.txt")!!.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-
-            var spinnerCount = 0
-
-            for (i in formList!!.indices) {
-
-                val v = formList!![i]
-
-                if (v is Spinner) {
-                    if (spinnerPositions!!.size != 0) {
-                        v.setSelection(spinnerPositions!![spinnerCount])
-                        spinnerCount++
-                    }
-                } else if (v is EditText) {
-                    v.setText(inputs[i])
-                } else if (v is TextView) {
-                    v.text = inputs[i]
-                }
-
-
-            }
-        }
-    }
-
 
     private fun save(filename: String, text: String?) {
 

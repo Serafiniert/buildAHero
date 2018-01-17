@@ -28,28 +28,25 @@ class MenuActivity : AppCompatActivity() {
         val arrayList = getAllChars()
 
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
-        charList.setAdapter(adapter)
+        charList.adapter = adapter
 
-        charList.onItemClickListener = object : AdapterView.OnItemClickListener {
+        charList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val loadedText = load(filename)
+            val allCharDetails = loadedText.split("ÜÄÖ")
+            val singleCharDetails = allCharDetails[position]
+            Log.v("onclick charDetails: ", singleCharDetails)
 
-            override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                val loadedText = load(filename)
-                val allCharDetails = loadedText.split("ÜÄÖ")
-                val singleCharDetails = allCharDetails[position]
-                Log.v("onclick charDetails: ", singleCharDetails)
+            val intent = Intent(this@MenuActivity, CharEditActivity::class.java)
+            val extras = Bundle()
 
-                val intent = Intent(this@MenuActivity, CharEditActivity::class.java)
-                val extras = Bundle()
+            extras.putString("charDetail", singleCharDetails)
+            extras.putString("position", position.toString())
 
-                extras.putString("charDetail", singleCharDetails)
-                extras.putString("position", position.toString())
+            intent.putExtras(extras)
 
-                intent.putExtras(extras)
-
-                startActivity(intent)
-            }
+            startActivity(intent)
         }
 
         configureSettingsButton()
@@ -64,7 +61,7 @@ class MenuActivity : AppCompatActivity() {
         val arrayList = getAllChars()
 
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_single_choice, arrayList)
 
         charList.adapter = adapter
 
@@ -87,7 +84,7 @@ class MenuActivity : AppCompatActivity() {
             Log.v("allCharDetails.toString", allCharDetails.toString())
 
             for (char in allCharDetails) {
-                if (!char.equals(allCharDetails[allCharDetails.size - 1])) {
+                if (char != allCharDetails[allCharDetails.size - 1]) {
 
                     Log.v("char: ", char)
 

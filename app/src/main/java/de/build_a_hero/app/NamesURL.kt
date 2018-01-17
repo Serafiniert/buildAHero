@@ -6,15 +6,11 @@ import java.io.StringReader
 import java.util.*
 import java.util.concurrent.ExecutionException
 
-/**
- * Created by ninad on 15.01.2018.
- */
-
 class NamesURL {
 
-    internal var myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv"
-    internal var getRequest = HttpGetRequest()
-    internal var result: String? = null
+    private var myURL = "http://www.berlin.de/daten/liste-der-vornamen-2016/mitte.csv"
+    private var getRequest = HttpGetRequest()
+    private var result: String? = null
     private var female: MutableList<String>? = null
     private var male: MutableList<String>? = null
     private var allNames: MutableList<String>? = null
@@ -36,11 +32,11 @@ class NamesURL {
 
             result = getRequest.execute(myURL).get()
 
-            if (result != null) {
-                reader = StringReader(result!!)
+            reader = if (result != null) {
+                StringReader(result!!)
 
             } else {
-                reader = StringReader("")
+                StringReader("")
             }
 
             br = BufferedReader(reader)
@@ -69,7 +65,6 @@ class NamesURL {
         allNames!!.addAll(male!!)
         Collections.sort(allNames!!)
     }
-
 
     fun getFemale(): List<String>? {
         return female

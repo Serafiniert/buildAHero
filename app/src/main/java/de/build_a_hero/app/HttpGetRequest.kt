@@ -8,10 +8,6 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-/**
- * Created by ninad on 15.01.2018.
- */
-
 class HttpGetRequest : AsyncTask<String, Void, String>() {
 
 
@@ -43,7 +39,6 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
 
                 stringBuilder.append(inputLine + "\n")
 
-
             }
 
             reader.close()
@@ -57,10 +52,6 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
         }
 
         return result
-    }
-
-    override fun onPostExecute(result: String) {
-        super.onPostExecute(result)
     }
 
     companion object {

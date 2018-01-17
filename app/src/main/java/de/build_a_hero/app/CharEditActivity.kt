@@ -33,11 +33,9 @@ class CharEditActivity : AppCompatActivity() {
     private lateinit var interagWert: TextView
 
     private lateinit var charDetails: String
-    private val loadText: String? = null
     private var nameSpinner: Spinner? = null
     private var genderSpinner: Spinner? = null
     private var formList: ArrayList<View> = ArrayList()
-    private var spinnerPositions: ArrayList<Int> = ArrayList()
 
     private val gender = arrayOf("", "weiblich", "männlich", "anderes", "unbestimmt")
     private var male: List<String>? = null
@@ -45,7 +43,6 @@ class CharEditActivity : AppCompatActivity() {
     private var allNames: List<String>? = null
 
     private val filename = "charDetails8.txt"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +93,7 @@ class CharEditActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val gender = parent.getItemAtPosition(position).toString()
-                var nameAdapter: ArrayAdapter<String>? = null
+                val nameAdapter: ArrayAdapter<String>?
                 if (gender == "weiblich") {
                     nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, female!!)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -130,90 +127,87 @@ class CharEditActivity : AppCompatActivity() {
     private fun configureSaveButton() {
 
         val saveButton = findViewById<Button>(R.id.finishCreation)
-        saveButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                charDetails = ""
+        saveButton.setOnClickListener {
+            charDetails = ""
 
-                val file = File("/data/user/0/com.example.ninad.buildahero/files", filename)
+            val file = File("/data/user/0/com.example.ninad.buildahero/files", filename)
 
-                if (file.exists()) {
-                    val p = intent.getStringExtra("charDetail")
-                    val c = p.split(";")
+            if (file.exists()) {
+                val p = intent.getStringExtra("charDetail")
+                val c = p.split(";")
 
-                    for (i in formList.indices) {
+                for (i in formList.indices) {
 
-                        val input = formList[i]
+                    val input = formList[i]
 
-                        if (input is Spinner) {
-                            if (input.selectedItem != null) {
-                                charDetails = charDetails + input.selectedItem.toString() + ";"
-                            } else {
-                                //charDetails = charDetails + "null;"
-                                charDetails = charDetails + c[i] + ";"
-                            }
+                    if (input is Spinner) {
+                        charDetails = if (input.selectedItem != null) {
+                            charDetails + input.selectedItem.toString() + ";"
+                        } else {
+                            //charDetails = charDetails + "null;"
+                            charDetails + c[i] + ";"
+                        }
 
-                        } else if (input is EditText) {
-                            if (input.text == null) {
-                                charDetails = charDetails + "null;"
-                            } else {
-                                charDetails = charDetails + input.text + ";"
-                            }
-                        } else if (input is TextView) {
-                            if (input.text == null || input.text == "") {
-                                charDetails = charDetails + "null;"
-                            } else {
-                                charDetails = charDetails + input.text + ";"
-                            }
+                    } else if (input is EditText) {
+                        if (input.text == null) {
+                            charDetails += "null;"
+                        } else {
+                            charDetails = charDetails + input.text + ";"
+                        }
+                    } else if (input is TextView) {
+                        if (input.text == null || input.text == "") {
+                            charDetails += "null;"
+                        } else {
+                            charDetails = charDetails + input.text + ";"
                         }
                     }
-
-                    if (charDetails.length > 0 && charDetails.get(charDetails.length - 1) == ';') {
-                        charDetails = charDetails.substring(0, charDetails.length - 1)
-                    }
-
-
-                    //charDetails = charDetails + "ÜÄÖ"
-
-                    //CHARDETAILS NOW NEW INPUT
-
-
-                    val loadedText = load(filename)
-
-                    val allCharDetails: ArrayList<String> = ArrayList(loadedText.split("ÜÄÖ"))
-                    Log.v("allCharDetails", "as ArrayList before changing" + allCharDetails)
-                    Log.v("allCharDetails", "as ArrayList.toString() before changing" + allCharDetails.toString())
-
-
-                    val position = intent.getStringExtra("position").toInt()
-                    Log.v("position", "when saving" + position)
-
-                    allCharDetails.set(position, charDetails)
-                    Log.v("allCharDetails", "as ArrayList after changing" + allCharDetails)
-                    Log.v("allCharDetails", "as ArrayList.toString() after changing" + allCharDetails.toString())
-
-                    var allCharacterString = ""
-
-                    for (i in 0 until allCharDetails.size - 1) {
-
-                        allCharDetails.set(i, allCharDetails[i] + "ÜÄÖ")
-                        allCharacterString = allCharacterString + allCharDetails[i]
-                    }
-
-
-                    allCharDetails.toString()
-                    Log.v("allCharacterString", "endresult: " + allCharacterString)
-
-                    save(filename, allCharacterString)
-                    finish()
-
-                } else {
-
-                    Log.v("FILEEXISTS?", "file doesnt exist")
-
                 }
+
+                if (charDetails.isNotEmpty() && charDetails[charDetails.length - 1] == ';') {
+                    charDetails = charDetails.substring(0, charDetails.length - 1)
+                }
+
+
+                //charDetails = charDetails + "ÜÄÖ"
+
+                //CHARDETAILS NOW NEW INPUT
+
+
+                val loadedText = load(filename)
+
+                val allCharDetails: ArrayList<String> = ArrayList(loadedText.split("ÜÄÖ"))
+                Log.v("allCharDetails", "as ArrayList before changing" + allCharDetails)
+                Log.v("allCharDetails", "as ArrayList.toString() before changing" + allCharDetails.toString())
+
+
+                val position = intent.getStringExtra("position").toInt()
+                Log.v("position", "when saving" + position)
+
+                allCharDetails[position] = charDetails
+                Log.v("allCharDetails", "as ArrayList after changing" + allCharDetails)
+                Log.v("allCharDetails", "as ArrayList.toString() after changing" + allCharDetails.toString())
+
+                var allCharacterString = ""
+
+                for (i in 0 until allCharDetails.size - 1) {
+
+                    allCharDetails[i] = allCharDetails[i] + "ÜÄÖ"
+                    allCharacterString += allCharDetails[i]
+                }
+
+
+                allCharDetails.toString()
+                Log.v("allCharacterString", "endresult: " + allCharacterString)
+
+                save(filename, allCharacterString)
+                finish()
+
+            } else {
+
+                Log.v("FILEEXISTS?", "file doesnt exist")
+
             }
         }
-        )
     }
 
 
@@ -226,7 +220,7 @@ class CharEditActivity : AppCompatActivity() {
             val handelnDecreaseButton = handelnRow.getChildAt(1) as Button
 
             handelnAddButton.setOnClickListener {
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
                 if (availPoints == 0) {
                     availablePoints.setTextColor(Color.parseColor("#ffcc0000"))
@@ -236,17 +230,17 @@ class CharEditActivity : AppCompatActivity() {
                     //TableRow row = (TableRow) addButton.getParent();
                     val cell = handelnRow.getChildAt(2) as TextView
                     var currentHandeln = Integer.parseInt(cell.text.toString())
-                    currentHandeln = currentHandeln + 10
-                    var klassenWert = Integer.parseInt(handelnWert.getText().toString())
+                    currentHandeln += 10
+                    var klassenWert = Integer.parseInt(handelnWert.text.toString())
                     if (currentHandeln == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
-                    availablePoints.setText(Integer.toString(availPoints - 10))
+                    availablePoints.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentHandeln)
-                    handelnWert.setText(Integer.toString(klassenWert))
+                    handelnWert.text = Integer.toString(klassenWert)
                 }
             }
 
@@ -255,20 +249,20 @@ class CharEditActivity : AppCompatActivity() {
 
                 val cell = handelnRow.getChildAt(2) as TextView
                 var currentHandeln = Integer.parseInt(cell.text.toString())
-                currentHandeln = currentHandeln - 10
-                var klassenWert = Integer.parseInt(handelnWert.getText().toString())
+                currentHandeln -= 10
+                var klassenWert = Integer.parseInt(handelnWert.text.toString())
 
                 if (currentHandeln == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
-                availablePoints.setText(Integer.toString(availPoints + 10))
+                availablePoints.text = Integer.toString(availPoints + 10)
                 cell.text = Integer.toString(currentHandeln)
-                handelnWert.setText(Integer.toString(klassenWert))
+                handelnWert.text = Integer.toString(klassenWert)
             }
 
             val wissenRow = wissenLayout.getChildAt(i) as TableRow
@@ -276,7 +270,7 @@ class CharEditActivity : AppCompatActivity() {
             val wissenDecreaseButton = wissenRow.getChildAt(1) as Button
 
             wissenAddButton.setOnClickListener {
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
                 if (availPoints == 0) {
                     availablePoints.setTextColor(Color.parseColor("#ffcc0000"))
@@ -285,18 +279,18 @@ class CharEditActivity : AppCompatActivity() {
 
                     val cell = wissenRow.getChildAt(2) as TextView
                     var currentWissen = Integer.parseInt(cell.text.toString())
-                    currentWissen = currentWissen + 10
-                    var klassenWert = Integer.parseInt(wissenWert.getText().toString())
+                    currentWissen += 10
+                    var klassenWert = Integer.parseInt(wissenWert.text.toString())
                     if (currentWissen == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
 
-                    availablePoints.setText(Integer.toString(availPoints - 10))
+                    availablePoints.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentWissen)
-                    wissenWert.setText(Integer.toString(klassenWert))
+                    wissenWert.text = Integer.toString(klassenWert)
                 }
             }
 
@@ -305,20 +299,20 @@ class CharEditActivity : AppCompatActivity() {
 
                 val cell = wissenRow.getChildAt(2) as TextView
                 var currentWissen = Integer.parseInt(cell.text.toString())
-                currentWissen = currentWissen - 10
-                var klassenWert = Integer.parseInt(wissenWert.getText().toString())
+                currentWissen -= 10
+                var klassenWert = Integer.parseInt(wissenWert.text.toString())
 
                 if (currentWissen == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
-                availablePoints.setText(Integer.toString(availPoints + 10))
+                availablePoints.text = Integer.toString(availPoints + 10)
                 cell.text = Integer.toString(currentWissen)
-                wissenWert.setText(Integer.toString(klassenWert))
+                wissenWert.text = Integer.toString(klassenWert)
             }
 
 
@@ -327,7 +321,7 @@ class CharEditActivity : AppCompatActivity() {
             val interagDecreaseButton = interagRow.getChildAt(1) as Button
 
             interagAddButton.setOnClickListener {
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
                 if (availPoints == 0) {
                     availablePoints.setTextColor(Color.parseColor("#ffcc0000"))
@@ -336,17 +330,17 @@ class CharEditActivity : AppCompatActivity() {
 
                     val cell = interagRow.getChildAt(2) as TextView
                     var currentInterag = Integer.parseInt(cell.text.toString())
-                    currentInterag = currentInterag + 10
-                    var klassenWert = Integer.parseInt(interagWert.getText().toString())
+                    currentInterag += 10
+                    var klassenWert = Integer.parseInt(interagWert.text.toString())
                     if (currentInterag == 80) {
-                        klassenWert = klassenWert + 10
+                        klassenWert += 10
                     }
 
-                    klassenWert = klassenWert + 1
+                    klassenWert += 1
 
-                    availablePoints.setText(Integer.toString(availPoints - 10))
+                    availablePoints.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentInterag)
-                    interagWert.setText(Integer.toString(klassenWert))
+                    interagWert.text = Integer.toString(klassenWert)
                 }
             }
 
@@ -355,20 +349,20 @@ class CharEditActivity : AppCompatActivity() {
 
                 val cell = interagRow.getChildAt(2) as TextView
                 var currentInterag = Integer.parseInt(cell.text.toString())
-                currentInterag = currentInterag - 10
-                var klassenWert = Integer.parseInt(interagWert.getText().toString())
+                currentInterag -= 10
+                var klassenWert = Integer.parseInt(interagWert.text.toString())
 
                 if (currentInterag == 70) {
-                    klassenWert = klassenWert - 10
+                    klassenWert -= 10
                 }
 
-                klassenWert = klassenWert - 1
+                klassenWert -= 1
 
-                val availPoints = Integer.parseInt(availablePoints.getText().toString())
+                val availPoints = Integer.parseInt(availablePoints.text.toString())
 
-                availablePoints.setText(Integer.toString(availPoints + 10))
+                availablePoints.text = Integer.toString(availPoints + 10)
                 cell.text = Integer.toString(currentInterag)
-                interagWert.setText(Integer.toString(klassenWert))
+                interagWert.text = Integer.toString(klassenWert)
             }
         }
     }
@@ -381,25 +375,22 @@ class CharEditActivity : AppCompatActivity() {
         val character = s.split(";")
 
         for (i in 0 until formList.size) {
-            val v = formList.get(i)
+            val v = formList[i]
             if (v is Spinner) {
-                var count = 0;
-                val sp = v as Spinner
-                Log.v("spinnersize", sp.count.toString())
-                for (j in 0 until sp.count) {
+                var count = 0
+                Log.v("spinnersize", v.count.toString())
+                for (j in 0 until v.count) {
 
-                    if (sp.getItemAtPosition(i).toString().equals(character[i])) {
+                    if (v.getItemAtPosition(i).toString() == character[i]) {
                         count = j
                         break
                     }
                 }
-                sp.setSelection(count)
+                v.setSelection(count)
             } else if (v is EditText) {
-                val et = v as EditText
-                et.setText(character[i])
+                v.setText(character[i])
             } else if (v is TextView) {
-                val tv = v as TextView
-                tv.setText(character[i])
+                v.text = character[i]
             }
         }
 
@@ -410,23 +401,23 @@ class CharEditActivity : AppCompatActivity() {
     //skillpoints etc.)
     private fun getAllForms() {
         val compLayout = findViewById<ConstraintLayout>(R.id.compLayout)
-        for (i in 0 until compLayout.getChildCount()) {
-            Log.v(tag, Integer.toString(compLayout.getChildCount()))
+        for (i in 0 until compLayout.childCount) {
+            Log.v(tag, Integer.toString(compLayout.childCount))
             val child = compLayout.getChildAt(i)
-            if (child is Spinner) {
-                val spinner = child as Spinner
-                formList.add(spinner)
-            } else if (child is EditText) {
-                formList.add(child as EditText)
-            } else if (child is TableLayout) {
-                val lyo = child as TableLayout
-                for (j in 0 until lyo.getChildCount()) {
-                    val tr = (lyo.getChildAt(j)) as TableRow
-                    if (j == 0) {
-                        formList.add(tr.getChildAt(1))
-                    } else {
-                        formList.add(tr.getChildAt(0))
-                        formList.add(tr.getChildAt(2))
+            when (child) {
+                is Spinner -> {
+                    formList.add(child)
+                }
+                is EditText -> formList.add(child)
+                is TableLayout -> {
+                    for (j in 0 until child.childCount) {
+                        val tr = (child.getChildAt(j)) as TableRow
+                        if (j == 0) {
+                            formList.add(tr.getChildAt(1))
+                        } else {
+                            formList.add(tr.getChildAt(0))
+                            formList.add(tr.getChildAt(2))
+                        }
                     }
                 }
             }
