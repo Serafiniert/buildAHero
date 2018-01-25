@@ -16,7 +16,7 @@ import java.io.IOException
 
 class MenuActivity : AppCompatActivity() {
 
-    private val filename = "charDetails11.txt"
+    private val filename = "characterDetails1.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +82,7 @@ class MenuActivity : AppCompatActivity() {
 
                     Log.v("char: ", char)
 
-                    val singleCharDetails = char.split(";")
+                    val singleCharDetails = char.split("<;>")
                     Log.v("singlechardetails: ", singleCharDetails.toString())
 
                     charNames.add(singleCharDetails[1])

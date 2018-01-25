@@ -1,11 +1,13 @@
 package de.build_a_hero.app
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.example.ninad.buildahero.ContactFragment
 import com.example.ninad.buildahero.CreditFragment
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -24,6 +26,9 @@ class SettingsActivity : AppCompatActivity() {
             val ft = fm.beginTransaction()
             ft.replace(R.id.settingFragment, fragment)
             ft.commit()
+
+            contactButton.setBackgroundColor(Color.WHITE);
+            creditButton.setBackgroundColor(Color.rgb(224,217,217));
         }
         if (view === findViewById<View>(R.id.creditButton)) {
             fragment = CreditFragment()
@@ -31,6 +36,9 @@ class SettingsActivity : AppCompatActivity() {
             val ft = fm.beginTransaction()
             ft.replace(R.id.settingFragment, fragment)
             ft.commit()
+
+            creditButton.setBackgroundColor(Color.WHITE);
+            contactButton.setBackgroundColor(Color.rgb(224,217,217));
         }
     }
 }
