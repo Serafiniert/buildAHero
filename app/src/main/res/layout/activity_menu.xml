@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c8e1fa"
+    android:background="#eeeeee"
     tools:context=".MenuActivity"
     tools:layout_editor_absoluteY="25dp">
 
@@ -12,55 +12,36 @@
         android:id="@+id/logo"
         android:layout_width="111dp"
         android:layout_height="71dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/logo"
         android:src="@mipmap/logo"
-        app:layout_constraintEnd_toStartOf="@+id/menuTitle"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/menuTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="monospace"
-        android:text="@string/action_overview"
-        android:textColor="@android:color/background_dark"
-        android:textColorLink="@android:color/background_dark"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/settingsButton"
+        app:layout_constraintBottom_toTopOf="@+id/charListView"
         app:layout_constraintEnd_toStartOf="@+id/settingsButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.603"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/charListView"
         android:layout_width="0dp"
-        android:layout_height="394dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="100dp"
         android:cacheColorHint="@android:color/background_light"
         android:headerDividersEnabled="false"
         android:scrollbars="vertical"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/settingsButton"
-        android:layout_width="44dp"
-        android:layout_height="42dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:background="@mipmap/werkzeug"

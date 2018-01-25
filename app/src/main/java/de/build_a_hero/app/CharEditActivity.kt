@@ -1,5 +1,6 @@
 package de.build_a_hero.app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -107,17 +108,17 @@ class CharEditActivity : AppCompatActivity() {
                 val gender = parent.getItemAtPosition(position).toString()
                 val nameAdapter: ArrayAdapter<String>?
                 if (gender == "weiblich") {
-                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, female!!)
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, female)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    nameSpinner!!.adapter = nameAdapter
+                    nameSpinner.adapter = nameAdapter
                 } else if (gender == "männlich") {
-                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, male!!)
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, male)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    nameSpinner!!.adapter = nameAdapter
+                    nameSpinner.adapter = nameAdapter
                 } else if (gender == "anders" || gender == "unbestimmt" || gender == "Geschlecht wählen") {
-                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, allNames!!)
+                    nameAdapter = ArrayAdapter(this@CharEditActivity, android.R.layout.simple_spinner_item, allNames)
                     nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    nameSpinner!!.adapter = nameAdapter
+                    nameSpinner.adapter = nameAdapter
                 }
             }
 
@@ -235,6 +236,7 @@ class CharEditActivity : AppCompatActivity() {
 
 
     //configures "+" and "-" buttons to add or substract 10 off the current value in that row
+    @SuppressLint("SetTextI18n")
     private fun configureValueButton() {
 
         for (i in 1..5) {

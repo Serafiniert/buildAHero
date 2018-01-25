@@ -50,11 +50,11 @@ class NamesURL {
             e.printStackTrace()
         }
 
-        Collections.sort(female!!)
-        Collections.sort(male!!)
+        female!!.sort()
+        male!!.sort()
         allNames!!.addAll(female!!)
         allNames!!.addAll(male!!)
-        Collections.sort(allNames!!)
+        allNames!!.sort()
     }
 
     fun getFemale(): List<String>? {

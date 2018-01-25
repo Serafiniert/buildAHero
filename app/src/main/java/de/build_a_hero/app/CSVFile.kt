@@ -33,9 +33,9 @@ class CSVFile(private val inputStream: InputStream) {
             }
             allNames!!.addAll(female!!)
             allNames!!.addAll(male!!)
-            Collections.sort(allNames!!)
-            Collections.sort(female!!)
-            Collections.sort(male!!)
+            allNames!!.sort()
+            female!!.sort()
+            male!!.sort()
 
         } catch (ex: IOException) {
             throw RuntimeException("Error in reading CSV file: " + ex)

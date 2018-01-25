@@ -1,7 +1,6 @@
 package de.build_a_hero.app
 
 import android.os.AsyncTask
-
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -51,8 +50,8 @@ class HttpGetRequest : AsyncTask<String, Void, String>() {
 
     companion object {
 
-        val REQUEST_METHOD = "GET"
-        val READ_TIMEOUT = 15000
-        val CONNECTION_TIMEOUT = 15000
+        const val REQUEST_METHOD = "GET"
+        const val READ_TIMEOUT = 15000
+        const val CONNECTION_TIMEOUT = 15000
     }
 }
