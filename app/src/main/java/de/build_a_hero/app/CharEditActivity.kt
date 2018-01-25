@@ -195,7 +195,7 @@ class CharEditActivity : AppCompatActivity() {
                         charDetails!![charDetails!!.length-1]
 
                 if (charDetails.isNotEmpty() && detailsDivider == "<;>") {
-                    charDetails = charDetails.substring(0, charDetails.length - 1)
+                    charDetails = charDetails.substring(0, charDetails.length - 3)
                 }
 
                 //charDetails = charDetails + "ÜÄÖ"
