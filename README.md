@@ -5,7 +5,7 @@ This README would normally document whatever steps are necessary to get your app
 ### What is this repository for? ###
 
 * Eine App, die Rollenspielern helfen soll, einen Charakter zu erstellen und dabei hilfreiche Tools zur Verfügung stellt.
-* Tag: BuildAHero
+* Tag: BuildAHeroFinal01
 
 ### How do I get set up? ###
 
