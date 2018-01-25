@@ -47,7 +47,7 @@ class CharCreationActivity : AppCompatActivity() {
     private var female = ArrayList<String>()
     private var allNames = ArrayList<String>()
 
-    private val filename = "charDetails11.txt"
+    private val filename = "characterDetails1.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -367,24 +367,30 @@ class CharCreationActivity : AppCompatActivity() {
                     .forEach {
                         when (it) {
                             is Spinner -> charDetails = if (it.selectedItem != null) {
-                                charDetails + it.selectedItem.toString() + ";"
+
+
+
+                                charDetails + it.selectedItemPosition.toString() + "<;>"
                             } else {
-                                charDetails!! + "null;"
+                                charDetails!! + "null<;>"
                             }
                             is EditText -> charDetails = if (it.text == null || it.text.equals("")) {
-                                charDetails!! + "null;"
+                                charDetails!! + "null<;>"
                             } else {
-                                charDetails + it.text + ";"
+                                charDetails + it.text + "<;>"
                             }
                             is TextView -> charDetails = if (it.text == null || it.text == "") {
-                                charDetails!! + "null;"
+                                charDetails!! + "null<;>"
                             } else {
-                                charDetails + it.text + ";"
+                                charDetails + it.text + "<;>"
                             }
                         }
                     }
 
-            if (charDetails!!.isNotEmpty() && charDetails!![charDetails!!.length - 1] == ';') {
+            val detailsDivider : String = charDetails!![charDetails!!.length-3].toString() + charDetails!![charDetails!!.length-2] +
+                    charDetails!![charDetails!!.length-1]
+
+            if (charDetails!!.isNotEmpty() && detailsDivider == "<;>") {
                 charDetails = charDetails!!.substring(0, charDetails!!.length - 1)
             }
 
