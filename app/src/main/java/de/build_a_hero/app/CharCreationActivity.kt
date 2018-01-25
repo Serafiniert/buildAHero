@@ -239,7 +239,6 @@ class CharCreationActivity : AppCompatActivity() {
 
                     klassenWert += 1
 
-
                     availablePoints!!.text = Integer.toString(availPoints - 10)
                     cell.text = Integer.toString(currentWissen)
                     wissenWert!!.text = Integer.toString(klassenWert)
@@ -266,7 +265,6 @@ class CharCreationActivity : AppCompatActivity() {
                 cell.text = Integer.toString(currentWissen)
                 wissenWert!!.text = Integer.toString(klassenWert)
             }
-
 
             val interagRow = interagLayout!!.getChildAt(i) as TableRow
             val interagAddButton = interagRow.getChildAt(3) as Button
@@ -376,7 +374,6 @@ class CharCreationActivity : AppCompatActivity() {
                             is Spinner -> charDetails = if (it.selectedItem != null) {
 
 
-
                                 charDetails + it.selectedItemPosition.toString() + "<;>"
                             } else {
                                 charDetails!! + "null<;>"
@@ -394,8 +391,8 @@ class CharCreationActivity : AppCompatActivity() {
                         }
                     }
 
-            val detailsDivider : String = charDetails!![charDetails!!.length-3].toString() + charDetails!![charDetails!!.length-2] +
-                    charDetails!![charDetails!!.length-1]
+            val detailsDivider: String = charDetails!![charDetails!!.length - 3].toString() + charDetails!![charDetails!!.length - 2] +
+                    charDetails!![charDetails!!.length - 1]
 
             if (charDetails!!.isNotEmpty() && detailsDivider == "<;>") {
                 charDetails = charDetails!!.substring(0, charDetails!!.length - 3)

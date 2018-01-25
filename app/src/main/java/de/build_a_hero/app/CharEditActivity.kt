@@ -197,8 +197,8 @@ class CharEditActivity : AppCompatActivity() {
                     }
                 }
 
-                val detailsDivider : String = charDetails!![charDetails!!.length-3].toString() + charDetails!![charDetails!!.length-2] +
-                        charDetails!![charDetails!!.length-1]
+                val detailsDivider: String = charDetails!![charDetails!!.length - 3].toString() + charDetails!![charDetails!!.length - 2] +
+                        charDetails!![charDetails!!.length - 1]
 
                 if (charDetails.isNotEmpty() && detailsDivider == "<;>") {
                     charDetails = charDetails.substring(0, charDetails.length - 3)
@@ -471,7 +471,6 @@ class CharEditActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
 
     private fun load(filename: String): String {
         var text = ""
