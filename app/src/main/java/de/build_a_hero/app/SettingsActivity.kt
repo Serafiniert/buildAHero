@@ -9,7 +9,6 @@ import com.example.ninad.buildahero.ContactFragment
 import com.example.ninad.buildahero.CreditFragment
 import kotlinx.android.synthetic.main.activity_settings.*
 
-
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class SettingsActivity : AppCompatActivity() {
             ft.commit()
 
             contactButton.setBackgroundColor(Color.WHITE);
-            creditButton.setBackgroundColor(Color.rgb(224,217,217));
+            creditButton.setBackgroundColor(Color.rgb(224, 217, 217));
         }
         if (view === findViewById<View>(R.id.creditButton)) {
             fragment = CreditFragment()
@@ -38,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
             ft.commit()
 
             creditButton.setBackgroundColor(Color.WHITE);
-            contactButton.setBackgroundColor(Color.rgb(224,217,217));
+            contactButton.setBackgroundColor(Color.rgb(224, 217, 217));
         }
     }
 }
