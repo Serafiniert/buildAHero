@@ -5,7 +5,7 @@ This README would normally document whatever steps are necessary to get your app
 ### What is this repository for? ###
 
 * Eine App, die Rollenspielern helfen soll, einen Charakter zu erstellen und dabei hilfreiche Tools zur Verfügung stellt.
-* Tag: BuildAHeroFinal01
+* Tag: BuildAHero
 
 ### How do I get set up? ###
 
@@ -14,4 +14,4 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Nina Dörnbrak, Finn Christians, Tanyel Stoyloff, Tim Eberhardt
+* Finn Christians, Nina Dörnbrak, Tim Eberhardt, Tanyel Stoyloff
