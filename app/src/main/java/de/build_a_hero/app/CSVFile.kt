@@ -11,6 +11,10 @@ class CSVFile(private val inputStream: InputStream) {
     private var male: MutableList<String>? = null
     private var allNames: MutableList<String>? = null
 
+    private val caseFemale = "w"
+    private val caseMale = "m"
+    private val separator = ";"
+
     fun read() {
         val reader = BufferedReader(InputStreamReader(inputStream))
         female = ArrayList()
@@ -24,10 +28,10 @@ class CSVFile(private val inputStream: InputStream) {
 
                 csvLine = reader.readLine() ?: break
 
-                val row = csvLine.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                if (row[2].equals("w", ignoreCase = true)) {
+                val row = csvLine.split(separator.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                if (row[2].equals(caseFemale, ignoreCase = true)) {
                     female!!.add(row[0])
-                } else if (row[2].equals("m", ignoreCase = true)) {
+                } else if (row[2].equals(caseMale, ignoreCase = true)) {
                     male!!.add(row[0])
                 }
             }

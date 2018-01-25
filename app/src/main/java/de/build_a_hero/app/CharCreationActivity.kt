@@ -16,6 +16,11 @@ import java.util.concurrent.ExecutionException
 
 class CharCreationActivity : AppCompatActivity() {
     private val nameOptional = "(Optional) Name wählen"
+    private val genderChoose = "Geschlecht wählen"
+    private val fem = "weiblich"
+    private val mal = "männlich"
+    private val other = "anderes"
+    private val unknown = "unbestimmt"
 
     private var nameAdapter: ArrayAdapter<String>? = null
 
@@ -43,7 +48,7 @@ class CharCreationActivity : AppCompatActivity() {
     private var nameField: EditText? = null
     private var formList: ArrayList<View>? = null
 
-    private val gender = arrayOf("Geschlecht wählen", "weiblich", "männlich", "anderes", "unbestimmt")
+    private val gender = arrayOf(genderChoose, fem, mal, other, unknown)
     private var male = ArrayList<String>()
     private var female = ArrayList<String>()
     private var allNames = ArrayList<String>()
@@ -110,15 +115,15 @@ class CharCreationActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val gender = parent.getItemAtPosition(position).toString()
 
-                if (gender == "weiblich") {
+                if (gender == fem) {
                     nameAdapter = ArrayAdapter(this@CharCreationActivity, android.R.layout.simple_spinner_item, female)
                     nameAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
-                } else if (gender == "männlich") {
+                } else if (gender == mal) {
                     nameAdapter = ArrayAdapter(this@CharCreationActivity, android.R.layout.simple_spinner_item, male)
                     nameAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
-                } else if (gender == "anderes" || gender == "unbestimmt" || gender == "Geschlecht wählen") {
+                } else if (gender == other || gender == unknown || gender == genderChoose) {
                     nameAdapter = ArrayAdapter(this@CharCreationActivity, android.R.layout.simple_spinner_item, allNames)
                     nameAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     nameSpinner!!.adapter = nameAdapter
