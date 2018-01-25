@@ -26,8 +26,9 @@ class SettingsActivity : AppCompatActivity() {
             val ft = fm.beginTransaction()
             ft.replace(R.id.settingFragment, fragment)
             ft.commit()
-            contactButton.setBackgroundColor(Color.rgb(224,217,217));
-            creditButton.setBackgroundColor(Color.WHITE);
+
+            contactButton.setBackgroundColor(Color.WHITE);
+            creditButton.setBackgroundColor(Color.rgb(224,217,217));
         }
         if (view === findViewById<View>(R.id.creditButton)) {
             fragment = CreditFragment()
@@ -35,8 +36,9 @@ class SettingsActivity : AppCompatActivity() {
             val ft = fm.beginTransaction()
             ft.replace(R.id.settingFragment, fragment)
             ft.commit()
-            creditButton.setBackgroundColor(Color.rgb(224,217,217));
-            contactButton.setBackgroundColor(Color.WHITE);
+
+            creditButton.setBackgroundColor(Color.WHITE);
+            contactButton.setBackgroundColor(Color.rgb(224,217,217));
         }
     }
 }
