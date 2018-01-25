@@ -139,7 +139,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="165dp"
+                        android:layout_width="169dp"
                         android:layout_height="match_parent"
                         android:text="@string/handeln" />
 
