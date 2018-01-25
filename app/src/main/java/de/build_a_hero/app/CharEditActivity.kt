@@ -164,7 +164,7 @@ class CharEditActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             charDetails = ""
 
-            val file = File("/data/user/0/com.example.ninad.buildahero/files", filename)
+            val file = File(filename)
 
             if (file.exists()) {
                 val p = intent.getStringExtra("charDetail")
