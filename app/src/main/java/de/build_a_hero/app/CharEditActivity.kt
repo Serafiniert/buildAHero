@@ -46,7 +46,7 @@ class CharEditActivity : AppCompatActivity() {
     private var female = ArrayList<String>()
     private var allNames = ArrayList<String>()
 
-    private val filename = "charDetails11.txt"
+    private val filename = "characterDetails1.txt"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,7 +162,7 @@ class CharEditActivity : AppCompatActivity() {
 
             if (file.exists()) {
                 val p = intent.getStringExtra("charDetail")
-                val c = p.split(";")
+                val c = p.split("<;>")
 
                 for (i in formList.indices) {
 
@@ -170,28 +170,31 @@ class CharEditActivity : AppCompatActivity() {
 
                     if (input is Spinner) {
                         charDetails = if (input.selectedItem == null) {
-                            charDetails + c[i] + ";"
+                            charDetails + c[i] + "<;>"
 
                         } else {
                             //charDetails = charDetails + "null;"
-                            charDetails + input.selectedItem.toString() + ";"
+                            charDetails + input.selectedItemPosition.toString() + "<;>"
                         }
                     } else if (input is EditText) {
                         if (input.text == null) {
-                            charDetails += "null;"
+                            charDetails += c[i] + "<;>"
                         } else {
-                            charDetails = charDetails + input.text + ";"
+                            charDetails = charDetails + input.text + "<;>"
                         }
                     } else if (input is TextView) {
                         if (input.text == null || input.text == "") {
-                            charDetails += "null;"
+                            charDetails += c[i] + "<;>"
                         } else {
-                            charDetails = charDetails + input.text + ";"
+                            charDetails = charDetails + input.text + "<;>"
                         }
                     }
                 }
 
-                if (charDetails.isNotEmpty() && charDetails[charDetails.length - 1] == ';') {
+                val detailsDivider : String = charDetails!![charDetails!!.length-3].toString() + charDetails!![charDetails!!.length-2] +
+                        charDetails!![charDetails!!.length-1]
+
+                if (charDetails.isNotEmpty() && detailsDivider == "<;>") {
                     charDetails = charDetails.substring(0, charDetails.length - 1)
                 }
 
@@ -394,21 +397,22 @@ class CharEditActivity : AppCompatActivity() {
     private fun setCharDetails() {
 
         val s = intent.getStringExtra("charDetail")
-        val character = s.split(";")
+        val character = s.split("<;>")
 
         for (i in 0 until formList.size) {
             val v = formList[i]
             if (v is Spinner) {
-                var count = 0
+                /*var count = 0
                 Log.v("spinnersize", v.count.toString())
                 for (j in 0 until v.count) {
+                    Log.v("setSpinner", "" + character[i] + ": " + j)
 
                     if (v.getItemAtPosition(i).toString() == character[i]) {
                         count = j
                         break
                     }
-                }
-                v.setSelection(count)
+                }*/
+                v.setSelection(character[i].toInt())
             } else if (v is EditText) {
                 v.setText(character[i])
             } else if (v is TextView) {
