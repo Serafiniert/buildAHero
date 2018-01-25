@@ -9,7 +9,7 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* First you need to download the project, you find it under https://bitbucket.org/ws17_08/hero/downloads/?tab=tags. Import the project into your android studio. You dont need any additional data banks.
+* First you need to download the project, you find it under https://bitbucket.org/ws17_08/hero/downloads/?tab=tags. Import the project into your android studio. You dont need any additional data bases.
 * Let the project be synct and builted in your studio. After that there should be no errors left.
 
 ### Who do I talk to? ###
